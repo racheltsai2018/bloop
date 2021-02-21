@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MyApp());
+
 }
 
+// Base code that came with flutter
+/*
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
@@ -115,3 +117,4 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+*/
