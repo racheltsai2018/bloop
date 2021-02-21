@@ -1,7 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flame/util.dart';
+import 'package:flutter/services.dart';
+import 'package:bloop_app/shooter-game.dart';
+import 'package:flutter/gestures.dart';
 
-void main() {
 
+void main(){
+
+  ShooterGame game = ShooterGame();
+  runApp(game.widget); // this has to come before Until functions because later Flutter updates "broke it"
+
+  Util flameUtil = Util();
+  flameUtil.fullScreen();
+  flameUtil.setOrientation(DeviceOrientation.portraitUp);
+
+  //recognizing gestures
+  TapGestureRecognizer tapper = TapGestureRecognizer();
+  tapper.onTapDown = game.onTapDown; //call game class tap when gesture is tap
+  runApp(game.widget);
+  flameUtil.addGestureRecognizer(tapper); //figure this out later
 }
 
 // Base code that came with flutter
