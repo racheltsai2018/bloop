@@ -16,9 +16,15 @@ void main(){
 
   //recognizing gestures
   TapGestureRecognizer tapper = TapGestureRecognizer();
+  PanGestureRecognizer pan = PanGestureRecognizer();
   tapper.onTapDown = game.onTapDown; //call game class tap when gesture is tap
+  pan.onStart = game.onPanStart;
+  pan.onEnd = game.onPanEnd;
+  pan.onUpdate = game.onPanUpdate;
   runApp(game.widget);
   flameUtil.addGestureRecognizer(tapper); //figure this out later
+  flameUtil.addGestureRecognizer(pan);
+
 }
 
 // Base code that came with flutter
