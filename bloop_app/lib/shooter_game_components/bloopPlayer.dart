@@ -9,10 +9,11 @@ const double bloopBottomSpacing = 10;
 class BloopPlayer extends SpriteComponent{
 
   Size screenSize;
-  BloopPlayer() : super.square(100, 'flyingBlob.png'){
+  BloopPlayer() : super.square(200, 'flyingBlob.png'){
     //empty until we make it animation
   }
 
+  //checks if the point is inside the sprite
   bool isInside(double x, double y){
     if(x >= this.x - this.width
         && x <= this.x + this.width
@@ -21,6 +22,7 @@ class BloopPlayer extends SpriteComponent{
       return true;
     return false;
   }
+
   // Make sure that the player never goes outside of the screen in the X-axis
   double insideX(dx){
     if (this.x + this.width + dx >= screenSize.width) {
@@ -31,15 +33,18 @@ class BloopPlayer extends SpriteComponent{
     }else
       return dx;
   }
+
+  // Make sure that the player never goes outside of the screen in the Y-axis
   double insideY(dy){
     if (this.y + this.height + dy >= screenSize.height) {
-      return screenSize.height - (this.y + this.height);
+      return screenSize.height - (this.y + this.height) - 10;
     } else if (this.y + dy <= 0) {
       return -this.y;
     }else
       return dy;
   }
 
+  //Moves player by given amount on x and y axis
   void translateBloop(dx, dy){
     this.x = this.x + dx;
     this.y = this.y + dy;

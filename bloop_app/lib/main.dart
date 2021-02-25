@@ -9,7 +9,7 @@ import 'package:flutter/gestures.dart';
 
 void main(){
   WidgetsFlutterBinding.ensureInitialized(); // necessary if you want to do something before runApp
-  Flame.util.fullScreen();
+  Flame.util.fullScreen(); // just makes the game full screen
 
   runApp(MyApp());
   /*
@@ -92,7 +92,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: game.widget,
+      body: game.widget, // I wish I knew how widgets works heheheheheh -Ira
     );
   }
 }

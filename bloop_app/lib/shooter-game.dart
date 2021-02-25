@@ -1,5 +1,7 @@
 import 'dart:ui';
+import 'package:bloop_app/shooter_game_components/bullet.dart';
 import 'package:flame/components/component.dart';
+import 'package:flame/components/parallax_component.dart';
 import 'package:flame/game.dart';
 import 'package:flame/gestures.dart';
 import 'package:flutter/cupertino.dart';
@@ -7,17 +9,48 @@ import 'package:flutter/gestures.dart';
 import 'package:bloop_app/shooter_game_components/bloopPlayer.dart';
 import 'package:flame/flame.dart';
 
-
+double playerX;
+double playerY;
 
 class ShooterGame extends BaseGame with PanDetector{
+  ParallaxComponent _parallaxComponent;
   BloopPlayer _bloop;
+  double _elapsedBulletTime = 10;
   bool dragBloop = false;
 
   ShooterGame(){
+    _parallaxComponent = ParallaxComponent([
+      ParallaxImage("space_1.png", alignment: Alignment.center,repeat: ImageRepeat.repeatY, fill: LayerFill.width),
+      ParallaxImage("space_2.png", alignment: Alignment.center, repeat: ImageRepeat.repeatY, fill: LayerFill.width),
+    ],
+      baseSpeed: Offset(0,-100),
+      layerDelta: Offset(0, -20),
+    );
+    add(_parallaxComponent);
     _bloop = BloopPlayer();
+    playerX = _bloop.x;
+    playerY = _bloop.y;
     add(_bloop);
   }
 
+  @override
+  void update(double t) {
+    // TODO: implement update
+    super.update(t);
+    playerX = _bloop.x;
+    playerY = _bloop.y;
+
+    if (_elapsedBulletTime >= 0.1){
+      Bullet bullet = new Bullet();
+      add(bullet);
+      _elapsedBulletTime = 0;
+    }else{
+      _elapsedBulletTime += t;
+    }
+  }
+  //Pan is use for dragging the player
+
+  //Pan start called when there will be a potential drag, makes sure the character was grabbed
   @override
   void onPanStart(DragStartDetails details) {
     super.onPanStart(details);
@@ -26,22 +59,24 @@ class ShooterGame extends BaseGame with PanDetector{
     dragBloop = _bloop.isInside(x, y);
   }
 
+  //finger lifted no more drag
   @override
   void onPanEnd(DragEndDetails details) {
     super.onPanEnd(details);
     dragBloop = false;
   }
 
+  //when dragging happens and the character is grabbed, update location of player
   @override
   void onPanUpdate(DragUpdateDetails details) {
-    // TODO: implement onPanUpdate
     super.onPanUpdate(details);
     final delta = details.delta;
     double translateX = delta.dx;
     double translateY = delta.dy;
+
     if(dragBloop) {
-      translateX = _bloop.insideX(translateX);
-      translateY = _bloop.insideY(translateY);
+      translateX = _bloop.insideX(translateX); //makes sure x coordinates are inside the screen
+      translateY = _bloop.insideY(translateY); //makes sure x coordinates are inside the screen
       _bloop.translateBloop(translateX, translateY);
     }
   }
