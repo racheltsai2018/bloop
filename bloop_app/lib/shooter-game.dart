@@ -1,11 +1,51 @@
 import 'dart:ui';
+import 'package:flame/components/component.dart';
 import 'package:flame/game.dart';
+import 'package:flame/gestures.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
-import 'package:bloop_app/shooter_game_components/character.dart';
+import 'package:bloop_app/shooter_game_components/bloopPlayer.dart';
 import 'package:flame/flame.dart';
 
 
-class ShooterGame extends Game {
+
+class ShooterGame extends BaseGame with PanDetector{
+  BloopPlayer _bloop;
+  bool dragBloop = false;
+
+  ShooterGame(){
+    _bloop = BloopPlayer();
+    add(_bloop);
+  }
+
+  @override
+  void onPanStart(DragStartDetails details) {
+    super.onPanStart(details);
+    double x = details.globalPosition.dx;
+    double y = details.globalPosition.dy;
+    dragBloop = _bloop.isInside(x, y);
+  }
+
+  @override
+  void onPanEnd(DragEndDetails details) {
+    super.onPanEnd(details);
+    dragBloop = false;
+  }
+
+  @override
+  void onPanUpdate(DragUpdateDetails details) {
+    // TODO: implement onPanUpdate
+    super.onPanUpdate(details);
+    final delta = details.delta;
+    double translateX = delta.dx;
+    double translateY = delta.dy;
+    if(dragBloop) {
+      translateX = _bloop.insideX(translateX);
+      translateY = _bloop.insideY(translateY);
+      _bloop.translateBloop(translateX, translateY);
+    }
+  }
+  /*
   Size screenSize;
   double tileSize;
   bool isOn = false;
@@ -18,12 +58,13 @@ class ShooterGame extends Game {
 
   void initialize() async {
     resize(await Flame.util.initialDimensions()); //wait for Flame to send the size of the screen
-    character = Character(this, 50, 50);
+    character = Character();
 
   }
 
   //same as draw class, simply rendering all the objects in the game
   void render(Canvas canvas) {
+    super.render(canvas);
     //Set Backgound to be black rectangle
     Rect bgRect = Rect.fromLTWH(0, 0, screenSize.width, screenSize.height);
     Paint bgPaint = Paint();
@@ -55,6 +96,7 @@ class ShooterGame extends Game {
 
   //updates objects 60 frames per second
   void update(double t) {
+    super.update(t);
     //forEach is like a for loop for all component of the list
     //forEach requires a function as a varaiable => just shortens it
     //flies.forEach((Fly fly) => fly.update(t));
@@ -97,7 +139,6 @@ class ShooterGame extends Game {
       dragPlayer = false;
  }
 
-
   void onPanUpdate(DragUpdateDetails details){
     final delta = details.delta;
     double translateX = delta.dx;
@@ -118,5 +159,5 @@ class ShooterGame extends Game {
       character.characterRect =
           character.characterRect.translate(translateX, translateY);
     }
-  }
+  }*/
 }
