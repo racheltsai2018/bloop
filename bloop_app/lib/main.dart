@@ -5,8 +5,18 @@ import 'package:flame/game.dart';
 import 'package:flutter/services.dart';
 import 'package:bloop_app/shooter-game.dart';
 import 'package:flutter/gestures.dart';
+import 'package:bloop_app/homepage.dart';
+import 'package:flutter/material.dart';
 
+void main() {
+  runApp(MaterialApp(
+    debugShowCheckedModeBanner: false,
+    title: 'bloop',
+    home: homepage(),
+  ));
+}
 
+/**
 void main(){
   WidgetsFlutterBinding.ensureInitialized(); // necessary if you want to do something before runApp
   Flame.util.fullScreen(); // just makes the game full screen
@@ -95,4 +105,4 @@ class _MyHomePageState extends State<MyHomePage> {
       body: game.widget, // I wish I knew how widgets works heheheheheh -Ira
     );
   }
-}
+}*/
