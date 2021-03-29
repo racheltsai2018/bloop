@@ -8,15 +8,19 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:bloop_app/shooter_game_components/bloopPlayer.dart';
 import 'package:flame/flame.dart';
+import 'package:bloop_app/shooter_game_components/enemy.dart';
+import 'package:flutter/material.dart';
 
 double playerX;
 double playerY;
+Enemy enemy;
 
 class ShooterGame extends BaseGame with PanDetector{
   ParallaxComponent _parallaxComponent;
   BloopPlayer _bloop;
   double _elapsedBulletTime = 10;
   bool dragBloop = false;
+  Size dimensions;
 
   ShooterGame(){
     _parallaxComponent = ParallaxComponent([
@@ -33,13 +37,25 @@ class ShooterGame extends BaseGame with PanDetector{
     add(_bloop);
   }
 
+  //timer used to spawn enemies
+  double enemyTimer = 0.0;
   @override
   void update(double t) {
     // TODO: implement update
+
+    //enemy generator
+    enemyTimer += t;
+    if(enemyTimer >= 4){
+      enemyTimer = 0.0;
+      enemy = new Enemy(dimensions);
+      add(enemy);
+    }
+
     super.update(t);
     playerX = _bloop.x;
     playerY = _bloop.y;
 
+    //bullet spawner
     if (_elapsedBulletTime >= 0.1){
       Bullet bullet = new Bullet();
       add(bullet);
@@ -48,6 +64,30 @@ class ShooterGame extends BaseGame with PanDetector{
       _elapsedBulletTime += t;
     }
   }
+
+  //Displays score text on a canvas
+  @override
+  void render(Canvas canvas){
+    super.render(canvas);
+    final textStyle = TextStyle(
+        color: Colors.white,
+        fontSize: 48
+    );
+    final textSpan = TextSpan(
+        text: "Score: 0",
+        style: textStyle
+    );
+    final textPainter = TextPainter(
+        text: textSpan,
+        textDirection: TextDirection.ltr
+    );
+    textPainter.layout(
+        minWidth: 0,
+        maxWidth: size.width
+    );
+    textPainter.paint(canvas, Offset(size.width/ 4.5, size.height - 50));
+  }
+
   //Pan is use for dragging the player
 
   //Pan start called when there will be a potential drag, makes sure the character was grabbed
