@@ -125,14 +125,19 @@ class ShooterGame extends BaseGame with PanDetector, HasWidgetsOverlay{
   }
 
   Widget _buildHud(){
-    return IconButton(
-        icon: Icon(
-            Icons.pause,
-            color: Colors.white70,
-            size: 30.0),
-      onPressed: (){
-          pauseGame();
-    },
+    return Positioned(
+      bottom: 30.0,
+      left: 0.0,
+      child:
+        IconButton(
+          icon: Icon(
+              Icons.pause,
+              color: Colors.white70,
+              size: 60.0),
+        onPressed: (){
+            pauseGame();
+      },
+      ),
     );
   }
 
