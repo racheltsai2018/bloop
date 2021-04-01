@@ -12,11 +12,16 @@ class Enemy extends SpriteComponent{
   double maxY;
   bool remove = false;
 
+
   @override
   void update(double t){
     y += t * SPEED;
+    if (this.y > maxY){
+        remove = true;
+    }
   }
 
+  // This method is called every loop and needs to return true if the enemy is dead/off screen
   @override
   bool destroy(){
     return remove;

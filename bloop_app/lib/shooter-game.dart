@@ -15,7 +15,7 @@ double playerX;
 double playerY;
 Enemy enemy;
 
-class ShooterGame extends BaseGame with PanDetector{
+class ShooterGame extends BaseGame with PanDetector, HasWidgetsOverlay{
   ParallaxComponent _parallaxComponent;
   BloopPlayer _bloop;
   double _elapsedBulletTime = 10;
@@ -35,6 +35,8 @@ class ShooterGame extends BaseGame with PanDetector{
     playerX = _bloop.x;
     playerY = _bloop.y;
     add(_bloop);
+
+    addWidgetOverlay('Hud', _buildHud());
   }
 
   //timer used to spawn enemies
@@ -73,6 +75,7 @@ class ShooterGame extends BaseGame with PanDetector{
         color: Colors.white,
         fontSize: 48
     );
+    // TODO: move score to the hub method as an overlay widget
     final textSpan = TextSpan(
         text: "Score: 0",
         style: textStyle
@@ -119,6 +122,65 @@ class ShooterGame extends BaseGame with PanDetector{
       translateY = _bloop.insideY(translateY); //makes sure x coordinates are inside the screen
       _bloop.translateBloop(translateX, translateY);
     }
+  }
+
+  Widget _buildHud(){
+    return IconButton(
+        icon: Icon(
+            Icons.pause,
+            color: Colors.white70,
+            size: 30.0),
+      onPressed: (){
+          pauseGame();
+    },
+    );
+  }
+
+  void pauseGame(){
+    pauseEngine();
+    
+    addWidgetOverlay('PauseMenu', _buildPauseMenu());
+  }
+
+  Widget _buildPauseMenu() {
+    return Center(
+      child: Card(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10.0),
+        ),
+        color: Colors.white.withOpacity(0.5),
+        child: Padding(
+          padding: EdgeInsets.symmetric(
+            horizontal: 50.0,
+            vertical: 50.0,
+          ),
+          child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisSize: MainAxisSize.min,
+          children:[
+            Text(
+                'Paused',
+                style: TextStyle(fontSize: 30.0, color: Colors.white),
+            ),
+            IconButton(
+                icon: Icon(
+                    Icons.play_arrow_rounded,
+                    color: Colors.white,
+                    size: 40.0),
+                onPressed: (){
+                  resumeGame();
+                }
+                )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  void resumeGame() {
+    removeWidgetOverlay('PauseMenu');
+    resumeEngine();
   }
   /*
   Size screenSize;

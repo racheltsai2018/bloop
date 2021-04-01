@@ -9,7 +9,7 @@ const double bloopBottomSpacing = 10;
 class BloopPlayer extends SpriteComponent{
 
   Size screenSize;
-  BloopPlayer() : super.square(200, 'flyingBlob.png'){
+  BloopPlayer() : super.square(200, 'player.png'){
     //empty until we make it animation
   }
 
