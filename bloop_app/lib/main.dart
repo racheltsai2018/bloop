@@ -1,7 +1,12 @@
+import 'package:bloop_app/homepage.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(MaterialApp(
+    debugShowCheckedModeBanner: false,
+    title: 'bloop',
+    home: homepage(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
