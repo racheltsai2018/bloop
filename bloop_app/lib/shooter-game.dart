@@ -13,7 +13,7 @@ import 'package:flutter/material.dart';
 
 double playerX;
 double playerY;
-Enemy enemy;
+
 
 class ShooterGame extends BaseGame with PanDetector, HasWidgetsOverlay{
   ParallaxComponent _parallaxComponent;
@@ -21,6 +21,10 @@ class ShooterGame extends BaseGame with PanDetector, HasWidgetsOverlay{
   double _elapsedBulletTime = 10;
   bool dragBloop = false;
   Size dimensions;
+  static var points = 0;
+  Enemy enemy;
+  Bullet bullet;
+
 
   ShooterGame(){
     _parallaxComponent = ParallaxComponent([
@@ -51,6 +55,7 @@ class ShooterGame extends BaseGame with PanDetector, HasWidgetsOverlay{
       enemyTimer = 0.0;
       enemy = new Enemy(dimensions);
       add(enemy);
+
     }
 
     super.update(t);
@@ -59,12 +64,21 @@ class ShooterGame extends BaseGame with PanDetector, HasWidgetsOverlay{
 
     //bullet spawner
     if (_elapsedBulletTime >= 0.1){
-      Bullet bullet = new Bullet();
+      bullet = new Bullet();
       add(bullet);
       _elapsedBulletTime = 0;
     }else{
       _elapsedBulletTime += t;
     }
+
+    components.whereType<Enemy>().forEach((enemy) {
+      if((bullet.toRect().contains(enemy.toRect().bottomCenter) ||
+          bullet.toRect().contains(enemy.toRect().bottomLeft) ||
+          bullet.toRect().contains(enemy.toRect().bottomRight))){
+        bullet.hit();
+        enemy.hit();
+      }
+    });
   }
 
   //Displays score text on a canvas
