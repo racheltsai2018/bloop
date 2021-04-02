@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:bloop_test/homepage.dart';
-import 'package:bloop_test/meditation.dart';
+import 'package:bloop_app/homepage.dart';
+import 'package:bloop_app/meditation.dart';
 
 class diary extends StatelessWidget {
   @override
