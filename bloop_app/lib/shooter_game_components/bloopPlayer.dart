@@ -34,10 +34,10 @@ class BloopPlayer extends SpriteComponent{
   }
   //checks if the point is inside the sprite
   bool isInside(double x, double y){
-    if(x >= this.x
-        && x <= this.x
-        && y >= this.y
-        && y <= this.y)
+    if(x >= this.x - this.width/2
+        && x <= this.x + this.width/2
+        && y >= this.y - this.height/2
+        && y <= this.y + this.height/2)
       return true;
     return false;
   }

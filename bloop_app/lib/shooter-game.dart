@@ -69,7 +69,7 @@ class ShooterGame extends BaseGame with PanDetector, HasWidgetsOverlay{
       }
         components.whereType<Bullet>().forEach((bullet){
           if(bullet.distance(enemy) < 20){
-            bullet.gotHit();
+            bullet.hit();
           }
         });
     });

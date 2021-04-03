@@ -35,6 +35,8 @@ class Bullet extends SpriteComponent{
 
   void hit(){
     print('hit bullet');
+    isHit = true;
+    exploded = true;
   }
 
   @override
@@ -72,9 +74,5 @@ class Bullet extends SpriteComponent{
   //   enemyList.add(e);
   // }
 
-  void gotHit(){
-    isHit = true;
-    exploded = true;
-  }
 
 }
