@@ -15,6 +15,7 @@ class Enemy extends SpriteComponent{
   }
   double maxY;
   bool remove = false;
+  bool isHit = false;
 
 
   @override
@@ -29,6 +30,12 @@ class Enemy extends SpriteComponent{
   // This method is called every loop and needs to return true if the enemy is dead/off screen
   @override
   bool destroy(){
+    if(remove){
+      return true;
+    }
+    if(y == null || maxY == null){
+      return false;
+    }
     return remove;
   }
 
@@ -38,6 +45,14 @@ class Enemy extends SpriteComponent{
     this.x = size.width/2;
     this.y = y;
     this.maxY = size.height;
+  }
+
+  void hit(){
+    if(!isHit){
+      isHit = true;
+      remove = true;
+    }
+
   }
 
 }
