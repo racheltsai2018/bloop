@@ -1,3 +1,4 @@
+import 'package:flame/anchor.dart';
 import 'package:flame/components/component.dart';
 import 'package:flame/flame.dart';
 import 'package:flame/game.dart';
@@ -8,13 +9,17 @@ const ComponentSize = 40.0;
 
 class Enemy extends SpriteComponent{
   Size dimensions;
-  Enemy(this.dimensions) : super.square(ComponentSize, 'dragon.png');
+  //Enemy(this.dimensions) : super.square(ComponentSize, 'dragon.png');
+  Enemy() : super.square(ComponentSize, 'dragon.png'){
+    this.anchor = Anchor.center; // moves the origin from top left corner to center of the sprite
+  }
   double maxY;
   bool remove = false;
 
 
   @override
   void update(double t){
+    super.update(t);
     y += t * SPEED;
     if (this.y > maxY){
         remove = true;
@@ -29,8 +34,9 @@ class Enemy extends SpriteComponent{
 
   @override
   void resize(Size size) {
+    super.resize(size);
     this.x = size.width/2;
-    this.y = 0;
+    this.y = y;
     this.maxY = size.height;
   }
 
