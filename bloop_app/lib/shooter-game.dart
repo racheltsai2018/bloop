@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:bloop_app/shooter_game_components/EnemyManager.dart';
 import 'package:bloop_app/shooter_game_components/bullet.dart';
 import 'package:flame/components/component.dart';
 import 'package:flame/components/parallax_component.dart';
@@ -68,7 +69,7 @@ class ShooterGame extends BaseGame with PanDetector, HasWidgetsOverlay{
       }
         components.whereType<Bullet>().forEach((bullet){
           if(bullet.distance(enemy) < 20){
-            bullet.hit();
+            bullet.gotHit();
           }
         });
     });

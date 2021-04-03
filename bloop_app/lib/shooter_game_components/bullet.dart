@@ -72,7 +72,7 @@ class Bullet extends SpriteComponent{
   //   enemyList.add(e);
   // }
 
-  void hit(){
+  void gotHit(){
     isHit = true;
     exploded = true;
   }
