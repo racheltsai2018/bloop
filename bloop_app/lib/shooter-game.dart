@@ -15,6 +15,8 @@ import 'package:bloop_app/shooter_game_components/enemy.dart';
 import 'package:flutter/material.dart';
 import 'package:flame/text_config.dart';
 
+import 'shooter_game_components/enemy.dart';
+
 double playerX;
 double playerY;
 
@@ -92,6 +94,11 @@ class ShooterGame extends BaseGame with PanDetector, HasWidgetsOverlay{
 
     //updates the score
     _scoreText.text = "Score:" + score.toString();
+
+    //if ran out of lives, display game over screen
+    if(_bloop.life.value <= 0){
+      gameOver();
+    }
   }
 
   @override
@@ -160,6 +167,24 @@ class ShooterGame extends BaseGame with PanDetector, HasWidgetsOverlay{
     }
   }
 
+  //If exit out of app, game is paused rather than continuing in the background
+  @override
+  void lifecycleStateChange(AppLifecycleState state){
+    switch(state){
+      case AppLifecycleState.resumed:
+        break;
+      case AppLifecycleState.inactive:
+        this.pauseGame();
+        break;
+      case AppLifecycleState.paused:
+        this.pauseGame();
+        break;
+      case AppLifecycleState.detached:
+        this.pauseGame();
+        break;
+    }
+  }
+
   Widget _buildHud(){
     return Stack (children: [
         Positioned(
@@ -177,7 +202,7 @@ class ShooterGame extends BaseGame with PanDetector, HasWidgetsOverlay{
             ),
         ),
         Positioned(
-          right: 0.0,
+          right: 10.0,
           top: 30.0,
           child:
             ValueListenableBuilder(
@@ -185,11 +210,15 @@ class ShooterGame extends BaseGame with PanDetector, HasWidgetsOverlay{
               builder: (BuildContext context, value, Widget child){
                 final list = <Widget>[];
 
+                //displays lives
                 for(int i = 0; i < 3; ++i){
                   list.add(
                       Icon(
+                        //handles displaying empty hearts
+                        //low key dunno how it works but it does - denise
                         i < value ? Icons.favorite : Icons.favorite_border,
                         color: Colors.red,
+                        size: 40.0,
                       )
                   );
                 }
@@ -255,4 +284,67 @@ class ShooterGame extends BaseGame with PanDetector, HasWidgetsOverlay{
     removeWidgetOverlay('PauseMenu');
     resumeEngine();
   }
+
+  Widget _buildGameOverMenu() {
+    return Center(
+      child: Card(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10.0),
+        ),
+        color: Colors.white.withOpacity(0.5),
+        child: Padding(
+          padding: EdgeInsets.symmetric(
+            horizontal: 50.0,
+            vertical: 50.0,
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisSize: MainAxisSize.min,
+            children:[
+              Text(
+                'Game Over',
+                style: TextStyle(fontSize: 30.0, color: Colors.white),
+              ),
+              Text(
+                'Your score was $score',
+                style: TextStyle(fontSize: 30.0, color: Colors.white),
+              ),
+              IconButton(
+                  icon: Icon(
+                      Icons.replay,
+                      color: Colors.white,
+                      size: 40.0),
+                  onPressed: (){
+                    reset();
+                    removeWidgetOverlay('GameOverMenu');
+                    resumeEngine();
+                  }
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  void gameOver(){
+    pauseEngine();
+    addWidgetOverlay('GameOverMenu', _buildGameOverMenu());
+
+  }
+
+  //resets the game
+  void reset() {
+    this.score = 0;
+    _bloop.life.value = 3;
+    _bloop.fly();
+    _enemyManager.reset();
+
+    //remove all enemy components in game
+    components.whereType<Enemy>().forEach((enemy) {
+      this.markToRemove(enemy);
+    });
+  }
+
+
   }
