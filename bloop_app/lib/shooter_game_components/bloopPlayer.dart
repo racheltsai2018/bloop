@@ -1,7 +1,9 @@
 import 'dart:ui';
 import 'package:bloop_app/shooter-game.dart';
 import 'package:flame/anchor.dart';
+import 'package:flame/time.dart';
 import 'package:flame/components/component.dart';
+import 'package:flutter/cupertino.dart';
 
 
 const double numberOfBloopsAlongWidth = 4;
@@ -9,20 +11,52 @@ const double bloopBottomSpacing = 10;
 
 class BloopPlayer extends SpriteComponent{
 
+  //Indicates if the bloop player is hit or not
   bool _isHit;
+
+  //Keeps track of number of lives
+  ValueNotifier<int> life;
+
+  //Used to return bloop to regular fly state
+  Timer _timer;
 
   Size screenSize;
   BloopPlayer() : super.square(100, 'bloopPlayer.png'){
     // todo: finish player constructor with animations
     //empty until we make it animation
-    _isHit = true;
+    _isHit = false;
     this.anchor = Anchor.center; // moves the origin from top left corner to center of the sprite
+
+    //Calls fly method after 1 second every time _timer.start is called
+    //Used to return bloop to regular fly state after losing a life
+    _timer = Timer(1, callback: () {
+      fly();
+    });
+
+    //initial number of bloop player lives
+    life = ValueNotifier(3);
+  }
+
+  @override
+  void update(double dt) {
+    // TODO: implement update
+    super.update(dt);
+
+    // NOTE: Never forget to update the timer, because Flame's timer
+    // depends on gameloop's update for its calculations.
+    _timer.update(dt);
   }
 
   // todo: add hit animation
   void hit(){
     if(!_isHit) {
       _isHit = true;
+
+      //For some reason, the enemy has to hit the dead center of the bloop for collision to be detected, not the edges
+      //Not sure if this was intentional or if we need to change it so that if the enemy touches
+      // any part of the bloop, a life is deducted
+      life.value -= 1;
+      _timer.start();
     }
     print('Hit!');
   }
