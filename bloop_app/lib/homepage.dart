@@ -112,7 +112,13 @@ class homepage extends StatelessWidget{
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 FlatButton(
-                    onPressed: (){},
+                    onPressed: (){
+                      Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute<void>(builder: (context) => navigationBar(theIndex: 3)),
+                            (Route<dynamic> route) => false,
+                      );
+                    },
                     child: Column(
                       children: <Widget>[
                         Icon(Icons.sports_esports,color: Colors.grey,
