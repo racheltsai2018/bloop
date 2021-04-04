@@ -3,14 +3,17 @@ import 'package:bloop_app/shooter_game_components/EnemyManager.dart';
 import 'package:bloop_app/shooter_game_components/bullet.dart';
 import 'package:flame/components/component.dart';
 import 'package:flame/components/parallax_component.dart';
+import 'package:flame/components/text_component.dart';
 import 'package:flame/game.dart';
 import 'package:flame/gestures.dart';
+import 'package:flame/position.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:bloop_app/shooter_game_components/bloopPlayer.dart';
 import 'package:flame/flame.dart';
 import 'package:bloop_app/shooter_game_components/enemy.dart';
 import 'package:flutter/material.dart';
+import 'package:flame/text_config.dart';
 
 double playerX;
 double playerY;
@@ -24,6 +27,8 @@ class ShooterGame extends BaseGame with PanDetector, HasWidgetsOverlay{
   Size dimensions;
   EnemyManager _enemyManager;
   Bullet _bullet;
+  TextComponent _scoreText;
+  int score;
 
   ShooterGame(){
     _parallaxComponent = ParallaxComponent([
@@ -40,6 +45,14 @@ class ShooterGame extends BaseGame with PanDetector, HasWidgetsOverlay{
     add(_bloop);
     _enemyManager = EnemyManager();
     add(_enemyManager);
+
+    //scoring system
+    score = 0;
+    _scoreText = TextComponent(
+        "Score:" + score.toString(),
+        config: TextConfig(fontFamily: 'Audiowide', color: Colors.white),
+    );
+    add(_scoreText);
 
     addWidgetOverlay('Hud', _buildHud());
   }
@@ -67,37 +80,52 @@ class ShooterGame extends BaseGame with PanDetector, HasWidgetsOverlay{
         if(_bloop.distance(enemy) < 20){
             _bloop.hit();
       }
+        //destroy bullet and enemy if they collide and increment the score
         components.whereType<Bullet>().forEach((bullet){
           if(bullet.distance(enemy) < 20){
             bullet.hit();
+            enemy.hit();
+            score += 1;
           }
         });
     });
+
+    //updates the score
+    _scoreText.text = "Score:" + score.toString();
+  }
+
+  @override
+  void resize(Size size) {
+    // TODO: implement resize
+    super.resize(size);
+
+    //Position the score text
+    _scoreText.setByPosition(Position(size.width/2 - (_scoreText.width/2) , size.height - 50));
   }
 
   //Displays score text on a canvas
-  @override
-  void render(Canvas canvas){
-    super.render(canvas);
-    final textStyle = TextStyle(
-        color: Colors.white,
-        fontSize: 48
-    );
-    // TODO: move score to the hub method as an overlay widget
-    final textSpan = TextSpan(
-        text: "Score: 0",
-        style: textStyle
-    );
-    final textPainter = TextPainter(
-        text: textSpan,
-        textDirection: TextDirection.ltr
-    );
-    textPainter.layout(
-        minWidth: 0,
-        maxWidth: size.width
-    );
-    textPainter.paint(canvas, Offset(size.width/ 4.5, size.height - 50));
-  }
+  // @override
+  // void render(Canvas canvas){
+  //   super.render(canvas);
+  //   final textStyle = TextStyle(
+  //       color: Colors.white,
+  //       fontSize: 48
+  //   );
+  //   // TODO: move score to the hub method as an overlay widget
+  //   final textSpan = TextSpan(
+  //       text: "Score: 0",
+  //       style: textStyle
+  //   );
+  //   final textPainter = TextPainter(
+  //       text: textSpan,
+  //       textDirection: TextDirection.ltr
+  //   );
+  //   textPainter.layout(
+  //       minWidth: 0,
+  //       maxWidth: size.width
+  //   );
+  //   textPainter.paint(canvas, Offset(size.width/ 4.5, size.height - 50));
+  // }
 
   //Pan is use for dragging the player
 
