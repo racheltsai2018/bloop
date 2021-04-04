@@ -161,20 +161,52 @@ class ShooterGame extends BaseGame with PanDetector, HasWidgetsOverlay{
   }
 
   Widget _buildHud(){
-    return Positioned(
-      bottom: 30.0,
-      left: 0.0,
-      child:
-        IconButton(
-          icon: Icon(
+    return Stack (children: [
+        Positioned(
+          bottom: 30.0,
+          left: 0.0,
+          child:
+            IconButton(
+              icon: Icon(
               Icons.pause,
               color: Colors.white70,
               size: 60.0),
-        onPressed: (){
-            pauseGame();
-      },
-      ),
-    );
+              onPressed: (){
+                pauseGame();
+              },
+            ),
+        ),
+        Positioned(
+          right: 0.0,
+          top: 30.0,
+          child:
+            ValueListenableBuilder(
+              valueListenable: _bloop.life,
+              builder: (BuildContext context, value, Widget child){
+                final list = <Widget>[];
+
+                for(int i = 0; i < 3; ++i){
+                  list.add(
+                      Icon(
+                        i < value ? Icons.favorite : Icons.favorite_border,
+                        color: Colors.red,
+                      )
+                  );
+                }
+                return Column(
+                  children: list,
+                );
+              },
+            )
+            // Column(
+            //   children: <Widget>[
+            //     Icon(Icons.favorite, size: 30.0, color: Colors.white),
+            //     Icon(Icons.favorite, size: 30.0, color: Colors.white),
+            //     Icon(Icons.favorite, size: 30.0, color: Colors.white),
+            //   ],
+            // ),
+        ),
+    ]);
   }
 
   void pauseGame(){
