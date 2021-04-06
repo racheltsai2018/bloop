@@ -3,14 +3,19 @@ import 'package:bloop_app/shooter_game_components/EnemyManager.dart';
 import 'package:bloop_app/shooter_game_components/bullet.dart';
 import 'package:flame/components/component.dart';
 import 'package:flame/components/parallax_component.dart';
+import 'package:flame/components/text_component.dart';
 import 'package:flame/game.dart';
 import 'package:flame/gestures.dart';
+import 'package:flame/position.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:bloop_app/shooter_game_components/bloopPlayer.dart';
 import 'package:flame/flame.dart';
 import 'package:bloop_app/shooter_game_components/enemy.dart';
 import 'package:flutter/material.dart';
+import 'package:flame/text_config.dart';
+
+import 'shooter_game_components/enemy.dart';
 
 double playerX;
 double playerY;
@@ -24,6 +29,8 @@ class ShooterGame extends BaseGame with PanDetector, HasWidgetsOverlay{
   Size dimensions;
   EnemyManager _enemyManager;
   Bullet _bullet;
+  TextComponent _scoreText;
+  int score;
 
   ShooterGame(){
     _parallaxComponent = ParallaxComponent([
@@ -40,6 +47,14 @@ class ShooterGame extends BaseGame with PanDetector, HasWidgetsOverlay{
     add(_bloop);
     _enemyManager = EnemyManager();
     add(_enemyManager);
+
+    //scoring system
+    score = 0;
+    _scoreText = TextComponent(
+        "Score:" + score.toString(),
+        config: TextConfig(fontFamily: 'Audiowide', color: Colors.white),
+    );
+    add(_scoreText);
 
     addWidgetOverlay('Hud', _buildHud());
   }
@@ -67,37 +82,57 @@ class ShooterGame extends BaseGame with PanDetector, HasWidgetsOverlay{
         if(_bloop.distance(enemy) < 20){
             _bloop.hit();
       }
+        //destroy bullet and enemy if they collide and increment the score
         components.whereType<Bullet>().forEach((bullet){
           if(bullet.distance(enemy) < 20){
             bullet.hit();
+            enemy.hit();
+            score += 1;
           }
         });
     });
+
+    //updates the score
+    _scoreText.text = "Score:" + score.toString();
+
+    //if ran out of lives, display game over screen
+    if(_bloop.life.value <= 0){
+      gameOver();
+    }
+  }
+
+  @override
+  void resize(Size size) {
+    // TODO: implement resize
+    super.resize(size);
+
+    //Position the score text
+    _scoreText.setByPosition(Position(size.width/2 - (_scoreText.width/2) , size.height - 50));
   }
 
   //Displays score text on a canvas
-  @override
-  void render(Canvas canvas){
-    super.render(canvas);
-    final textStyle = TextStyle(
-        color: Colors.white,
-        fontSize: 48
-    );
-    // TODO: move score to the hub method as an overlay widget
-    final textSpan = TextSpan(
-        text: "Score: 0",
-        style: textStyle
-    );
-    final textPainter = TextPainter(
-        text: textSpan,
-        textDirection: TextDirection.ltr
-    );
-    textPainter.layout(
-        minWidth: 0,
-        maxWidth: size.width
-    );
-    textPainter.paint(canvas, Offset(size.width/ 4.5, size.height - 50));
-  }
+  // @override
+  // void render(Canvas canvas){
+  //   super.render(canvas);
+  //   final textStyle = TextStyle(
+  //       color: Colors.white,
+  //       fontSize: 48
+  //   );
+  //   // TODO: move score to the hub method as an overlay widget
+  //   final textSpan = TextSpan(
+  //       text: "Score: 0",
+  //       style: textStyle
+  //   );
+  //   final textPainter = TextPainter(
+  //       text: textSpan,
+  //       textDirection: TextDirection.ltr
+  //   );
+  //   textPainter.layout(
+  //       minWidth: 0,
+  //       maxWidth: size.width
+  //   );
+  //   textPainter.paint(canvas, Offset(size.width/ 4.5, size.height - 50));
+  // }
 
   //Pan is use for dragging the player
 
@@ -132,21 +167,75 @@ class ShooterGame extends BaseGame with PanDetector, HasWidgetsOverlay{
     }
   }
 
+  //If exit out of app, game is paused rather than continuing in the background
+  @override
+  void lifecycleStateChange(AppLifecycleState state){
+    switch(state){
+      case AppLifecycleState.resumed:
+        break;
+      case AppLifecycleState.inactive:
+        this.pauseGame();
+        break;
+      case AppLifecycleState.paused:
+        this.pauseGame();
+        break;
+      case AppLifecycleState.detached:
+        this.pauseGame();
+        break;
+    }
+  }
+
   Widget _buildHud(){
-    return Positioned(
-      bottom: 30.0,
-      left: 0.0,
-      child:
-        IconButton(
-          icon: Icon(
+    return Stack (children: [
+        Positioned(
+          bottom: 30.0,
+          left: 0.0,
+          child:
+            IconButton(
+              icon: Icon(
               Icons.pause,
               color: Colors.white70,
               size: 60.0),
-        onPressed: (){
-            pauseGame();
-      },
-      ),
-    );
+              onPressed: (){
+                pauseGame();
+              },
+            ),
+        ),
+        Positioned(
+          right: 10.0,
+          top: 30.0,
+          child:
+            ValueListenableBuilder(
+              valueListenable: _bloop.life,
+              builder: (BuildContext context, value, Widget child){
+                final list = <Widget>[];
+
+                //displays lives
+                for(int i = 0; i < 3; ++i){
+                  list.add(
+                      Icon(
+                        //handles displaying empty hearts
+                        //low key dunno how it works but it does - denise
+                        i < value ? Icons.favorite : Icons.favorite_border,
+                        color: Colors.red,
+                        size: 40.0,
+                      )
+                  );
+                }
+                return Column(
+                  children: list,
+                );
+              },
+            )
+            // Column(
+            //   children: <Widget>[
+            //     Icon(Icons.favorite, size: 30.0, color: Colors.white),
+            //     Icon(Icons.favorite, size: 30.0, color: Colors.white),
+            //     Icon(Icons.favorite, size: 30.0, color: Colors.white),
+            //   ],
+            // ),
+        ),
+    ]);
   }
 
   void pauseGame(){
@@ -195,4 +284,67 @@ class ShooterGame extends BaseGame with PanDetector, HasWidgetsOverlay{
     removeWidgetOverlay('PauseMenu');
     resumeEngine();
   }
+
+  Widget _buildGameOverMenu() {
+    return Center(
+      child: Card(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10.0),
+        ),
+        color: Colors.white.withOpacity(0.5),
+        child: Padding(
+          padding: EdgeInsets.symmetric(
+            horizontal: 50.0,
+            vertical: 50.0,
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisSize: MainAxisSize.min,
+            children:[
+              Text(
+                'Game Over',
+                style: TextStyle(fontSize: 30.0, color: Colors.white),
+              ),
+              Text(
+                'Your score was $score',
+                style: TextStyle(fontSize: 30.0, color: Colors.white),
+              ),
+              IconButton(
+                  icon: Icon(
+                      Icons.replay,
+                      color: Colors.white,
+                      size: 40.0),
+                  onPressed: (){
+                    reset();
+                    removeWidgetOverlay('GameOverMenu');
+                    resumeEngine();
+                  }
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  void gameOver(){
+    pauseEngine();
+    addWidgetOverlay('GameOverMenu', _buildGameOverMenu());
+
+  }
+
+  //resets the game
+  void reset() {
+    this.score = 0;
+    _bloop.life.value = 3;
+    _bloop.fly();
+    _enemyManager.reset();
+
+    //remove all enemy components in game
+    components.whereType<Enemy>().forEach((enemy) {
+      this.markToRemove(enemy);
+    });
+  }
+
+
   }

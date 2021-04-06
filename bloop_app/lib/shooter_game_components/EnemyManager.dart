@@ -41,5 +41,11 @@ class EnemyManager extends Component with HasGameRef<ShooterGame>{
   }
 
 
+  void reset(){
+    // TODO: implement reset
+    //reset spawnlevel to 0
+    //reset timer
+  }
+
 
 }
