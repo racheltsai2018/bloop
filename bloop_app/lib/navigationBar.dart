@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:bloop_test/homepage.dart';
-import 'package:bloop_test/meditation.dart';
-import 'package:bloop_test/diary.dart';
-import 'package:bloop_test/setting.dart';
+import 'package:bloop_app/homepage.dart';
+import 'package:bloop_app/meditation.dart';
+import 'package:bloop_app/diary.dart';
+import 'package:bloop_app/setting.dart';
 
 //navigation bar component
 class navigationBar extends StatefulWidget {
