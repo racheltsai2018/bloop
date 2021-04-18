@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:bloop_test/navigationBar.dart';
+import 'package:bloop_app/navigationBar.dart';
 
 //homepage of the application
 class homepage extends StatefulWidget{
