@@ -106,7 +106,7 @@ class _homepageState extends State<homepage>{
                         child: Column(
                           children: <Widget>[
                             Icon(Icons.self_improvement,color: Colors.grey,
-                              size: MediaQuery.of(context).size.width/6,),
+                              size: MediaQuery.of(context).size.width/3,),
                             Text ("Meditation", style: TextStyle(fontSize: 25.0))
                           ],
                         )
@@ -122,7 +122,7 @@ class _homepageState extends State<homepage>{
                         child: Column(
                           children: <Widget>[
                             Icon(Icons.book_sharp,color: Colors.grey,
-                              size: MediaQuery.of(context).size.width/6,),
+                              size: MediaQuery.of(context).size.width/3,),
                             Text ("Diary", style: TextStyle(fontSize: 25.0))
                           ],
                         )
@@ -137,7 +137,7 @@ class _homepageState extends State<homepage>{
                         child: Column(
                           children: <Widget>[
                             Icon(Icons.sports_esports,color: Colors.grey,
-                              size: MediaQuery.of(context).size.width/6,),
+                              size: MediaQuery.of(context).size.width/3,),
                             Text ("Mini Game", style: TextStyle(fontSize: 25.0))
                           ],
                         )
@@ -153,7 +153,7 @@ class _homepageState extends State<homepage>{
                         child: Column(
                           children: <Widget>[
                             Icon(Icons.settings,color: Colors.grey,
-                              size: MediaQuery.of(context).size.width/6,),
+                              size: MediaQuery.of(context).size.width/3,),
                             Text ("Settings", style: TextStyle(fontSize: 25.0))
                           ],
                         )
