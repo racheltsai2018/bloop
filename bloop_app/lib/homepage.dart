@@ -1,23 +1,89 @@
-<<<<<<< HEAD
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:bloop_app/navigationBar.dart';
 
-class homepage extends StatelessWidget{
+//homepage of the application
+class homepage extends StatefulWidget{
+  _homepageState createState() => _homepageState();
+}
+
+class _homepageState extends State<homepage>{
+  MediaQueryData queryData;
   @override
   Widget build(BuildContext context){
+    queryData = MediaQuery.of(context);
     return Scaffold(
-        appBar:AppBar(
-          title:Text('bloop',
-              style: GoogleFonts.fascinate(
-                  color: Colors.black, fontSize: 25.0
-              )
+        appBar:AppBar(                                          // the appbar on the top of the screen
+          title:Text('bloop',                                   //title centered on the page
+            style: GoogleFonts.fascinate(
+                color: Colors.black, fontSize: 25.0
+            ),
           ),
+          iconTheme: IconThemeData(color: Colors.black),
           centerTitle: true,
-          backgroundColor: Colors.white38,
+          backgroundColor: Colors.blueGrey[100],
           elevation: 30.0,
-          leading:Icon(Icons.menu, color:Colors.black),
         ),
-        body: Container(
+        drawer: Drawer(                                         //drawer on the left side
+            child: ListView(
+                padding: EdgeInsets.zero,
+                children: <Widget>[
+                  DrawerHeader(                                 //drawer text on the very top
+                    decoration: BoxDecoration(
+                      color: Colors.white38,
+                    ),
+                    child: Text(
+                      'bloop',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 24,
+                      ),
+                    ),
+                  ),
+                  ListTile(                                     //the first page listed in drawer (meditation)
+                    leading: Icon(Icons.self_improvement),
+                    title: Text('Meditation'),
+                    onTap: (){                                  // when tap to meditation page
+                      Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute<void>(builder: (context) => navigationBar(theIndex: 1)),      //goes to navigationBar page then guide to meditation page
+                            (Route<dynamic> route) => false,
+                      );
+                    },
+                  ),
+                  ListTile(                                    //second page in the drawer
+                    leading: Icon(Icons.book_sharp),
+                    title: Text("Diary"),
+                    onTap: (){                                //when tapped to dairy page
+                      Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute<void>(builder: (context) => navigationBar(theIndex: 2)),  //goes to navigationBar page then guide to diary
+                            (Route<dynamic> route) => false,
+                      );
+                    },
+                  ),
+                  ListTile(                                  //mini game button in drawer
+                    leading: Icon(Icons.sports_esports),
+                    title: Text("Mini Game"),
+                    onTap:(){
+
+                    },
+                  ),
+                  ListTile(                                  //mini game button in drawer
+                    leading: Icon(Icons.settings),
+                    title: Text("Settings"),
+                    onTap:(){
+                      Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute<void>(builder: (context) => navigationBar(theIndex: 3)), //goes to navigationBar page then guide to meditation
+                            (Route<dynamic> route) => false,
+                      );
+                    },
+                  ),
+                ]
+            )
+        ),
+        body: Container(                                      //body section of the homepage
             decoration: BoxDecoration(gradient: LinearGradient(
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
@@ -26,50 +92,74 @@ class homepage extends StatelessWidget{
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Row(
+                Row(                                          // first row of icon on the homepage
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    FlatButton(
-                        onPressed: (){},
+                    FlatButton(                               //meditation button with meditation text
+                        onPressed: (){
+                          Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute<void>(builder: (context) => navigationBar(theIndex: 1)), //goes to navigationBar page then guide to meditation
+                                (Route<dynamic> route) => false,
+                          );
+                        },
                         child: Column(
                           children: <Widget>[
                             Icon(Icons.self_improvement,color: Colors.grey,
-                              size: 170.0,),
+                              size: MediaQuery.of(context).size.width/6,),
                             Text ("Meditation", style: TextStyle(fontSize: 25.0))
                           ],
                         )
                     ),
-                    FlatButton(
-                        onPressed: (){},
+                    FlatButton(                             //diary button with diary text
+                        onPressed: (){
+                          Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute<void>(builder: (context) => navigationBar(theIndex: 2)),     //goes to navigationBar page then guide to diary
+                                (Route<dynamic> route) => false,
+                          );
+                        },
                         child: Column(
                           children: <Widget>[
                             Icon(Icons.book_sharp,color: Colors.grey,
-                              size: 170.0,),
+                              size: MediaQuery.of(context).size.width/6,),
                             Text ("Diary", style: TextStyle(fontSize: 25.0))
                           ],
                         )
                     ),
                   ],
                 ),
-                Row(
+                Row(                                       //second row of icons
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    FlatButton(
-                        onPressed: (){},
+                    FlatButton(                           //mini game button
+                        onPressed: (){
+                          Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute<void>(builder: (context) => navigationBar(theIndex: 3)), //goes to navigationBar page then guide to meditation
+                                (Route<dynamic> route) => false,
+                          );
+                        },
                         child: Column(
                           children: <Widget>[
                             Icon(Icons.sports_esports,color: Colors.grey,
-                              size: 170.0,),
+                              size: MediaQuery.of(context).size.width/6,),
                             Text ("Mini Game", style: TextStyle(fontSize: 25.0))
                           ],
                         )
                     ),
-                    FlatButton(
-                        onPressed: (){},
+                    FlatButton(                         //settings button
+                        onPressed: (){
+                          Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute<void>(builder: (context) => navigationBar(theIndex: 4)), //goes to navigationBar page then guide to meditation
+                                (Route<dynamic> route) => false,
+                          );
+                        },
                         child: Column(
                           children: <Widget>[
                             Icon(Icons.settings,color: Colors.grey,
-                              size: 170.0,),
+                              size: MediaQuery.of(context).size.width/6,),
                             Text ("Settings", style: TextStyle(fontSize: 25.0))
                           ],
                         )
@@ -83,153 +173,4 @@ class homepage extends StatelessWidget{
         )
     );
   }
-
-
 }
-=======
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:bloop_test/navigationBar.dart';
-
-class homepage extends StatelessWidget{
-  @override
-  Widget build(BuildContext context){
-    return Scaffold(
-      appBar:AppBar(
-        title:Text('bloop',
-        style: GoogleFonts.fascinate(
-          color: Colors.black, fontSize: 25.0
-          ),
-        ),
-        iconTheme: IconThemeData(color: Colors.black),
-        centerTitle: true,
-        backgroundColor: Colors.blueGrey[100],
-        elevation: 30.0,
-        ),
-        drawer: Drawer(
-          child: ListView(
-            padding: EdgeInsets.zero,
-            children: <Widget>[
-              DrawerHeader(
-                decoration: BoxDecoration(
-                  color: Colors.white38,
-                ),
-                child: Text(
-                  'header',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 24,
-                  ),
-                ),
-              ),
-              ListTile(
-                leading: Icon(Icons.self_improvement),
-                title: Text('Meditation'),
-                onTap: (){
-                  Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute<void>(builder: (context) => navigationBar(theIndex: 1)),
-                        (Route<dynamic> route) => false,
-                  );
-                },
-              ),
-              ListTile(
-                leading: Icon(Icons.book_sharp),
-                title: Text("Diary"),
-                onTap: (){
-                  Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute<void>(builder: (context) => navigationBar(theIndex: 2)),
-                        (Route<dynamic> route) => false,
-                  );
-                },
-              ),
-              ListTile(
-                leading: Icon(Icons.sports_esports),
-                title: Text("Mini Game"),
-              ),
-            ]
-          )
-        ),
-      body: Container(
-        decoration: BoxDecoration(gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [Colors.indigo[900], Colors.blue[900], Colors.blue, Colors.white]
-        )),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                FlatButton(
-                    onPressed: (){
-                      Navigator.pushAndRemoveUntil(
-                        context,
-                        MaterialPageRoute<void>(builder: (context) => navigationBar(theIndex: 1)),
-                            (Route<dynamic> route) => false,
-                      );
-                    },
-                    child: Column(
-                      children: <Widget>[
-                        Icon(Icons.self_improvement,color: Colors.grey,
-                          size: 170.0,),
-                        Text ("Meditation", style: TextStyle(fontSize: 25.0))
-                      ],
-                    )
-                ),
-                FlatButton(
-                    onPressed: (){
-                       Navigator.pushAndRemoveUntil(
-                         context,
-                         MaterialPageRoute<void>(builder: (context) => navigationBar(theIndex: 2)),
-                           (Route<dynamic> route) => false,
-                       );
-                    },
-                    child: Column(
-                      children: <Widget>[
-                        Icon(Icons.book_sharp,color: Colors.grey,
-                          size: 170.0,),
-                        Text ("Diary", style: TextStyle(fontSize: 25.0))
-                      ],
-                    )
-                ),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                FlatButton(
-                    onPressed: (){},
-                    child: Column(
-                      children: <Widget>[
-                        Icon(Icons.sports_esports,color: Colors.grey,
-                          size: 170.0,),
-                        Text ("Mini Game", style: TextStyle(fontSize: 25.0))
-                      ],
-                    )
-                ),
-                FlatButton(
-                    onPressed: (){},
-                    child: Column(
-                      children: <Widget>[
-                        Icon(Icons.settings,color: Colors.grey,
-                          size: 170.0,),
-                        Text ("Settings", style: TextStyle(fontSize: 25.0))
-                      ],
-                    )
-                ),
-              ],
-            )
-          ],
-
-        )
-
-      )
-      );
-  }
-
-
-}
->>>>>>> 013d9f043dbe07b2ec04831614c9ec162840331c
