@@ -10,9 +10,10 @@ class diary extends StatefulWidget{
 
 class _diaryState extends State<diary>{
   List<DiaryEntry> allEntry;
+  database db = new database();
   int i=0;
   void main() async{
-    allEntry = await diaries();
+    allEntry = await db.diaries();
   }
 
   @override
@@ -61,7 +62,7 @@ class _diaryState extends State<diary>{
               ),
             ),
             FutureBuilder<List>(                                              //get diary info
-              future: diaries(),
+              future: db.diaries(),
               initialData: allEntry,
               builder: (context, snapshot){
                 if(snapshot.hasData){
