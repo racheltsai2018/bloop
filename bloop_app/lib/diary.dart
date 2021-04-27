@@ -18,7 +18,7 @@ class _diaryState extends State<diary>{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      appBar: AppBar(                              //bar on top
         title: Text('Diary',
             style: GoogleFonts.fascinate(
                 color: Colors.black, fontSize: 25.0
@@ -39,9 +39,9 @@ class _diaryState extends State<diary>{
               Colors.white
             ]
         )),
-        child: Column(
+        child: Column(                                      
           children: <Widget>[
-            Align(
+            Align(                                                //plus button to add diary page
               alignment: Alignment.topRight,
               child: Padding(
                 padding: EdgeInsets.fromLTRB(8.0, 8.0, 0, 8.0),
@@ -60,7 +60,7 @@ class _diaryState extends State<diary>{
                 ),
               ),
             ),
-            FutureBuilder<List>(
+            FutureBuilder<List>(                                              //get diary info
               future: diaries(),
               initialData: allEntry,
               builder: (context, snapshot){
