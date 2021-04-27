@@ -1,4 +1,4 @@
-import 'package:bloop_test/addDiary.dart';
+import 'package:bloop_app/addDiary.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
