@@ -1,13 +1,38 @@
+import 'package:bloop_app/addDiary.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:bloop_app/homepage.dart';
-import 'package:bloop_app/meditation.dart';
+import 'package:bloop_app/diaryEntry.dart';
+import 'package:bloop_app/DbHelper.dart';
+import 'package:bloop_app/editDiary.dart';
 
-class diary extends StatelessWidget {
+
+class diary extends StatefulWidget{
+  @override
+  _diaryState createState() => new _diaryState();
+}
+
+class _diaryState extends State<diary>{
+  int i=0;
+  List<diaryEntry> allDiary = new List();
+
+  @override
+  //initialize database
+  void initState(){
+    super.initState();
+
+    DbHelper.instance.queryAllRows().then((value){
+      setState((){
+        value.forEach((element){
+          allDiary.add(diaryEntry(id: element['id'] as int, date: element['date'] as String, emoji: element['emoji'] as String, info: element['info'] as String));
+        });
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      appBar: AppBar(                              //bar on top
         title: Text('Diary',
             style: GoogleFonts.fascinate(
                 color: Colors.black, fontSize: 25.0
@@ -28,9 +53,53 @@ class diary extends StatelessWidget {
               Colors.white
             ]
         )),
-
-      ),
-
-    );
+        child: Column(                                      
+          children: <Widget>[
+            Align(                                                //plus button to add diary page
+              alignment: Alignment.topRight,
+              child: Padding(
+                padding: EdgeInsets.fromLTRB(8.0, 8.0, 0, 8.0),
+                child: RawMaterialButton(
+                  elevation: 5.0,
+                  fillColor: Colors.grey,
+                  child: Icon(
+                    Icons.add,
+                    size: 30.0,
+                  ),
+                  padding: EdgeInsets.all(15.0),
+                  shape: CircleBorder(),
+                  onPressed: (){
+                    Navigator.push(context, MaterialPageRoute<void>(builder: (context) => addDiary()));
+                  },
+                ),
+              ),
+            ),
+           SizedBox(height: 10),                                    //gets diary entries when new entries are added
+            Expanded(
+              child:Container(
+                child: allDiary.isEmpty ? Container()
+                    :ListView.builder(itemBuilder: (ctx, index){
+                      if(index == allDiary.length) return null;
+                      return Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          border: Border.all(color: Colors.black),
+                          borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                        ),
+                        child: ListTile(
+                          title: Text('Date:' +allDiary[index].date),
+                          subtitle: Text('Feeling: '+ allDiary[index].emoji),
+                          trailing: Icon(Icons.info),
+                          onTap: (){
+                            Navigator.push(context, MaterialPageRoute<void>(builder: (context) => editDiary(allDiary[index])));
+                          }
+                        ),
+                      );
+                })
+              )
+            )
+          ],
+        ),
+    ),);
   }
 }

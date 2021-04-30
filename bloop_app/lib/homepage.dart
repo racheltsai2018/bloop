@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:bloop_app/navigationBar.dart';
-
+import 'package:auto_size_text/auto_size_text.dart';
 //homepage of the application
 class homepage extends StatefulWidget{
   _homepageState createState() => _homepageState();
@@ -106,8 +106,8 @@ class _homepageState extends State<homepage>{
                         child: Column(
                           children: <Widget>[
                             Icon(Icons.self_improvement,color: Colors.grey,
-                              size: MediaQuery.of(context).size.width/6,),
-                            Text ("Meditation", style: TextStyle(fontSize: 25.0))
+                              size: MediaQuery.of(context).size.width/4,),
+                            AutoSizeText ("Meditation", style: TextStyle(fontSize: 25.0))
                           ],
                         )
                     ),
@@ -122,8 +122,8 @@ class _homepageState extends State<homepage>{
                         child: Column(
                           children: <Widget>[
                             Icon(Icons.book_sharp,color: Colors.grey,
-                              size: MediaQuery.of(context).size.width/6,),
-                            Text ("Diary", style: TextStyle(fontSize: 25.0))
+                              size: MediaQuery.of(context).size.width/4,),
+                            AutoSizeText ("Diary", style: TextStyle(fontSize: 25.0))
                           ],
                         )
                     ),
@@ -137,8 +137,8 @@ class _homepageState extends State<homepage>{
                         child: Column(
                           children: <Widget>[
                             Icon(Icons.sports_esports,color: Colors.grey,
-                              size: MediaQuery.of(context).size.width/6,),
-                            Text ("Mini Game", style: TextStyle(fontSize: 25.0))
+                              size: MediaQuery.of(context).size.width/4,),
+                            AutoSizeText ("Mini Game", style: TextStyle(fontSize: 25.0))
                           ],
                         )
                     ),
@@ -153,8 +153,8 @@ class _homepageState extends State<homepage>{
                         child: Column(
                           children: <Widget>[
                             Icon(Icons.settings,color: Colors.grey,
-                              size: MediaQuery.of(context).size.width/6,),
-                            Text ("Settings", style: TextStyle(fontSize: 25.0))
+                              size: MediaQuery.of(context).size.width/4,),
+                            AutoSizeText ("Settings", style: TextStyle(fontSize: 25.0))
                           ],
                         )
                     ),
