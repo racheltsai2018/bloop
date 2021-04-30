@@ -85,8 +85,8 @@ class _editDiaryState extends State<editDiary>{
                               borderRadius: BorderRadius.all(Radius.circular(20.0)),
                             ),
                             padding: EdgeInsets.fromLTRB(15.0, 0, 15.0, 15.0),
-                            child: AutoSizeText(                                                 //print diary info
-                                currentEntry.info, style: TextStyle(fontSize: 25.0)
+                            child: AutoSizeText(  "Diary Entry: "       +                                         //print diary info
+                            currentEntry.info, style: TextStyle(fontSize: 25.0)
                             ),
                           ),
                         ),
