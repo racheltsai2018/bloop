@@ -66,7 +66,11 @@ class _homepageState extends State<homepage>{
                     leading: Icon(Icons.sports_esports),
                     title: Text("Mini Game"),
                     onTap:(){
-
+                      Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute<void>(builder: (context) => navigationBar(theIndex: 3)), //goes to navigationBar page then guide to meditation
+                            (Route<dynamic> route) => false,
+                      );
                     },
                   ),
                   ListTile(                                  //mini game button in drawer
@@ -75,7 +79,7 @@ class _homepageState extends State<homepage>{
                     onTap:(){
                       Navigator.pushAndRemoveUntil(
                         context,
-                        MaterialPageRoute<void>(builder: (context) => navigationBar(theIndex: 3)), //goes to navigationBar page then guide to meditation
+                        MaterialPageRoute<void>(builder: (context) => navigationBar(theIndex: 4)), //goes to navigationBar page then guide to meditation
                             (Route<dynamic> route) => false,
                       );
                     },
@@ -133,7 +137,13 @@ class _homepageState extends State<homepage>{
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     FlatButton(                           //mini game button
-                        onPressed: (){},
+                        onPressed: (){
+                          Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute<void>(builder: (context) => navigationBar(theIndex: 3)), //goes to navigationBar page then guide to meditation
+                                (Route<dynamic> route) => false,
+                          );
+                        },
                         child: Column(
                           children: <Widget>[
                             Icon(Icons.sports_esports,color: Colors.grey,
@@ -146,7 +156,7 @@ class _homepageState extends State<homepage>{
                         onPressed: (){
                           Navigator.pushAndRemoveUntil(
                             context,
-                            MaterialPageRoute<void>(builder: (context) => navigationBar(theIndex: 3)), //goes to navigationBar page then guide to meditation
+                            MaterialPageRoute<void>(builder: (context) => navigationBar(theIndex: 4)), //goes to navigationBar page then guide to meditation
                                 (Route<dynamic> route) => false,
                           );
                         },
