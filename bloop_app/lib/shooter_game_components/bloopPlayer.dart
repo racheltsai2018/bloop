@@ -58,7 +58,6 @@ class BloopPlayer extends SpriteComponent{
       life.value -= 1;
       _timer.start();
     }
-    print('Hit!');
   }
 
   // todo: add fly animation
