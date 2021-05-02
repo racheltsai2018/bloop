@@ -28,6 +28,7 @@ class _navigationBarState extends State<navigationBar>{
     homepage(),
     meditation(),
     diary(),
+    MyApp(),
     setting(),
   ];
 
