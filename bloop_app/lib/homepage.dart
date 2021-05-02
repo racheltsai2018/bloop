@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:bloop_app/navigationBar.dart';
-
+import 'package:auto_size_text/auto_size_text.dart';
 //homepage of the application
 class homepage extends StatefulWidget{
   _homepageState createState() => _homepageState();
@@ -66,7 +66,11 @@ class _homepageState extends State<homepage>{
                     leading: Icon(Icons.sports_esports),
                     title: Text("Mini Game"),
                     onTap:(){
-
+                      Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute<void>(builder: (context) => navigationBar(theIndex: 3)), //goes to navigationBar page then guide to meditation
+                            (Route<dynamic> route) => false,
+                      );
                     },
                   ),
                   ListTile(                                  //mini game button in drawer
@@ -75,7 +79,7 @@ class _homepageState extends State<homepage>{
                     onTap:(){
                       Navigator.pushAndRemoveUntil(
                         context,
-                        MaterialPageRoute<void>(builder: (context) => navigationBar(theIndex: 3)), //goes to navigationBar page then guide to meditation
+                        MaterialPageRoute<void>(builder: (context) => navigationBar(theIndex: 4)), //goes to navigationBar page then guide to meditation
                             (Route<dynamic> route) => false,
                       );
                     },
@@ -106,8 +110,8 @@ class _homepageState extends State<homepage>{
                         child: Column(
                           children: <Widget>[
                             Icon(Icons.self_improvement,color: Colors.grey,
-                              size: MediaQuery.of(context).size.width/3,),
-                            Text ("Meditation", style: TextStyle(fontSize: 25.0))
+                              size: MediaQuery.of(context).size.width/4,),
+                            AutoSizeText ("Meditation", style: TextStyle(fontSize: 25.0))
                           ],
                         )
                     ),
@@ -122,8 +126,8 @@ class _homepageState extends State<homepage>{
                         child: Column(
                           children: <Widget>[
                             Icon(Icons.book_sharp,color: Colors.grey,
-                              size: MediaQuery.of(context).size.width/3,),
-                            Text ("Diary", style: TextStyle(fontSize: 25.0))
+                              size: MediaQuery.of(context).size.width/4,),
+                            AutoSizeText ("Diary", style: TextStyle(fontSize: 25.0))
                           ],
                         )
                     ),
@@ -133,16 +137,6 @@ class _homepageState extends State<homepage>{
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     FlatButton(                           //mini game button
-                        onPressed: (){},
-                        child: Column(
-                          children: <Widget>[
-                            Icon(Icons.sports_esports,color: Colors.grey,
-                              size: MediaQuery.of(context).size.width/3,),
-                            Text ("Mini Game", style: TextStyle(fontSize: 25.0))
-                          ],
-                        )
-                    ),
-                    FlatButton(                         //settings button
                         onPressed: (){
                           Navigator.pushAndRemoveUntil(
                             context,
@@ -152,9 +146,25 @@ class _homepageState extends State<homepage>{
                         },
                         child: Column(
                           children: <Widget>[
+                            Icon(Icons.sports_esports,color: Colors.grey,
+                              size: MediaQuery.of(context).size.width/4,),
+                            AutoSizeText ("Mini Game", style: TextStyle(fontSize: 25.0))
+                          ],
+                        )
+                    ),
+                    FlatButton(                         //settings button
+                        onPressed: (){
+                          Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute<void>(builder: (context) => navigationBar(theIndex: 4)), //goes to navigationBar page then guide to meditation
+                                (Route<dynamic> route) => false,
+                          );
+                        },
+                        child: Column(
+                          children: <Widget>[
                             Icon(Icons.settings,color: Colors.grey,
-                              size: MediaQuery.of(context).size.width/3,),
-                            Text ("Settings", style: TextStyle(fontSize: 25.0))
+                              size: MediaQuery.of(context).size.width/4,),
+                            AutoSizeText ("Settings", style: TextStyle(fontSize: 25.0))
                           ],
                         )
                     ),

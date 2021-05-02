@@ -1,6 +1,9 @@
 import 'package:bloop_app/addDiary.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:bloop_app/diaryEntry.dart';
+import 'package:bloop_app/DbHelper.dart';
+import 'package:bloop_app/editDiary.dart';
 
 
 class diary extends StatefulWidget{
@@ -9,11 +12,21 @@ class diary extends StatefulWidget{
 }
 
 class _diaryState extends State<diary>{
-  List<DiaryEntry> allEntry;
-  database db = new database();
   int i=0;
-  void main() async{
-    allEntry = await db.diaries();
+  List<diaryEntry> allDiary = new List();
+
+  @override
+  //initialize database
+  void initState(){
+    super.initState();
+
+    DbHelper.instance.queryAllRows().then((value){
+      setState((){
+        value.forEach((element){
+          allDiary.add(diaryEntry(id: element['id'] as int, date: element['date'] as String, emoji: element['emoji'] as String, info: element['info'] as String));
+        });
+      });
+    });
   }
 
   @override
@@ -61,24 +74,30 @@ class _diaryState extends State<diary>{
                 ),
               ),
             ),
-            FutureBuilder<List>(                                              //get diary info
-              future: db.diaries(),
-              initialData: allEntry,
-              builder: (context, snapshot){
-                if(snapshot.hasData){
-                  return Expanded(
-                      child: Column(
-                        children: <Widget>[
-                          Text('Diary date: ${snapshot.data[i]['date']}'),
-                          Text('Mood: ${snapshot.data[i]['emoji']}'),
-                        ],
-                      )
-                  );
-                }else{
-                  return Text("Currently no data entry");
-                }
-              }
-            ),
+           SizedBox(height: 10),                                    //gets diary entries when new entries are added
+            Expanded(
+              child:Container(
+                child: allDiary.isEmpty ? Container()
+                    :ListView.builder(itemBuilder: (ctx, index){
+                      if(index == allDiary.length) return null;
+                      return Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          border: Border.all(color: Colors.black),
+                          borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                        ),
+                        child: ListTile(
+                          title: Text('Date:' +allDiary[index].date),
+                          subtitle: Text('Feeling: '+ allDiary[index].emoji),
+                          trailing: Icon(Icons.info),
+                          onTap: (){
+                            Navigator.push(context, MaterialPageRoute<void>(builder: (context) => editDiary(allDiary[index])));
+                          }
+                        ),
+                      );
+                })
+              )
+            )
           ],
         ),
     ),);
