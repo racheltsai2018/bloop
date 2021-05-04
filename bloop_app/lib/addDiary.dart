@@ -83,7 +83,7 @@ class _addDiaryState extends State<addDiary>{
                     children: <Widget>[
                       Row(
                         children: <Widget>[
-                          AutoSizeText('How are you feeling today? :',style: TextStyle(backgroundColor: Colors.white, fontSize: 27.0),),
+                          AutoSizeText('How are you feeling today?',style: TextStyle(backgroundColor: Colors.white, fontSize: 27.0),),
                         ]
                       ),
                       Row(
