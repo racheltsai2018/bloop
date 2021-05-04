@@ -33,7 +33,7 @@ class _homepageState extends State<homepage>{
                       color: Colors.white38,
                     ),
                     child: Text(
-                      'header',
+                      'bloop',
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 24,
