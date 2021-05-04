@@ -78,35 +78,41 @@ class _addDiaryState extends State<addDiary>{
                 ),
                 Padding(                                         //picking emoji
                   padding: const EdgeInsets.all(15.0),
-                  child: Row(
+                  child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
-                      Expanded(
-                        child:AutoSizeText('How are you feeling today? :',style: TextStyle(backgroundColor: Colors.white, fontSize: 27.0),),
+                      Row(
+                        children: <Widget>[
+                          AutoSizeText('How are you feeling today? :',style: TextStyle(backgroundColor: Colors.white, fontSize: 27.0),),
+                        ]
                       ),
-                      Expanded(
-                        child:ToggleButtons(                                  //emoji button
-                          selectedColor: Colors.white,
-                          fillColor: Colors.blue,
-                          children: <Widget>[
-                            Text("😊", style: TextStyle(fontSize: 25.0),),
-                            Text("😭", style: TextStyle(fontSize: 25.0),),
-                            Text("😡", style: TextStyle(fontSize: 25.0),),
-                          ],
-                          onPressed: (int index){
-                            setState((){
-                              for (int buttonIndex =0; buttonIndex < isSelected.length; buttonIndex++){
-                                if(buttonIndex == index){
-                                  isSelected[buttonIndex] = !isSelected[buttonIndex];
-                                  currentIcon = eList[index];
-                                } else{
-                                  isSelected[buttonIndex] = false;
-                                }
-                              }
-                            });
-                          },
-                          isSelected: isSelected,
-                        ),
+                      Row(
+                        children: <Widget>[
+                          Expanded(
+                            child:ToggleButtons(                                  //emoji button
+                              selectedColor: Colors.white,
+                              fillColor: Colors.blue,
+                              children: <Widget>[
+                                Text("😊", style: TextStyle(fontSize: 25.0),),
+                                Text("😭", style: TextStyle(fontSize: 25.0),),
+                                Text("😡", style: TextStyle(fontSize: 25.0),),
+                              ],
+                              onPressed: (int index){
+                                setState((){
+                                  for (int buttonIndex =0; buttonIndex < isSelected.length; buttonIndex++){
+                                    if(buttonIndex == index){
+                                      isSelected[buttonIndex] = !isSelected[buttonIndex];
+                                      currentIcon = eList[index];
+                                    } else{
+                                      isSelected[buttonIndex] = false;
+                                    }
+                                  }
+                                });
+                              },
+                              isSelected: isSelected,
+                            ),
+                          ),
+                        ]
                       ),
                     ],
                   ),
