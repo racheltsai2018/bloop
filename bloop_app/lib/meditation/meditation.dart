@@ -13,20 +13,23 @@ class meditation extends StatelessWidget {
   //audio list for guided meditation
   List musicList = [
     {
-      'title': "Morning Birds",
-      'url': "https://assets.mixkit.co/sfx/preview/mixkit-morning-birds-2472.mp3",
-      'coverUrl': "https://images.pexels.com/photos/792416/pexels-photo-792416.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500 500w, https://images.pexels.com/photos/792416/pexels-photo-792416.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500 1000w",
+      'title': "3 Minute Body & Sound Mediation",
+      'artist' : 'UCLA Health',
+      'url': "https://www.uclahealth.org/marc/mpeg/Body-Sound-Meditation.mp3",
+      'coverUrl': "https://images.pexels.com/photos/289586/pexels-photo-289586.jpeg",
 
     },
     {
-      'title': "River Forest",
-      'url' : "https://dm0qx8t0i9gc9.cloudfront.net/previews/audio/BsTwCwBHBjzwub4i4/river-forest_zJh2TjVu_NWM.mp3",
-      'coverUrl' : "https://images.pexels.com/photos/775201/pexels-photo-775201.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+      'title': "5 Minute Breathing Meditation",
+      'artist' : 'UCLA Health',
+      'url' : "https://www.uclahealth.org/marc/mpeg/01_Breathing_Meditation.mp3",
+      'coverUrl' : "https://images.pexels.com/photos/268020/pexels-photo-268020.jpeg"
     },
     {
-      'title': "River Forest",
-      'url' : "https://dm0qx8t0i9gc9.cloudfront.net/previews/audio/BsTwCwBHBjzwub4i4/river-forest_zJh2TjVu_NWM.mp3",
-      'coverUrl' : "https://images.pexels.com/photos/775201/pexels-photo-775201.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+      'title': "12 Minute Breath, Sound, Body, \nMeditation",
+      'artist' : 'UCLA Health',
+      'url' : "https://www.uclahealth.org/marc/mpeg/02_Breath_Sound_Body_Meditation.mp3",
+      'coverUrl' : "https://images.pexels.com/photos/668353/pexels-photo-668353.jpeg"
     }
   ];
 
@@ -34,15 +37,22 @@ class meditation extends StatelessWidget {
   List musicList2 = [
     {
       'title': "Morning Birds",
+      'artist' : '',
       'url': "https://assets.mixkit.co/sfx/preview/mixkit-morning-birds-2472.mp3",
       'coverUrl': "https://images.pexels.com/photos/792416/pexels-photo-792416.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500 500w, https://images.pexels.com/photos/792416/pexels-photo-792416.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500 1000w",
 
     },
     {
-      'title': "Morning Birds",
-      'url': "https://assets.mixkit.co/sfx/preview/mixkit-morning-birds-2472.mp3",
-      'coverUrl': "https://images.pexels.com/photos/792416/pexels-photo-792416.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500 500w, https://images.pexels.com/photos/792416/pexels-photo-792416.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500 1000w",
-
+      'title': "River Forest",
+      'artist' : '',
+      'url' : "https://dm0qx8t0i9gc9.cloudfront.net/previews/audio/BsTwCwBHBjzwub4i4/river-forest_zJh2TjVu_NWM.mp3",
+      'coverUrl' : "https://images.pexels.com/photos/775201/pexels-photo-775201.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+    },
+    {
+      'title': "Tune Thai",
+      'artist' : 'Kamil Guszczynski',
+      'url' : "https://dm0qx8t0i9gc9.cloudfront.net/watermarks/audio/B4tjPOdirk2w6jiw6/audioblocks-tune-thai_ShWP_S9PU_WM.mp3",
+      'coverUrl' : "https://images.pexels.com/photos/957024/forest-trees-perspective-bright-957024.jpeg"
     },
   ];
 
@@ -57,7 +67,7 @@ class meditation extends StatelessWidget {
         currentIndex--;
       }
     }
-    key.currentState.setSong(musicList[currentIndex]['title'], musicList[currentIndex]['url'], musicList[currentIndex]['coverUrl']);
+    key.currentState.setSong(musicList[currentIndex]['title'], musicList[currentIndex]['artist'], musicList[currentIndex]['url'], musicList[currentIndex]['coverUrl']);
   }
 
   @override
@@ -114,6 +124,7 @@ class meditation extends StatelessWidget {
                       title: musicList[currentIndex]['title'],
                       cover: musicList[currentIndex]['coverUrl'],
                       audioUrl: musicList[currentIndex]['url'],
+                      artist: musicList[currentIndex]['artist'],
                       changeTrack: changeTrack,
                       key: key,
                     )));
@@ -122,6 +133,8 @@ class meditation extends StatelessWidget {
                   //passes info to customListTile to generate the list tile card thing
                   title: musicList[index]['title'],
                   cover: musicList[index]['coverUrl'],
+                  artist: musicList[index]['artist'],
+                  context: context,
                 ),),
             ),
 
@@ -151,12 +164,14 @@ class meditation extends StatelessWidget {
                       title: musicList2[currentIndex]['title'],
                       cover: musicList2[currentIndex]['coverUrl'],
                       audioUrl: musicList2[currentIndex]['url'],
+                      artist: musicList2[currentIndex]['artist'],
                       changeTrack: changeTrack,
                       key: key,
                     )));
                   },
                   title: musicList2[index]['title'],
                   cover: musicList2[index]['coverUrl'],
+                  artist: musicList2[index]['artist'],
                 ),),
             ),
           ],

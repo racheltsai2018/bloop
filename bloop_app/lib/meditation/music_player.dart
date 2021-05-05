@@ -10,9 +10,10 @@ class MusicPlayer extends StatefulWidget {
   String title;
   String audioUrl;
   String cover;
+  String artist;
   Function changeTrack;
   final GlobalKey<MusicPlayerState> key;
-  MusicPlayer({this.title, this.cover, this.audioUrl, this.changeTrack, this.key}) : super(key: key);
+  MusicPlayer({this.title, this.cover, this.audioUrl, this.artist, this.changeTrack, this.key}) : super(key: key);
   MusicPlayerState createState() => MusicPlayerState();
 }
 
@@ -29,7 +30,7 @@ class MusicPlayerState extends State<MusicPlayer>{
 
   void initState(){
     super.initState();
-    setSong(widget.title, widget.audioUrl, widget.cover);
+    setSong(widget.title, widget.artist, widget.audioUrl, widget.cover);
   }
 
   void dispose(){
@@ -37,10 +38,11 @@ class MusicPlayerState extends State<MusicPlayer>{
     audioPlayer?.dispose();
   }
 
-  void setSong(String title, String url, String cover) async{
+  void setSong(String title, String artist, String url, String cover) async{
     widget.title = title;
     widget.audioUrl = url;
     widget.cover = cover;
+    widget.artist = artist;
     await audioPlayer.setUrl(widget.audioUrl);
     currentValue = minValue;
     maxValue = audioPlayer.duration.inMilliseconds.toDouble();
@@ -96,8 +98,8 @@ class MusicPlayerState extends State<MusicPlayer>{
           margin: EdgeInsets.fromLTRB(5, 40, 5, 0),
           child: Column(children: <Widget>[
             Container(
-              height: 80.0,
-              width: 80.0,
+              height: 400.0,
+              width: 400.0,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(16),
                   image: DecorationImage(
@@ -111,8 +113,19 @@ class MusicPlayerState extends State<MusicPlayer>{
                 widget.title,
                 style: GoogleFonts.raleway(
                   color: Colors.black,
-                  fontSize: 16.0,
+                  fontSize: 25.0,
                   fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.fromLTRB(0, 0 , 0, 15),
+              child: Text(
+                widget.artist,
+                style: GoogleFonts.raleway(
+                  color: Colors.grey,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500,
                 ),
               ),
             ),

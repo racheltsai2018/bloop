@@ -1,9 +1,9 @@
-import 'package:bloop_app/addDiary.dart';
+import 'package:bloop_app/journal/addDiary.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:bloop_app/diaryEntry.dart';
-import 'package:bloop_app/DbHelper.dart';
-import 'package:bloop_app/editDiary.dart';
+import 'package:bloop_app/journal/diaryEntry.dart';
+import 'package:bloop_app/journal/DbHelper.dart';
+import 'package:bloop_app/journal/editDiary.dart';
 
 
 class diary extends StatefulWidget{

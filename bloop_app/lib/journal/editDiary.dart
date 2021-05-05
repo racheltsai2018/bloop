@@ -1,10 +1,10 @@
 import 'package:bloop_app/navigationBar.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:bloop_app/DbHelper.dart';
-import 'package:bloop_app/diaryEntry.dart';
+import 'package:bloop_app/journal/DbHelper.dart';
+import 'package:bloop_app/journal/diaryEntry.dart';
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:bloop_app/diaryEntry.dart';
+import 'package:bloop_app/journal/diaryEntry.dart';
 
 class editDiary extends StatefulWidget {
   final diaryEntry currentEntry;

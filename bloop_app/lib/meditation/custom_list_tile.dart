@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-Widget customListTile({String title, String cover, onTap}){
+Widget customListTile({String title, String cover, String artist, onTap, context}){
   return InkWell(
       onTap: onTap,
       child: Container(
@@ -40,6 +40,14 @@ Widget customListTile({String title, String cover, onTap}){
                         )
                     ),
                     SizedBox(height: 5.0),
+                    Text(
+                      artist,
+                        style: GoogleFonts.raleway(
+                          color: Colors.grey,
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.w600,
+                        ),
+                    ),
                   ],
                 )
               ],

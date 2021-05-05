@@ -1,7 +1,7 @@
 import 'package:sqflite/sqflite.dart';
 import 'dart:async';
 import 'package:path/path.dart';
-import 'package:bloop_app/diaryEntry.dart';
+import 'package:bloop_app/journal/diaryEntry.dart';
 
 class DbHelper{
   static final _databaseName ="diaries.db";  //database name

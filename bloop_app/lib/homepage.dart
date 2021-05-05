@@ -26,7 +26,7 @@ class _homepageState extends State<homepage>{
           backgroundColor: Colors.blueGrey[100],
           elevation: 30.0,
         ),
-        drawer: Drawer(                                         //drawer on the left side
+        drawer: Drawer(//drawer on the left side
             child: ListView(
                 padding: EdgeInsets.zero,
                 children: <Widget>[
@@ -34,13 +34,20 @@ class _homepageState extends State<homepage>{
                     decoration: BoxDecoration(
                       color: Colors.white38,
                     ),
-                    child: Text(
-                      'bloop',
-                      style: GoogleFonts.raleway(
-                        color: Colors.black,
-                        fontSize: 45,
-                        fontWeight: FontWeight.w500,
-                      ),
+                    child: Row(
+                      children: [
+                        Text(
+                          'bloop',
+                          style: GoogleFonts.raleway(
+                            color: Colors.black,
+                            fontSize: 45,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        Container(
+                          child: new Image.asset('assets/images/bloopPlayer.png', width: 125, height: 125),
+                        )
+                      ],
                     ),
                   ),
                   ListTile(                                     //the first page listed in drawer (meditation)
@@ -133,6 +140,7 @@ class _homepageState extends State<homepage>{
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
+
                 Row(                                          // first row of icon on the homepage
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
@@ -148,13 +156,13 @@ class _homepageState extends State<homepage>{
                           children: <Widget>[
                             Icon(
                               Icons.self_improvement,
-                              color: Colors.blueGrey[100],
+                              color: Colors.blueGrey[200],
                               size: MediaQuery.of(context).size.width/4,
                             ),
                             AutoSizeText (
                                 "Meditation",
                               style: GoogleFonts.raleway(
-                                color: Colors.black,
+                                color: Colors.blueGrey[100],
                                 fontSize: 25,
                                 fontWeight: FontWeight.w600,
                               ),
@@ -174,13 +182,13 @@ class _homepageState extends State<homepage>{
                           children: <Widget>[
                             Icon(
                               Icons.book_sharp,
-                              color: Colors.blueGrey[100],
+                              color: Colors.blueGrey[200],
                               size: MediaQuery.of(context).size.width/4,
                             ),
                             AutoSizeText (
                                 "Journal",
                               style: GoogleFonts.raleway(
-                                color: Colors.black,
+                                color: Colors.blueGrey[100],
                                 fontSize: 24,
                                 fontWeight: FontWeight.w600,
                               ),
@@ -205,12 +213,12 @@ class _homepageState extends State<homepage>{
                           children: <Widget>[
                             Icon(
                               Icons.sports_esports,
-                              color: Colors.blueGrey[100],
+                              color: Colors.blueGrey[200],
                               size: MediaQuery.of(context).size.width/4,),
                             AutoSizeText (
                                 "Mini Game",
                               style: GoogleFonts.raleway(
-                                color: Colors.black,
+                                color: Colors.blueGrey[100],
                                 fontSize: 24,
                                 fontWeight: FontWeight.w600,
                               ),
@@ -230,12 +238,12 @@ class _homepageState extends State<homepage>{
                           children: <Widget>[
                             Icon(
                               Icons.settings,
-                              color: Colors.blueGrey[100],
+                              color: Colors.blueGrey[200],
                               size: MediaQuery.of(context).size.width/4,),
                             AutoSizeText (
                                 "Settings",
                               style: GoogleFonts.raleway(
-                                color: Colors.black,
+                                color: Colors.blueGrey[100],
                                 fontSize: 24,
                                 fontWeight: FontWeight.w600,
                               ),
@@ -244,7 +252,18 @@ class _homepageState extends State<homepage>{
                         )
                     ),
                   ],
-                )
+                ),
+                Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Container(
+                        child: new Image.asset('assets/images/bloopPlayer.png',
+                          width: MediaQuery.of(context).size.width/1.75,
+                          height: MediaQuery.of(context).size.width/1.75,
+                        ),
+                      )
+                    ]
+                ),
               ],
 
             )
