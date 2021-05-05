@@ -140,6 +140,7 @@ class _homepageState extends State<homepage>{
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
+
                 Row(                                          // first row of icon on the homepage
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
@@ -155,13 +156,13 @@ class _homepageState extends State<homepage>{
                           children: <Widget>[
                             Icon(
                               Icons.self_improvement,
-                              color: Colors.blueGrey[100],
+                              color: Colors.blueGrey[200],
                               size: MediaQuery.of(context).size.width/4,
                             ),
                             AutoSizeText (
                                 "Meditation",
                               style: GoogleFonts.raleway(
-                                color: Colors.black,
+                                color: Colors.blueGrey[100],
                                 fontSize: 25,
                                 fontWeight: FontWeight.w600,
                               ),
@@ -181,13 +182,13 @@ class _homepageState extends State<homepage>{
                           children: <Widget>[
                             Icon(
                               Icons.book_sharp,
-                              color: Colors.blueGrey[100],
+                              color: Colors.blueGrey[200],
                               size: MediaQuery.of(context).size.width/4,
                             ),
                             AutoSizeText (
                                 "Journal",
                               style: GoogleFonts.raleway(
-                                color: Colors.black,
+                                color: Colors.blueGrey[100],
                                 fontSize: 24,
                                 fontWeight: FontWeight.w600,
                               ),
@@ -212,12 +213,12 @@ class _homepageState extends State<homepage>{
                           children: <Widget>[
                             Icon(
                               Icons.sports_esports,
-                              color: Colors.blueGrey[100],
+                              color: Colors.blueGrey[200],
                               size: MediaQuery.of(context).size.width/4,),
                             AutoSizeText (
                                 "Mini Game",
                               style: GoogleFonts.raleway(
-                                color: Colors.black,
+                                color: Colors.blueGrey[100],
                                 fontSize: 24,
                                 fontWeight: FontWeight.w600,
                               ),
@@ -237,12 +238,12 @@ class _homepageState extends State<homepage>{
                           children: <Widget>[
                             Icon(
                               Icons.settings,
-                              color: Colors.blueGrey[100],
+                              color: Colors.blueGrey[200],
                               size: MediaQuery.of(context).size.width/4,),
                             AutoSizeText (
                                 "Settings",
                               style: GoogleFonts.raleway(
-                                color: Colors.black,
+                                color: Colors.blueGrey[100],
                                 fontSize: 24,
                                 fontWeight: FontWeight.w600,
                               ),
@@ -251,7 +252,18 @@ class _homepageState extends State<homepage>{
                         )
                     ),
                   ],
-                )
+                ),
+                Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Container(
+                        child: new Image.asset('assets/images/bloopPlayer.png',
+                          width: MediaQuery.of(context).size.width/1.75,
+                          height: MediaQuery.of(context).size.width/1.75,
+                        ),
+                      )
+                    ]
+                ),
               ],
 
             )
