@@ -1,6 +1,7 @@
+import 'package:bloop_app/game_main.dart';
 import 'package:flutter/material.dart';
 import 'package:bloop_app/homepage.dart';
-import 'package:bloop_app/meditation.dart';
+import 'package:bloop_app/meditation/meditation.dart';
 import 'package:bloop_app/diary.dart';
 import 'package:bloop_app/setting.dart';
 
