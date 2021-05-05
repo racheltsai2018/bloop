@@ -26,7 +26,7 @@ class _homepageState extends State<homepage>{
           backgroundColor: Colors.blueGrey[100],
           elevation: 30.0,
         ),
-        drawer: Drawer(                                         //drawer on the left side
+        drawer: Drawer(//drawer on the left side
             child: ListView(
                 padding: EdgeInsets.zero,
                 children: <Widget>[
@@ -34,13 +34,20 @@ class _homepageState extends State<homepage>{
                     decoration: BoxDecoration(
                       color: Colors.white38,
                     ),
-                    child: Text(
-                      'bloop',
-                      style: GoogleFonts.raleway(
-                        color: Colors.black,
-                        fontSize: 45,
-                        fontWeight: FontWeight.w500,
-                      ),
+                    child: Row(
+                      children: [
+                        Text(
+                          'bloop',
+                          style: GoogleFonts.raleway(
+                            color: Colors.black,
+                            fontSize: 45,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        Container(
+                          child: new Image.asset('assets/images/bloopPlayer.png', width: 125, height: 125),
+                        )
+                      ],
                     ),
                   ),
                   ListTile(                                     //the first page listed in drawer (meditation)
