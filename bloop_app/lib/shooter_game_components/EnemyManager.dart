@@ -10,21 +10,18 @@ import 'package:flame/time.dart';
 class EnemyManager extends Component with HasGameRef<ShooterGame>{
   Random _random;
   Timer _timer;
-  Size screenSize;
-  List right, left;
 
   EnemyManager(){
     _random = Random();
-    _timer = Timer(10, repeat: true, callback: (){
+    _timer = Timer(4, repeat: true, callback: (){
       spawnEnemies();
     });
 
   }
   void spawnEnemies() {
-      final randomNum = _random.nextInt(5);
-      //final enemy = Enemy();
-      //gameRef.addLater(enemy);
-    attackLines();
+      final randomNum = _random.nextInt(10);
+      final enemy = Enemy();
+      gameRef.addLater(enemy);
   }
 
   @override
@@ -32,57 +29,22 @@ class EnemyManager extends Component with HasGameRef<ShooterGame>{
     super.onMount();
     _timer.start();
    }
-
   @override
-  void resize(Size size){
-    super.resize(size);
-    screenSize = size;
+  void render(Canvas c) {
+    // TODO: implement render
   }
 
   @override
   void update(double t) {
+    // TODO: implement update
     _timer.update(t);
-
   }
 
-  void attackLines(){
-    double targetX = ComponentSize;
-    left = new List<Enemy>.generate(5, (i) => new Enemy());
-    left.forEach((enemy) {
-      enemy.y = 25.0;
-      enemy.x = -20.0;
-      enemy.targetX = targetX;
-      targetX += ComponentSize;
-      enemy.direction = 'left';
-      enemy.setSpeed(200.0);
-      gameRef.addLater(enemy);
-    });
-
-    targetX = screenSize.width - ComponentSize;
-    right = new List.generate(4, (i) => new Enemy());
-
-    right.forEach((enemy) {
-      enemy = new Enemy();
-      enemy.y = 30.0;
-      enemy.x = screenSize.width + 20.0;
-      enemy.targetX = targetX;
-      targetX -= ComponentSize;
-      enemy.direction = 'right';
-      enemy.setSpeed(200.0);
-      gameRef.addLater(enemy);
-    });
-
-  }
 
   void reset(){
     // TODO: implement reset
     //reset spawnlevel to 0
     //reset timer
-  }
-
-  @override
-  void render(Canvas c) {
-    // TODO: implement render
   }
 
 

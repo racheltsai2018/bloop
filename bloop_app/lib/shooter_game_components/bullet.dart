@@ -13,6 +13,7 @@ ShooterGame game = ShooterGame();
 class Bullet extends SpriteComponent{
   bool exploded = false;
   double maxHeight;
+  bool isHit = false;
 
   // List<Enemy> enemyList = <Enemy>[];
   // List<Bullet> bulletList = <Bullet>[];
@@ -33,6 +34,8 @@ class Bullet extends SpriteComponent{
   }
 
   void hit(){
+    print('hit bullet');
+    isHit = true;
     exploded = true;
   }
 

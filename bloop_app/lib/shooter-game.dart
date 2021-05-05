@@ -79,15 +79,12 @@ class ShooterGame extends BaseGame with PanDetector, HasWidgetsOverlay{
 
     // collision
     components.whereType<Enemy>().forEach((enemy) {
-      if(enemy.y >= enemy.maxY - 1){
-            _bloop.hit();
-      }
-      if(_bloop.distance(enemy) < 40){
+        if(_bloop.distance(enemy) < 20){
             _bloop.hit();
       }
         //destroy bullet and enemy if they collide and increment the score
-      components.whereType<Bullet>().forEach((bullet){
-        if(bullet.distance(enemy) < 20){
+        components.whereType<Bullet>().forEach((bullet){
+          if(bullet.distance(enemy) < 20){
             bullet.hit();
             enemy.hit();
             score += 1;
@@ -106,10 +103,11 @@ class ShooterGame extends BaseGame with PanDetector, HasWidgetsOverlay{
 
   @override
   void resize(Size size) {
+    // TODO: implement resize
     super.resize(size);
 
     //Position the score text
-    _scoreText.setByPosition(Position(15 , 50));
+    _scoreText.setByPosition(Position(size.width/2 - (_scoreText.width/2) , size.height - 50));
   }
 
   //Displays score text on a canvas
@@ -169,8 +167,6 @@ class ShooterGame extends BaseGame with PanDetector, HasWidgetsOverlay{
     }
   }
 
-
-
   //If exit out of app, game is paused rather than continuing in the background
   @override
   void lifecycleStateChange(AppLifecycleState state){
@@ -221,7 +217,7 @@ class ShooterGame extends BaseGame with PanDetector, HasWidgetsOverlay{
                         //handles displaying empty hearts
                         //low key dunno how it works but it does - denise
                         i < value ? Icons.favorite : Icons.favorite_border,
-                        color: Colors.pink[100],
+                        color: Colors.red,
                         size: 40.0,
                       )
                   );
