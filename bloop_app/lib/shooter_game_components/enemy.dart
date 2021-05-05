@@ -42,7 +42,7 @@ class Enemy extends SpriteComponent{
     }else{
       y += t * _speed;
     }
-    if (this.y > maxY){
+    if (this.y >= maxY){
         remove = true;
     }
   }

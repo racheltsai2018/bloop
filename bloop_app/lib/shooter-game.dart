@@ -79,13 +79,14 @@ class ShooterGame extends BaseGame with PanDetector, HasWidgetsOverlay{
 
     // collision
     components.whereType<Enemy>().forEach((enemy) {
-      if(enemy.y >= enemy.maxY - 1){
-            _bloop.hit();
+
+      if(enemy.y >= enemy.maxY - ComponentSize/2){
+        _bloop.hit();
       }
-      if(_bloop.distance(enemy) < 40){
-            _bloop.hit();
+      if(_bloop.distance(enemy) < 30){
+        _bloop.hit();
       }
-        //destroy bullet and enemy if they collide and increment the score
+      //destroy bullet and enemy if they collide and increment the score
       components.whereType<Bullet>().forEach((bullet){
         if(bullet.distance(enemy) < 20){
             bullet.hit();
@@ -120,7 +121,7 @@ class ShooterGame extends BaseGame with PanDetector, HasWidgetsOverlay{
   //       color: Colors.white,
   //       fontSize: 48
   //   );
-  //   // TODO: move score to the hub method as an overlay widget
+  //
   //   final textSpan = TextSpan(
   //       text: "Score: 0",
   //       style: textStyle
