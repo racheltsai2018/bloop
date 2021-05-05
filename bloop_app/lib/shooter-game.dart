@@ -83,7 +83,7 @@ class ShooterGame extends BaseGame with PanDetector, HasWidgetsOverlay{
       if(enemy.y >= enemy.maxY - ComponentSize/2){
         _bloop.hit();
       }
-      if(_bloop.distance(enemy) < 30){
+      if(_bloop.distance(enemy) < 50){
         _bloop.hit();
       }
       //destroy bullet and enemy if they collide and increment the score
