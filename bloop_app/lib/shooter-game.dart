@@ -1,22 +1,36 @@
 import 'dart:ui';
+import 'package:bloop_app/shooter_game_components/EnemyManager.dart';
 import 'package:bloop_app/shooter_game_components/bullet.dart';
 import 'package:flame/components/component.dart';
 import 'package:flame/components/parallax_component.dart';
+import 'package:flame/components/text_component.dart';
 import 'package:flame/game.dart';
 import 'package:flame/gestures.dart';
+import 'package:flame/position.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:bloop_app/shooter_game_components/bloopPlayer.dart';
 import 'package:flame/flame.dart';
+import 'package:bloop_app/shooter_game_components/enemy.dart';
+import 'package:flutter/material.dart';
+import 'package:flame/text_config.dart';
+
+import 'shooter_game_components/enemy.dart';
 
 double playerX;
 double playerY;
 
-class ShooterGame extends BaseGame with PanDetector{
+
+class ShooterGame extends BaseGame with PanDetector, HasWidgetsOverlay{
   ParallaxComponent _parallaxComponent;
   BloopPlayer _bloop;
   double _elapsedBulletTime = 10;
   bool dragBloop = false;
+  Size dimensions;
+  EnemyManager _enemyManager;
+  Bullet _bullet;
+  TextComponent _scoreText;
+  int score;
 
   ShooterGame(){
     _parallaxComponent = ParallaxComponent([
@@ -31,23 +45,97 @@ class ShooterGame extends BaseGame with PanDetector{
     playerX = _bloop.x;
     playerY = _bloop.y;
     add(_bloop);
+    _enemyManager = EnemyManager();
+    add(_enemyManager);
+
+    //scoring system
+    score = 0;
+    _scoreText = TextComponent(
+        "Score:" + score.toString(),
+        config: TextConfig(fontFamily: 'Audiowide', color: Colors.white),
+    );
+    add(_scoreText);
+
+    addWidgetOverlay('Hud', _buildHud());
   }
 
+  //timer used to spawn enemies
+  double enemyTimer = 0.0;
   @override
   void update(double t) {
-    // TODO: implement update
+
     super.update(t);
     playerX = _bloop.x;
     playerY = _bloop.y;
 
+    // bullet spawner
     if (_elapsedBulletTime >= 0.1){
-      Bullet bullet = new Bullet();
-      add(bullet);
+      _bullet = new Bullet();
+      addLater(_bullet);
       _elapsedBulletTime = 0;
     }else{
       _elapsedBulletTime += t;
     }
+
+    // collision
+    components.whereType<Enemy>().forEach((enemy) {
+      if(enemy.y >= enemy.maxY - 1){
+            _bloop.hit();
+      }
+      if(_bloop.distance(enemy) < 40){
+            _bloop.hit();
+      }
+        //destroy bullet and enemy if they collide and increment the score
+      components.whereType<Bullet>().forEach((bullet){
+        if(bullet.distance(enemy) < 20){
+            bullet.hit();
+            enemy.hit();
+            score += 1;
+          }
+        });
+    });
+
+    //updates the score
+    _scoreText.text = "Score:" + score.toString();
+
+    //if ran out of lives, display game over screen
+    if(_bloop.life.value <= 0){
+      gameOver();
+    }
   }
+
+  @override
+  void resize(Size size) {
+    super.resize(size);
+
+    //Position the score text
+    _scoreText.setByPosition(Position(15 , 50));
+  }
+
+  //Displays score text on a canvas
+  // @override
+  // void render(Canvas canvas){
+  //   super.render(canvas);
+  //   final textStyle = TextStyle(
+  //       color: Colors.white,
+  //       fontSize: 48
+  //   );
+  //   // TODO: move score to the hub method as an overlay widget
+  //   final textSpan = TextSpan(
+  //       text: "Score: 0",
+  //       style: textStyle
+  //   );
+  //   final textPainter = TextPainter(
+  //       text: textSpan,
+  //       textDirection: TextDirection.ltr
+  //   );
+  //   textPainter.layout(
+  //       minWidth: 0,
+  //       maxWidth: size.width
+  //   );
+  //   textPainter.paint(canvas, Offset(size.width/ 4.5, size.height - 50));
+  // }
+
   //Pan is use for dragging the player
 
   //Pan start called when there will be a potential drag, makes sure the character was grabbed
@@ -80,119 +168,187 @@ class ShooterGame extends BaseGame with PanDetector{
       _bloop.translateBloop(translateX, translateY);
     }
   }
-  /*
-  Size screenSize;
-  double tileSize;
-  bool isOn = false;
-  Character character;
-  bool dragPlayer = false;
 
-  ShooterGame() {
-    initialize();
+
+
+  //If exit out of app, game is paused rather than continuing in the background
+  @override
+  void lifecycleStateChange(AppLifecycleState state){
+    switch(state){
+      case AppLifecycleState.resumed:
+        break;
+      case AppLifecycleState.inactive:
+        this.pauseGame();
+        break;
+      case AppLifecycleState.paused:
+        this.pauseGame();
+        break;
+      case AppLifecycleState.detached:
+        this.pauseGame();
+        break;
+    }
   }
 
-  void initialize() async {
-    resize(await Flame.util.initialDimensions()); //wait for Flame to send the size of the screen
-    character = Character();
+  Widget _buildHud(){
+    return Stack (children: [
+        Positioned(
+          bottom: 30.0,
+          left: 0.0,
+          child:
+            IconButton(
+              icon: Icon(
+              Icons.pause,
+              color: Colors.white70,
+              size: 60.0),
+              onPressed: (){
+                pauseGame();
+              },
+            ),
+        ),
+        Positioned(
+          right: 10.0,
+          top: 30.0,
+          child:
+            ValueListenableBuilder(
+              valueListenable: _bloop.life,
+              builder: (BuildContext context, value, Widget child){
+                final list = <Widget>[];
 
+                //displays lives
+                for(int i = 0; i < 3; ++i){
+                  list.add(
+                      Icon(
+                        //handles displaying empty hearts
+                        //low key dunno how it works but it does - denise
+                        i < value ? Icons.favorite : Icons.favorite_border,
+                        color: Colors.pink[100],
+                        size: 40.0,
+                      )
+                  );
+                }
+                return Column(
+                  children: list,
+                );
+              },
+            )
+            // Column(
+            //   children: <Widget>[
+            //     Icon(Icons.favorite, size: 30.0, color: Colors.white),
+            //     Icon(Icons.favorite, size: 30.0, color: Colors.white),
+            //     Icon(Icons.favorite, size: 30.0, color: Colors.white),
+            //   ],
+            // ),
+        ),
+    ]);
   }
 
-  //same as draw class, simply rendering all the objects in the game
-  void render(Canvas canvas) {
-    super.render(canvas);
-    //Set Backgound to be black rectangle
-    Rect bgRect = Rect.fromLTWH(0, 0, screenSize.width, screenSize.height);
-    Paint bgPaint = Paint();
-    bgPaint.color = Color(0xff060326);
-    canvas.drawRect(bgRect, bgPaint);
+  void pauseGame(){
+    pauseEngine();
+    
+    addWidgetOverlay('PauseMenu', _buildPauseMenu());
+  }
 
-    //target box
-    double screenCenterX = screenSize.width / 2;
-    double screenCenterY = screenSize.height / 2;
-    Rect boxRect = Rect.fromLTWH(
-        screenCenterX - 75,
-        screenCenterY - 75,
-        150,
-        150
+  Widget _buildPauseMenu() {
+    return Center(
+      child: Card(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10.0),
+        ),
+        color: Colors.white.withOpacity(0.5),
+        child: Padding(
+          padding: EdgeInsets.symmetric(
+            horizontal: 50.0,
+            vertical: 50.0,
+          ),
+          child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisSize: MainAxisSize.min,
+          children:[
+            Text(
+                'Paused',
+                style: TextStyle(fontSize: 30.0, color: Colors.white),
+            ),
+            IconButton(
+                icon: Icon(
+                    Icons.play_arrow_rounded,
+                    color: Colors.white,
+                    size: 40.0),
+                onPressed: (){
+                  resumeGame();
+                }
+                )
+            ],
+          ),
+        ),
+      ),
     );
-    Paint boxPaint = Paint();
-    if (isOn) {
-      boxPaint.color = Color(0xff00ff00);
-    } else {
-      boxPaint.color = Color(0xffffffff);
-    }
-    canvas.drawRect(boxRect, boxPaint);
-
-    //forEach is like a for loop for all component of the list
-    //forEach requires a function as a varaiable => just shortens it
-    //flies.forEach((Fly fly) => fly.render(canvas));
-    character.render(canvas);
   }
 
-  //updates objects 60 frames per second
-  void update(double t) {
-    super.update(t);
-    //forEach is like a for loop for all component of the list
-    //forEach requires a function as a varaiable => just shortens it
-    //flies.forEach((Fly fly) => fly.update(t));
-    character.update(t);
+  void resumeGame() {
+    removeWidgetOverlay('PauseMenu');
+    resumeEngine();
   }
 
-  //Overwriting original resize function from Game
-  void resize(Size size) {
-    super.resize(size);
-    screenSize = size;
-    tileSize = screenSize.width / 9;
+  Widget _buildGameOverMenu() {
+    return Center(
+      child: Card(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10.0),
+        ),
+        color: Colors.white.withOpacity(0.5),
+        child: Padding(
+          padding: EdgeInsets.symmetric(
+            horizontal: 50.0,
+            vertical: 50.0,
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisSize: MainAxisSize.min,
+            children:[
+              Text(
+                'Game Over',
+                style: TextStyle(fontSize: 30.0, color: Colors.white),
+              ),
+              Text(
+                'Your score was $score',
+                style: TextStyle(fontSize: 30.0, color: Colors.white),
+              ),
+              IconButton(
+                  icon: Icon(
+                      Icons.replay,
+                      color: Colors.white,
+                      size: 40.0),
+                  onPressed: (){
+                    reset();
+                    removeWidgetOverlay('GameOverMenu');
+                    resumeEngine();
+                  }
+              )
+            ],
+          ),
+        ),
+      ),
+    );
   }
 
-  void onTapDown(TapDownDetails d) {
-    // handle taps here
+  void gameOver(){
+    pauseEngine();
+    addWidgetOverlay('GameOverMenu', _buildGameOverMenu());
 
-    double screenCenterX = screenSize.width / 2;
-    double screenCenterY = screenSize.height / 2;
-    if (d.globalPosition.dx >= screenCenterX - 75
-        && d.globalPosition.dx <= screenCenterX + 75
-        && d.globalPosition.dy >= screenCenterY - 75
-        && d.globalPosition.dy <= screenCenterY + 75
-    ) {
-      isOn = !isOn;
-    }
   }
 
-  void onPanStart(DragStartDetails details) {
-    double x = details.globalPosition.dx;
-    double y = details.globalPosition.dy;
-    if (x >= character.characterRect.left - tileSize
-        && x <= character.characterRect.left + tileSize
-        && y >= character.characterRect.top - tileSize
-        && y <= character.characterRect.top + tileSize
-    ) {
-      dragPlayer = true;
-    }
-  }
- void onPanEnd(DragEndDetails details){
-      dragPlayer = false;
- }
+  //resets the game
+  void reset() {
+    this.score = 0;
+    _bloop.life.value = 3;
+    _bloop.fly();
+    _enemyManager.reset();
 
-  void onPanUpdate(DragUpdateDetails details){
-    final delta = details.delta;
-    double translateX = delta.dx;
-    double translateY = delta.dy;
-    if(dragPlayer) {
-      // Make sure that the player never goes outside of the screen in the X-axis
-      if (character.characterRect.right + delta.dx >= screenSize.width) {
-        translateX = screenSize.width - character.characterRect.right;
-      } else if (character.characterRect.left + delta.dx <= 0) {
-        translateX = -character.characterRect.left;
-      }
-      // Make sure that the player never goes outside of the screen in the Y-axis
-      if (character.characterRect.bottom + delta.dy >= screenSize.height) {
-        translateY = screenSize.height - character.characterRect.bottom;
-      } else if (character.characterRect.top + delta.dy <= 0) {
-        translateY = -character.characterRect.top;
-      }
-      character.characterRect =
-          character.characterRect.translate(translateX, translateY);
-    }
-  }*/
-}
+    //remove all enemy components in game
+    components.whereType<Enemy>().forEach((enemy) {
+      this.markToRemove(enemy);
+    });
+  }
+
+
+  }

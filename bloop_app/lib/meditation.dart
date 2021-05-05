@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:bloop_test/homepage.dart';
-import 'package:bloop_test/diary.dart';
 
+//meditation page
 class meditation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      appBar: AppBar(                    // appbar
         title: Text('Meditation',
             style: GoogleFonts.fascinate(
                 color: Colors.black, fontSize: 25.0
@@ -17,8 +16,8 @@ class meditation extends StatelessWidget {
         backgroundColor: Colors.blueGrey[100],
         elevation: 30.0,
       ),
-      body: Container(
-        decoration: BoxDecoration(gradient: LinearGradient(
+      body: Container(                            // body
+        decoration: BoxDecoration(gradient: LinearGradient( // make background gradient
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: [

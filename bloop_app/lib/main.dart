@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 import 'package:flame/components/component.dart';
 import 'package:flutter/material.dart';
 import 'package:flame/flame.dart';
@@ -7,7 +5,6 @@ import 'package:flame/game.dart';
 import 'package:flutter/services.dart';
 import 'package:bloop_app/shooter-game.dart';
 import 'package:flutter/gestures.dart';
->>>>>>> 013d9f043dbe07b2ec04831614c9ec162840331c
 import 'package:bloop_app/homepage.dart';
 import 'package:flutter/material.dart';
 
@@ -17,8 +14,6 @@ void main() {
     title: 'bloop',
     home: homepage(),
   ));
-<<<<<<< HEAD
-=======
 }
 
 /**
@@ -46,7 +41,6 @@ void main(){
   flameUtil.addGestureRecognizer(tapper); //figure this out later
   flameUtil.addGestureRecognizer(pan);
 */
->>>>>>> 013d9f043dbe07b2ec04831614c9ec162840331c
 }
 
 // Base code that came with flutter
@@ -58,6 +52,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Shooter Game',
       theme: ThemeData(
+        fontFamily: 'Audiowide',
         // This is the theme of your application.
         //
         // Try running your application with "flutter run". You'll see the
