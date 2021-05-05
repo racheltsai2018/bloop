@@ -1,8 +1,9 @@
+import 'package:bloop_app/game_main.dart';
 import 'package:flutter/material.dart';
 import 'package:bloop_app/homepage.dart';
-import 'package:bloop_app/meditation.dart';
+import 'package:bloop_app/meditation/meditation.dart';
 import 'package:bloop_app/diary.dart';
-import 'package:bloop_app/setting.dart';
+import 'package:bloop_app/settings/setting.dart';
 
 //navigation bar component
 class navigationBar extends StatefulWidget {
@@ -55,7 +56,7 @@ class _navigationBarState extends State<navigationBar>{
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(                  // first icon: homepage with icon
             icon: Icon(Icons.home),
-            label: 'Homepage',
+            label: 'Home',
           ),
           BottomNavigationBarItem(                //second icon: meditation with icon
             icon: Icon(Icons.self_improvement),
@@ -63,15 +64,15 @@ class _navigationBarState extends State<navigationBar>{
           ),
           BottomNavigationBarItem(               //third icon: diary with icon
             icon: Icon(Icons.book_sharp),
-            label: 'diary',
+            label: 'Journal',
           ),
           BottomNavigationBarItem(               //fourth icon: diary with minigame
             icon: Icon(Icons.sports_esports),
-            label: 'Mini game',
+            label: 'Mini Game',
           ),
           BottomNavigationBarItem(               //fourth icon: diary with settings
             icon: Icon(Icons.settings),
-            label: 'Setting',
+            label: 'Settings',
           ),
         ],
         currentIndex: _theIndex,                //update index

@@ -1,0 +1,169 @@
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:bloop_app/meditation/custom_list_tile.dart';
+import 'package:bloop_app/meditation/music_player.dart';
+//meditation page
+// so implementation is kinda jank so idk what issues we might come across later
+// but it works for now so let's roll with it
+// -Denise
+class meditation extends StatelessWidget {
+  int currentIndex = 0;
+  final GlobalKey<MusicPlayerState> key = GlobalKey<MusicPlayerState>();
+
+  //audio list for guided meditation
+  List musicList = [
+    {
+      'title': "Morning Birds",
+      'url': "https://assets.mixkit.co/sfx/preview/mixkit-morning-birds-2472.mp3",
+      'coverUrl': "https://images.pexels.com/photos/792416/pexels-photo-792416.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500 500w, https://images.pexels.com/photos/792416/pexels-photo-792416.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500 1000w",
+
+    },
+    {
+      'title': "River Forest",
+      'url' : "https://dm0qx8t0i9gc9.cloudfront.net/previews/audio/BsTwCwBHBjzwub4i4/river-forest_zJh2TjVu_NWM.mp3",
+      'coverUrl' : "https://images.pexels.com/photos/775201/pexels-photo-775201.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+    },
+    {
+      'title': "River Forest",
+      'url' : "https://dm0qx8t0i9gc9.cloudfront.net/previews/audio/BsTwCwBHBjzwub4i4/river-forest_zJh2TjVu_NWM.mp3",
+      'coverUrl' : "https://images.pexels.com/photos/775201/pexels-photo-775201.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+    }
+  ];
+
+  //audio list for non-guided meditation
+  List musicList2 = [
+    {
+      'title': "Morning Birds",
+      'url': "https://assets.mixkit.co/sfx/preview/mixkit-morning-birds-2472.mp3",
+      'coverUrl': "https://images.pexels.com/photos/792416/pexels-photo-792416.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500 500w, https://images.pexels.com/photos/792416/pexels-photo-792416.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500 1000w",
+
+    },
+    {
+      'title': "Morning Birds",
+      'url': "https://assets.mixkit.co/sfx/preview/mixkit-morning-birds-2472.mp3",
+      'coverUrl': "https://images.pexels.com/photos/792416/pexels-photo-792416.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500 500w, https://images.pexels.com/photos/792416/pexels-photo-792416.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500 1000w",
+
+    },
+  ];
+
+  //changes the track if the prev or next button is pressed in music player
+  void changeTrack(bool isNext){
+    if(isNext){
+      if(currentIndex != musicList.length - 1){
+        currentIndex++;
+      }
+    } else {
+      if(currentIndex != 0){
+        currentIndex--;
+      }
+    }
+    key.currentState.setSong(musicList[currentIndex]['title'], musicList[currentIndex]['url'], musicList[currentIndex]['coverUrl']);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(                    // appbar
+        title: Text('Meditation',
+            style: GoogleFonts.raleway(
+              color: Colors.black,
+              fontSize: 25.0,
+              fontWeight: FontWeight.w600,
+            )
+        ),
+        centerTitle: true,
+        backgroundColor: Colors.blueGrey[100],
+        elevation: 30.0,
+      ),
+      body: Container(                            // body
+        decoration: BoxDecoration(gradient: LinearGradient( // make background gradient
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Colors.indigo[900],
+              Colors.blue[900],
+              Colors.blue,
+              Colors.white
+            ]
+        )),
+        child: Column(
+          children: [
+            //displays text
+            Container(
+              width: MediaQuery.of(context).size.width,
+              padding: EdgeInsets.all(20),
+              child: Text('Guided Meditation',
+                textAlign: TextAlign.left,
+                style: GoogleFonts.raleway(
+                  color: Colors.white,
+                  fontSize: 50.0,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
+
+            //Generates and displays list of audio for guided meditation
+            Expanded(
+              child: ListView.builder(
+                itemCount: musicList.length,
+                itemBuilder: (context, index) => customListTile(
+                  onTap: (){
+                    currentIndex = index; //sets the index so it knows what to display in music_player
+                    //passes the information of the selected song to music_player
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => MusicPlayer(
+                      title: musicList[currentIndex]['title'],
+                      cover: musicList[currentIndex]['coverUrl'],
+                      audioUrl: musicList[currentIndex]['url'],
+                      changeTrack: changeTrack,
+                      key: key,
+                    )));
+                  },
+
+                  //passes info to customListTile to generate the list tile card thing
+                  title: musicList[index]['title'],
+                  cover: musicList[index]['coverUrl'],
+                ),),
+            ),
+
+            //displays text
+            Container(
+              width: MediaQuery.of(context).size.width,
+              padding: EdgeInsets.all(20),
+              child: Text('Non-Guided Meditation',
+                textAlign: TextAlign.left,
+                style: GoogleFonts.raleway(
+                  color: Colors.white,
+                  fontSize: 50.0,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
+
+            //Generates and displays list of audio for non-guided meditation
+            //Literally same code as the one for guided meditation but uses different audio list
+            Expanded(
+              child: ListView.builder(
+                itemCount: musicList2.length,
+                itemBuilder: (context, index) => customListTile(
+                  onTap: (){
+                    currentIndex = index;
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => MusicPlayer(
+                      title: musicList2[currentIndex]['title'],
+                      cover: musicList2[currentIndex]['coverUrl'],
+                      audioUrl: musicList2[currentIndex]['url'],
+                      changeTrack: changeTrack,
+                      key: key,
+                    )));
+                  },
+                  title: musicList2[index]['title'],
+                  cover: musicList2[index]['coverUrl'],
+                ),),
+            ),
+          ],
+        ),
+      ),
+
+
+    );
+  }
+}
