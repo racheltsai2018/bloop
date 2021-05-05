@@ -14,8 +14,8 @@ class _addDiaryState extends State<addDiary>{
   DateTime tdate = new DateTime.now();
   String pickDate;
   String currentIcon;
-  List<bool> isSelected = [false,false,false];
-  List<String> eList = ["😊","😭","😡"];
+  List<bool> isSelected = [false,false,false, false];
+  List<String> eList = ["😁","😊","😭","😡"];
   TextEditingController diaryField = new TextEditingController();
   List<diaryEntry> allDiary = new List();
 
@@ -31,7 +31,14 @@ class _addDiaryState extends State<addDiary>{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(                                   //bar on top
+      appBar: AppBar(
+        leading: IconButton(
+          onPressed: (){
+            Navigator.of(context).pop();
+          },
+          icon: Icon(Icons.arrow_back_ios_sharp, color: Colors.black,),
+        ),
+        //bar on top
         title: Text('Journal',
             style: GoogleFonts.raleway(
               color: Colors.black,
@@ -80,23 +87,28 @@ class _addDiaryState extends State<addDiary>{
                 ),
                 Padding(                                         //picking emoji
                   padding: const EdgeInsets.all(15.0),
-                  child: Row(
+                  child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
-                      Expanded(
-                        child:AutoSizeText('How are you feeling today? :',
-                            style: GoogleFonts.raleway(
-                              color: Colors.white,
-                              fontSize: 25.0,
-                              fontWeight: FontWeight.w600,
-                            )
-                        ),
+                      Row(
+                          children: <Widget>[
+                            AutoSizeText('How are you feeling today?',
+                                style: GoogleFonts.raleway(
+                                  color: Colors.white,
+                                  fontSize: 25.0,
+                                  fontWeight: FontWeight.w600,
+                                )
+                             ),
+                          ]
                       ),
+                      Row(
+                        children: <Widget> [
                       Expanded(
                         child:ToggleButtons(                                  //emoji button
                           selectedColor: Colors.white,
                           fillColor: Colors.blue,
                           children: <Widget>[
+                            Text("😁", style: TextStyle(fontSize: 25.0),),
                             Text("😊", style: TextStyle(fontSize: 25.0),),
                             Text("😭", style: TextStyle(fontSize: 25.0),),
                             Text("😡", style: TextStyle(fontSize: 25.0),),
@@ -116,6 +128,8 @@ class _addDiaryState extends State<addDiary>{
                           isSelected: isSelected,
                         ),
                       ),
+                       ]
+                      )
                     ],
                   ),
                 ),
