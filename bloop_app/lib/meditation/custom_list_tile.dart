@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -31,13 +32,14 @@ Widget customListTile({String title, String cover, String artist, onTap, context
                 SizedBox(width: 10.0),
                 Column(
                   children: [
-                    Text(
+                    AutoSizeText(
                         title,
                         style: GoogleFonts.raleway(
-                          color: Colors.black,
-                          fontSize: 18.0,
-                          fontWeight: FontWeight.w600,
-                        )
+                           color: Colors.black,
+                           fontSize: 15.0,
+                           fontWeight: FontWeight.w600,
+                         ),
+
                     ),
                     SizedBox(height: 5.0),
                     Text(
