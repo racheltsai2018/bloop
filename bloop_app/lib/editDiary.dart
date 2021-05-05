@@ -20,9 +20,11 @@ class _editDiaryState extends State<editDiary>{
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(                                       //bar on top
-        title: Text('Diary',
-            style: GoogleFonts.fascinate(
-                color: Colors.black, fontSize: 25.0
+        title: Text('Journal',
+            style: GoogleFonts.raleway(
+              color: Colors.black,
+            fontSize: 25.0,
+            fontWeight: FontWeight.w600,
             )
         ),
         centerTitle: true,
@@ -52,9 +54,16 @@ class _editDiaryState extends State<editDiary>{
                           decoration: BoxDecoration(
                             color: Colors.white,
                             border: Border.all(color: Colors.black),
-                            borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                          ), padding: EdgeInsets.fromLTRB(15.0, 15.0, 15.0, 0),
-                          child: AutoSizeText('Diary Date: '+ currentEntry.date, style: TextStyle(fontSize: 20.0)),          //print diary date
+                            borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                          ),
+                          padding: EdgeInsets.fromLTRB(15.0, 15.0, 15.0, 15),
+                          child: AutoSizeText(
+                              'Diary Date: '+ currentEntry.date,
+                              style: GoogleFonts.raleway(
+                                color: Colors.black,
+                                fontSize: 20.0,
+                              )
+                          ),          //print diary date
                         ),
                     ),
                   ],
@@ -67,10 +76,16 @@ class _editDiaryState extends State<editDiary>{
                           decoration: BoxDecoration(
                             color: Colors.white,
                             border: Border.all(color: Colors.black),
-                            borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                            borderRadius: BorderRadius.all(Radius.circular(15.0)),
                           ),
                           padding: const EdgeInsets.all(15.0),
-                          child: AutoSizeText('You were feeling: '+currentEntry.emoji, style: TextStyle(fontSize: 20.0)),  // print diary emoji picked
+                          child: AutoSizeText(
+                              'You were feeling: '+currentEntry.emoji,
+                              style: GoogleFonts.raleway(
+                                color: Colors.black,
+                                fontSize: 20.0,
+                              )
+                          ),  // print diary emoji picked
                         ),
                     ),
                   ],
@@ -82,11 +97,15 @@ class _editDiaryState extends State<editDiary>{
                             decoration: BoxDecoration(
                               color: Colors.white,
                               border: Border.all(color: Colors.black),
-                              borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                              borderRadius: BorderRadius.all(Radius.circular(15.0)),
                             ),
-                            padding: EdgeInsets.fromLTRB(15.0, 0, 15.0, 15.0),
+                            padding: EdgeInsets.fromLTRB(15.0, 15, 15.0, 15.0),
                             child: AutoSizeText(  "Diary Entry: "       +                                         //print diary info
-                            currentEntry.info, style: TextStyle(fontSize: 25.0)
+                            currentEntry.info,
+                                style: GoogleFonts.raleway(
+                                  color: Colors.black,
+                                  fontSize: 20.0,
+                                )
                             ),
                           ),
                         ),
@@ -98,18 +117,32 @@ class _editDiaryState extends State<editDiary>{
                     padding: EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
                     child: ElevatedButton.icon(                                                      //delete button
                       icon: Icon(Icons.delete_outline, size: 30.0),
-                      label: Text('delete', style: TextStyle(fontSize: 20.0)),
+                      label: Text('Delete', style: GoogleFonts.raleway(
+                        color: Colors.white,
+                        fontSize: 20.0,
+                        fontWeight: FontWeight.w600,)
+                      ),
                       onPressed: () {
                         showDialog<void>(                                                           //double check user wants to delete entry
                           context: context,
                           barrierDismissible: false,
                           builder: (BuildContext){
                             return AlertDialog(
-                              title: Text("Are you sure you want to delete this diary entry?"),
+                              title: Text(
+                                  "Are you sure you want to delete this diary entry?",
+                                  style: GoogleFonts.raleway(
+                                    color: Colors.black,
+                                    fontSize: 20.0,
+                                    fontWeight: FontWeight.w600,)),
                               elevation: 35.0,
                               actions: <Widget>[
                                 FlatButton(
-                                    child: Text('Yes',),
+                                    child: Text(
+                                      'Yes',
+                                        style: GoogleFonts.raleway(
+                                          fontSize: 20.0,
+                                          fontWeight: FontWeight.w600,)
+                                    ),
                                     onPressed: (){
                                       DbHelper.instance.delete(currentEntry.id);
                                       Navigator.pushAndRemoveUntil(
@@ -120,7 +153,12 @@ class _editDiaryState extends State<editDiary>{
                                     }
                                 ),
                                 FlatButton(
-                                    child: Text('No',),
+                                    child: Text('No',
+                                        style: GoogleFonts.raleway(
+                                          fontSize: 20.0,
+                                          fontWeight: FontWeight.w600,
+                                        )
+                                    ),
                                     onPressed: (){
                                       Navigator.of(context).pop();
                                     }
@@ -131,6 +169,7 @@ class _editDiaryState extends State<editDiary>{
                         );
                       },
                       style: ElevatedButton.styleFrom(
+                        primary: Colors.red,
                         shape: RoundedRectangleBorder(
                           borderRadius: new BorderRadius.circular(10.0),
                         ),

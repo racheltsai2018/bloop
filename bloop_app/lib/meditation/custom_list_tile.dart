@@ -1,36 +1,49 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 Widget customListTile({String title, String cover, onTap}){
   return InkWell(
       onTap: onTap,
       child: Container(
           padding: EdgeInsets.all(8),
-          child: Row(
-            children: [
-              Container(
-                height: 80.0,
-                width: 80.0,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(16),
-                    image: DecorationImage(
-                        image: NetworkImage(cover)
-                    )
-                ),
-              ),
-              SizedBox(width: 10.0),
-              Column(
-                children: [
-                  Text(
-                      title,
-                      style: TextStyle(
-                        fontSize: 18.0,
-                        fontWeight: FontWeight.w600,
+          child: Card(
+            color: Colors.white,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15),
+            ),
+            elevation: 5,
+            child: Row(
+              children: [
+                Container(
+                  height: 80.0,
+                  width: 80.0,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(15),
+                        bottomLeft: Radius.circular(15)
+                      ),
+                      image: DecorationImage(
+                          image: NetworkImage(cover),
+                        fit: BoxFit.fill,
                       )
                   ),
-                  SizedBox(height: 5.0),
-                ],
-              )
-            ],
+                ),
+                SizedBox(width: 10.0),
+                Column(
+                  children: [
+                    Text(
+                        title,
+                        style: GoogleFonts.raleway(
+                          color: Colors.black,
+                          fontSize: 18.0,
+                          fontWeight: FontWeight.w600,
+                        )
+                    ),
+                    SizedBox(height: 5.0),
+                  ],
+                )
+              ],
+            )
           )
       )
   );

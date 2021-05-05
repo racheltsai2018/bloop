@@ -32,9 +32,11 @@ class _addDiaryState extends State<addDiary>{
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(                                   //bar on top
-        title: Text('Diary',
-            style: GoogleFonts.fascinate(
-                color: Colors.black, fontSize: 25.0
+        title: Text('Journal',
+            style: GoogleFonts.raleway(
+              color: Colors.black,
+              fontSize: 25.0,
+              fontWeight: FontWeight.w600,
             )
         ),
         centerTitle: true,
@@ -61,7 +63,7 @@ class _addDiaryState extends State<addDiary>{
                     padding: EdgeInsets.fromLTRB(15.0, 15.0, 15.0, 0),
                     child: FlatButton.icon(
                         icon: Icon(Icons.date_range),
-                        label: Text('Pick a date for the diary'),           //date picker
+                        label: Text('Journal Entry Date'),           //date picker
                         color: Colors.white,
                         onPressed: () => showDatePicker(
                             context: context,
@@ -82,7 +84,13 @@ class _addDiaryState extends State<addDiary>{
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
                       Expanded(
-                        child:AutoSizeText('How are you feeling today? :',style: TextStyle(backgroundColor: Colors.white, fontSize: 27.0),),
+                        child:AutoSizeText('How are you feeling today? :',
+                            style: GoogleFonts.raleway(
+                              color: Colors.white,
+                              fontSize: 25.0,
+                              fontWeight: FontWeight.w600,
+                            )
+                        ),
                       ),
                       Expanded(
                         child:ToggleButtons(                                  //emoji button
@@ -126,7 +134,10 @@ class _addDiaryState extends State<addDiary>{
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(5.0)),
                         ),
-                        hintText: 'What happened today?',
+                        hintText: 'How was your day?',
+                        hintStyle: GoogleFonts.raleway(
+                          fontSize: 20.0,
+                      )
                       ),
                     ),
                   ),
@@ -137,7 +148,7 @@ class _addDiaryState extends State<addDiary>{
                     padding: EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
                     child: ElevatedButton.icon(
                       icon: Icon(Icons.check, size: 30.0),
-                      label: Text('submit', style: TextStyle(fontSize: 20.0)),
+                      label: Text('Submit', style: TextStyle(fontSize: 20.0)),
                       onPressed: (){
                         if(pickDate == null){
                           showDialog<void>(
@@ -145,11 +156,19 @@ class _addDiaryState extends State<addDiary>{
                               barrierDismissible: false,
                               builder: (BuildContext){
                                 return AlertDialog(
-                                  title: Text("no date entered"),
+                                  title: Text("Error: No date selected. Please select a date.",
+                                      style: GoogleFonts.raleway(
+                                        color: Colors.black,
+                                        fontSize: 20.0,
+                                        fontWeight: FontWeight.w600
+                                      )),
                                   elevation: 35.0,
                                   actions: <Widget>[
                                     FlatButton(
-                                        child: Text('Ok',),
+                                        child: Text('Ok',
+                                            style: GoogleFonts.raleway(
+                                              fontSize: 20.0,
+                                            )),
                                         onPressed: (){
                                           Navigator.of(context).pop();
                                         }
@@ -164,11 +183,19 @@ class _addDiaryState extends State<addDiary>{
                               barrierDismissible: false,
                               builder: (BuildContext){
                                 return AlertDialog(
-                                  title: Text("no feeling choosen"),
+                                  title: Text("No emoji selected. Please select an emoji.",
+                                    style: GoogleFonts.raleway(
+                                    fontSize: 20.0,
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.w600
+                                  )),
                                   elevation: 35.0,
                                   actions: <Widget>[
                                     FlatButton(
-                                        child: Text('Ok',),
+                                        child: Text('Ok',
+                                            style: GoogleFonts.raleway(
+                                              fontSize: 20.0,
+                                            )),
                                         onPressed: (){
                                           Navigator.of(context).pop();
                                         }
@@ -189,6 +216,7 @@ class _addDiaryState extends State<addDiary>{
                         }
                       },
                       style: ElevatedButton.styleFrom(
+                        primary: Colors.green,
                         shape: RoundedRectangleBorder(
                           borderRadius: new BorderRadius.circular(10.0),
                         ),

@@ -1,10 +1,10 @@
 //import 'dart:html';
 import 'dart:io';
 
-//import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class MusicPlayer extends StatefulWidget {
   String title;
@@ -70,26 +70,6 @@ class MusicPlayerState extends State<MusicPlayer>{
     }
   }
 
-  // void playMusic(String url) async{
-  //   if(isPlaying && currentSong != url){
-  //     audioPlayer.pause();
-  //     int result = await audioPlayer.play(url);
-  //     if(result == 1){
-  //       setState(() {
-  //         currentSong = url;
-  //       });
-  //     }
-  //   } else if(!isPlaying){
-  //     int result = await audioPlayer.play(url);
-  //     if(result == 1){
-  //       setState(() {
-  //         isPlaying = true;
-  //       });
-  //     }
-  //   }
-  //
-  // }
-
   String getDuration(double value){
     Duration duration = Duration(milliseconds: value.round());
     return [duration.inMinutes, duration.inSeconds].map((element) => element.remainder(60).toString().padLeft(2, '0')).join(':');
@@ -129,9 +109,9 @@ class MusicPlayerState extends State<MusicPlayer>{
               margin: EdgeInsets.fromLTRB(0, 10, 0, 7),
               child: Text(
                 widget.title,
-                style: TextStyle(
+                style: GoogleFonts.raleway(
                   color: Colors.black,
-                  fontSize: 16,
+                  fontSize: 16.0,
                   fontWeight: FontWeight.w600,
                 ),
               ),

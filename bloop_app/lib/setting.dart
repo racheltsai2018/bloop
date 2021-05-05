@@ -7,9 +7,11 @@ class setting extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(                    // appbar
-        title: Text('Setting',
-            style: GoogleFonts.fascinate(
-                color: Colors.black, fontSize: 25.0
+        title: Text('Settings',
+            style: GoogleFonts.raleway(
+              color: Colors.black,
+              fontSize: 25.0,
+              fontWeight: FontWeight.w600,
             )
         ),
         centerTitle: true,
