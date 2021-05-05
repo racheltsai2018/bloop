@@ -1,8 +1,8 @@
 import 'package:bloop_app/navigationBar.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:bloop_app/DbHelper.dart';
-import 'package:bloop_app/diaryEntry.dart';
+import 'package:bloop_app/journal/DbHelper.dart';
+import 'package:bloop_app/journal/diaryEntry.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 
 class addDiary extends StatefulWidget {
@@ -14,8 +14,8 @@ class _addDiaryState extends State<addDiary>{
   DateTime tdate = new DateTime.now();
   String pickDate;
   String currentIcon;
-  List<bool> isSelected = [false,false,false];
-  List<String> eList = ["😊","😭","😡"];
+  List<bool> isSelected = [false,false,false, false];
+  List<String> eList = ["😁","😊","😭","😡"];
   TextEditingController diaryField = new TextEditingController();
   List<diaryEntry> allDiary = new List();
 
@@ -31,10 +31,19 @@ class _addDiaryState extends State<addDiary>{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(                                   //bar on top
-        title: Text('Diary',
-            style: GoogleFonts.fascinate(
-                color: Colors.black, fontSize: 25.0
+      appBar: AppBar(
+        leading: IconButton(
+          onPressed: (){
+            Navigator.of(context).pop();
+          },
+          icon: Icon(Icons.arrow_back_ios_sharp, color: Colors.black,),
+        ),
+        //bar on top
+        title: Text('Journal',
+            style: GoogleFonts.raleway(
+              color: Colors.black,
+              fontSize: 25.0,
+              fontWeight: FontWeight.w600,
             )
         ),
         centerTitle: true,
@@ -61,7 +70,7 @@ class _addDiaryState extends State<addDiary>{
                     padding: EdgeInsets.fromLTRB(15.0, 15.0, 15.0, 0),
                     child: FlatButton.icon(
                         icon: Icon(Icons.date_range),
-                        label: Text('Pick a date for the diary'),           //date picker
+                        label: Text('Journal Entry Date'),           //date picker
                         color: Colors.white,
                         onPressed: () => showDatePicker(
                             context: context,
@@ -78,17 +87,28 @@ class _addDiaryState extends State<addDiary>{
                 ),
                 Padding(                                         //picking emoji
                   padding: const EdgeInsets.all(15.0),
-                  child: Row(
+                  child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
-                      Expanded(
-                        child:AutoSizeText('How are you feeling today? :',style: TextStyle(backgroundColor: Colors.white, fontSize: 27.0),),
+                      Row(
+                          children: <Widget>[
+                            AutoSizeText('How are you feeling today?',
+                                style: GoogleFonts.raleway(
+                                  color: Colors.white,
+                                  fontSize: 25.0,
+                                  fontWeight: FontWeight.w600,
+                                )
+                             ),
+                          ]
                       ),
+                      Row(
+                        children: <Widget> [
                       Expanded(
                         child:ToggleButtons(                                  //emoji button
                           selectedColor: Colors.white,
                           fillColor: Colors.blue,
                           children: <Widget>[
+                            Text("😁", style: TextStyle(fontSize: 25.0),),
                             Text("😊", style: TextStyle(fontSize: 25.0),),
                             Text("😭", style: TextStyle(fontSize: 25.0),),
                             Text("😡", style: TextStyle(fontSize: 25.0),),
@@ -108,6 +128,8 @@ class _addDiaryState extends State<addDiary>{
                           isSelected: isSelected,
                         ),
                       ),
+                       ]
+                      )
                     ],
                   ),
                 ),
@@ -126,7 +148,10 @@ class _addDiaryState extends State<addDiary>{
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(5.0)),
                         ),
-                        hintText: 'What happened today?',
+                        hintText: 'How was your day?',
+                        hintStyle: GoogleFonts.raleway(
+                          fontSize: 20.0,
+                      )
                       ),
                     ),
                   ),
@@ -137,7 +162,7 @@ class _addDiaryState extends State<addDiary>{
                     padding: EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
                     child: ElevatedButton.icon(
                       icon: Icon(Icons.check, size: 30.0),
-                      label: Text('submit', style: TextStyle(fontSize: 20.0)),
+                      label: Text('Submit', style: TextStyle(fontSize: 20.0)),
                       onPressed: (){
                         if(pickDate == null){
                           showDialog<void>(
@@ -145,11 +170,19 @@ class _addDiaryState extends State<addDiary>{
                               barrierDismissible: false,
                               builder: (BuildContext){
                                 return AlertDialog(
-                                  title: Text("no date entered"),
+                                  title: Text("Error: No date selected. Please select a date.",
+                                      style: GoogleFonts.raleway(
+                                        color: Colors.black,
+                                        fontSize: 20.0,
+                                        fontWeight: FontWeight.w600
+                                      )),
                                   elevation: 35.0,
                                   actions: <Widget>[
                                     FlatButton(
-                                        child: Text('Ok',),
+                                        child: Text('Ok',
+                                            style: GoogleFonts.raleway(
+                                              fontSize: 20.0,
+                                            )),
                                         onPressed: (){
                                           Navigator.of(context).pop();
                                         }
@@ -164,11 +197,19 @@ class _addDiaryState extends State<addDiary>{
                               barrierDismissible: false,
                               builder: (BuildContext){
                                 return AlertDialog(
-                                  title: Text("no feeling choosen"),
+                                  title: Text("No emoji selected. Please select an emoji.",
+                                    style: GoogleFonts.raleway(
+                                    fontSize: 20.0,
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.w600
+                                  )),
                                   elevation: 35.0,
                                   actions: <Widget>[
                                     FlatButton(
-                                        child: Text('Ok',),
+                                        child: Text('Ok',
+                                            style: GoogleFonts.raleway(
+                                              fontSize: 20.0,
+                                            )),
                                         onPressed: (){
                                           Navigator.of(context).pop();
                                         }
@@ -189,6 +230,7 @@ class _addDiaryState extends State<addDiary>{
                         }
                       },
                       style: ElevatedButton.styleFrom(
+                        primary: Colors.green,
                         shape: RoundedRectangleBorder(
                           borderRadius: new BorderRadius.circular(10.0),
                         ),

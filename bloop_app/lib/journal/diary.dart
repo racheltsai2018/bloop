@@ -1,9 +1,9 @@
-import 'package:bloop_app/addDiary.dart';
+import 'package:bloop_app/journal/addDiary.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:bloop_app/diaryEntry.dart';
-import 'package:bloop_app/DbHelper.dart';
-import 'package:bloop_app/editDiary.dart';
+import 'package:bloop_app/journal/diaryEntry.dart';
+import 'package:bloop_app/journal/DbHelper.dart';
+import 'package:bloop_app/journal/editDiary.dart';
 
 
 class diary extends StatefulWidget{
@@ -33,9 +33,11 @@ class _diaryState extends State<diary>{
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(                              //bar on top
-        title: Text('Diary',
-            style: GoogleFonts.fascinate(
-                color: Colors.black, fontSize: 25.0
+        title: Text('Journal',
+            style: GoogleFonts.raleway(
+              color: Colors.black,
+              fontSize: 25.0,
+              fontWeight: FontWeight.w600,
             )
         ),
         centerTitle: true,
@@ -61,7 +63,7 @@ class _diaryState extends State<diary>{
                 padding: EdgeInsets.fromLTRB(8.0, 8.0, 0, 8.0),
                 child: RawMaterialButton(
                   elevation: 5.0,
-                  fillColor: Colors.grey,
+                  fillColor: Colors.blueGrey[100],
                   child: Icon(
                     Icons.add,
                     size: 30.0,
@@ -77,6 +79,7 @@ class _diaryState extends State<diary>{
            SizedBox(height: 10),                                    //gets diary entries when new entries are added
             Expanded(
               child:Container(
+                padding: EdgeInsets.all(8),
                 child: allDiary.isEmpty ? Container()
                     :ListView.builder(itemBuilder: (ctx, index){
                       if(index == allDiary.length) return null;
@@ -84,7 +87,7 @@ class _diaryState extends State<diary>{
                         decoration: BoxDecoration(
                           color: Colors.white,
                           border: Border.all(color: Colors.black),
-                          borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                          borderRadius: BorderRadius.all(Radius.circular(15.0)),
                         ),
                         child: ListTile(
                           title: Text('Date:' +allDiary[index].date),

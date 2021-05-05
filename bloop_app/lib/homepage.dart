@@ -15,8 +15,10 @@ class _homepageState extends State<homepage>{
     return Scaffold(
         appBar:AppBar(                                          // the appbar on the top of the screen
           title:Text('bloop',                                   //title centered on the page
-            style: GoogleFonts.fascinate(
-                color: Colors.black, fontSize: 25.0
+            style: GoogleFonts.raleway(
+                color: Colors.black,
+                fontSize: 25.0,
+              fontWeight: FontWeight.w600,
             ),
           ),
           iconTheme: IconThemeData(color: Colors.black),
@@ -24,7 +26,7 @@ class _homepageState extends State<homepage>{
           backgroundColor: Colors.blueGrey[100],
           elevation: 30.0,
         ),
-        drawer: Drawer(                                         //drawer on the left side
+        drawer: Drawer(//drawer on the left side
             child: ListView(
                 padding: EdgeInsets.zero,
                 children: <Widget>[
@@ -32,17 +34,35 @@ class _homepageState extends State<homepage>{
                     decoration: BoxDecoration(
                       color: Colors.white38,
                     ),
-                    child: Text(
-                      'header',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 24,
-                      ),
+                    child: Row(
+                      children: [
+                        Text(
+                          'bloop',
+                          style: GoogleFonts.raleway(
+                            color: Colors.black,
+                            fontSize: 45,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        Container(
+                          child: new Image.asset('assets/images/bloopPlayer.png', width: 125, height: 125),
+                        )
+                      ],
                     ),
                   ),
                   ListTile(                                     //the first page listed in drawer (meditation)
-                    leading: Icon(Icons.self_improvement),
-                    title: Text('Meditation'),
+                    leading: Icon(
+                        Icons.self_improvement,
+                      size: 40,
+                    ),
+                    title: Text(
+                        'Meditation',
+                      style: GoogleFonts.raleway(
+                        color: Colors.black,
+                        fontSize: 24,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
                     onTap: (){                                  // when tap to meditation page
                       Navigator.pushAndRemoveUntil(
                         context,
@@ -52,8 +72,18 @@ class _homepageState extends State<homepage>{
                     },
                   ),
                   ListTile(                                    //second page in the drawer
-                    leading: Icon(Icons.book_sharp),
-                    title: Text("Diary"),
+                    leading: Icon(
+                        Icons.book_sharp,
+                      size: 40
+                    ),
+                    title: Text(
+                        "Journal",
+                      style: GoogleFonts.raleway(
+                        color: Colors.black,
+                        fontSize: 24,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
                     onTap: (){                                //when tapped to dairy page
                       Navigator.pushAndRemoveUntil(
                         context,
@@ -63,8 +93,15 @@ class _homepageState extends State<homepage>{
                     },
                   ),
                   ListTile(                                  //mini game button in drawer
-                    leading: Icon(Icons.sports_esports),
-                    title: Text("Mini Game"),
+                    leading: Icon(Icons.sports_esports, size: 40),
+                    title: Text(
+                        "Mini Game",
+                      style: GoogleFonts.raleway(
+                        color: Colors.black,
+                        fontSize: 24,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
                     onTap:(){
                       Navigator.pushAndRemoveUntil(
                         context,
@@ -74,8 +111,15 @@ class _homepageState extends State<homepage>{
                     },
                   ),
                   ListTile(                                  //mini game button in drawer
-                    leading: Icon(Icons.settings),
-                    title: Text("Settings"),
+                    leading: Icon(Icons.settings, size: 40),
+                    title: Text(
+                      "Settings",
+                      style: GoogleFonts.raleway(
+                        color: Colors.black,
+                        fontSize: 24,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
                     onTap:(){
                       Navigator.pushAndRemoveUntil(
                         context,
@@ -96,6 +140,7 @@ class _homepageState extends State<homepage>{
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
+
                 Row(                                          // first row of icon on the homepage
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
@@ -109,9 +154,19 @@ class _homepageState extends State<homepage>{
                         },
                         child: Column(
                           children: <Widget>[
-                            Icon(Icons.self_improvement,color: Colors.grey,
-                              size: MediaQuery.of(context).size.width/4,),
-                            AutoSizeText ("Meditation", style: TextStyle(fontSize: 25.0))
+                            Icon(
+                              Icons.self_improvement,
+                              color: Colors.blueGrey[200],
+                              size: MediaQuery.of(context).size.width/4,
+                            ),
+                            AutoSizeText (
+                                "Meditation",
+                              style: GoogleFonts.raleway(
+                                color: Colors.blueGrey[100],
+                                fontSize: 25,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            )
                           ],
                         )
                     ),
@@ -125,9 +180,19 @@ class _homepageState extends State<homepage>{
                         },
                         child: Column(
                           children: <Widget>[
-                            Icon(Icons.book_sharp,color: Colors.grey,
-                              size: MediaQuery.of(context).size.width/4,),
-                            AutoSizeText ("Diary", style: TextStyle(fontSize: 25.0))
+                            Icon(
+                              Icons.book_sharp,
+                              color: Colors.blueGrey[200],
+                              size: MediaQuery.of(context).size.width/4,
+                            ),
+                            AutoSizeText (
+                                "Journal",
+                              style: GoogleFonts.raleway(
+                                color: Colors.blueGrey[100],
+                                fontSize: 24,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            )
                           ],
                         )
                     ),
@@ -146,9 +211,18 @@ class _homepageState extends State<homepage>{
                         },
                         child: Column(
                           children: <Widget>[
-                            Icon(Icons.sports_esports,color: Colors.grey,
+                            Icon(
+                              Icons.sports_esports,
+                              color: Colors.blueGrey[200],
                               size: MediaQuery.of(context).size.width/4,),
-                            AutoSizeText ("Mini Game", style: TextStyle(fontSize: 25.0))
+                            AutoSizeText (
+                                "Mini Game",
+                              style: GoogleFonts.raleway(
+                                color: Colors.blueGrey[100],
+                                fontSize: 24,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            )
                           ],
                         )
                     ),
@@ -162,14 +236,34 @@ class _homepageState extends State<homepage>{
                         },
                         child: Column(
                           children: <Widget>[
-                            Icon(Icons.settings,color: Colors.grey,
+                            Icon(
+                              Icons.settings,
+                              color: Colors.blueGrey[200],
                               size: MediaQuery.of(context).size.width/4,),
-                            AutoSizeText ("Settings", style: TextStyle(fontSize: 25.0))
+                            AutoSizeText (
+                                "Settings",
+                              style: GoogleFonts.raleway(
+                                color: Colors.blueGrey[100],
+                                fontSize: 24,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            )
                           ],
                         )
                     ),
                   ],
-                )
+                ),
+                Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Container(
+                        child: new Image.asset('assets/images/bloopPlayer.png',
+                          width: MediaQuery.of(context).size.width/1.75,
+                          height: MediaQuery.of(context).size.width/1.75,
+                        ),
+                      )
+                    ]
+                ),
               ],
 
             )
