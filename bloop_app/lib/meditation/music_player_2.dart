@@ -6,19 +6,20 @@ import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-//creates a music player for the guided meditation audio list
-class MusicPlayer extends StatefulWidget {
+
+//creates a separate music player for the non-guided meditation audio list
+class MusicPlayer2 extends StatefulWidget {
   String title;
   String audioUrl;
   String cover;
   String artist;
-  Function changeTrack;
-  final GlobalKey<MusicPlayerState> key;
-  MusicPlayer({this.title, this.cover, this.audioUrl, this.artist, this.changeTrack, this.key}) : super(key: key);
-  MusicPlayerState createState() => MusicPlayerState();
+  Function changeTrack2;
+  final GlobalKey<MusicPlayerState2> key;
+  MusicPlayer2({this.title, this.cover, this.audioUrl, this.artist, this.changeTrack2, this.key}) : super(key: key);
+  MusicPlayerState2 createState() => MusicPlayerState2();
 }
 
-class MusicPlayerState extends State<MusicPlayer>{
+class MusicPlayerState2 extends State<MusicPlayer2>{
   double minValue = 0.0;  //beginning of the song
   double maxValue = 0.0;  //
   double currentValue = 0.0; //current part of the song that is being played
@@ -181,7 +182,7 @@ class MusicPlayerState extends State<MusicPlayer>{
                     ),
                     behavior: HitTestBehavior.translucent,
                     onTap: () {
-                      widget.changeTrack(false);
+                      widget.changeTrack2(false);
                     },
                   ),
                   GestureDetector(
@@ -203,7 +204,7 @@ class MusicPlayerState extends State<MusicPlayer>{
                     ),
                     behavior: HitTestBehavior.translucent,
                     onTap: () {
-                      widget.changeTrack(true);
+                      widget.changeTrack2(true);
                     },
                   )
                 ],

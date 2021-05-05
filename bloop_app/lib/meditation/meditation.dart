@@ -2,13 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:bloop_app/meditation/custom_list_tile.dart';
 import 'package:bloop_app/meditation/music_player.dart';
-//meditation page
+import 'package:bloop_app/meditation/music_player_2.dart';
+// //meditation page
 // so implementation is kinda jank so idk what issues we might come across later
 // but it works for now so let's roll with it
 // -Denise
 class meditation extends StatelessWidget {
   int currentIndex = 0;
+
+  //keys are used to access methods in this file for music players (i.e. change tracks)
   final GlobalKey<MusicPlayerState> key = GlobalKey<MusicPlayerState>();
+  final GlobalKey<MusicPlayerState2> key2 = GlobalKey<MusicPlayerState2>();
 
   //audio list for guided meditation
   List musicList = [
@@ -68,6 +72,19 @@ class meditation extends StatelessWidget {
       }
     }
     key.currentState.setSong(musicList[currentIndex]['title'], musicList[currentIndex]['artist'], musicList[currentIndex]['url'], musicList[currentIndex]['coverUrl']);
+  }
+
+  void changeTrack2(bool isNext){
+    if(isNext){
+      if(currentIndex != musicList.length - 1){
+        currentIndex++;
+      }
+    } else {
+      if(currentIndex != 0){
+        currentIndex--;
+      }
+    }
+    key2.currentState.setSong(musicList2[currentIndex]['title'], musicList2[currentIndex]['artist'], musicList2[currentIndex]['url'], musicList2[currentIndex]['coverUrl']);
   }
 
   @override
@@ -160,18 +177,19 @@ class meditation extends StatelessWidget {
                 itemBuilder: (context, index) => customListTile(
                   onTap: (){
                     currentIndex = index;
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => MusicPlayer(
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => MusicPlayer2(
                       title: musicList2[currentIndex]['title'],
                       cover: musicList2[currentIndex]['coverUrl'],
                       audioUrl: musicList2[currentIndex]['url'],
                       artist: musicList2[currentIndex]['artist'],
-                      changeTrack: changeTrack,
-                      key: key,
+                      changeTrack2: changeTrack2,
+                      key: key2,
                     )));
                   },
                   title: musicList2[index]['title'],
                   cover: musicList2[index]['coverUrl'],
                   artist: musicList2[index]['artist'],
+                  context: context,
                 ),),
             ),
           ],
