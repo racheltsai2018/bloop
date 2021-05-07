@@ -88,7 +88,7 @@ class ShooterGame extends BaseGame with PanDetector, HasWidgetsOverlay{
       }
       //destroy bullet and enemy if they collide and increment the score
       components.whereType<Bullet>().forEach((bullet){
-        if(bullet.distance(enemy) < 20){
+        if(bullet.distance(enemy) < 50){
             bullet.hit();
             enemy.hit();
             score += 1;
@@ -343,11 +343,15 @@ class ShooterGame extends BaseGame with PanDetector, HasWidgetsOverlay{
     this.score = 0;
     _bloop.life.value = 3;
     _bloop.fly();
-    _enemyManager.reset();
+    //_enemyManager.reset();
 
     //remove all enemy components in game
     components.whereType<Enemy>().forEach((enemy) {
       this.markToRemove(enemy);
+    });
+    //remove all bullets in game
+    components.whereType<Bullet>().forEach((bullet) {
+      this.markToRemove(bullet);
     });
   }
 

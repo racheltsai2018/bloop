@@ -1,12 +1,12 @@
-import 'package:bloop_app/shooter_game_components/EnemyManager.dart';
 import 'package:flame/anchor.dart';
+import 'package:flame/animation.dart' as flame;
+import 'package:flame/components/animation_component.dart';
 import 'package:flame/components/component.dart';
-import 'package:flame/flame.dart';
-import 'package:flame/game.dart';
+import 'package:flame/spritesheet.dart';
 import 'package:flutter/material.dart';
 
 
-const ComponentSize = 40.0;
+const ComponentSize = 50.0;
 const NormalSpeed = 120.0;
 
 class Enemy extends SpriteComponent{
@@ -15,10 +15,28 @@ class Enemy extends SpriteComponent{
   double _speed = 120.0;
   double targetX, targetY = 0;
   String direction = '';
-  //Enemy(this.dimensions) : super.square(ComponentSize, 'dragon.png');
-  Enemy() : super.square(ComponentSize, 'dragon.png'){
+
+  Enemy() : super.square(ComponentSize, 'Enemy.png');
+
+  // This is the animation for the Enemy however it doesn't work. Enemy just doesn't show up
+  // No idea why because this code is virtually the same as the player class
+
+  /*
+  flame.Animation _animation;
+
+  Enemy() : super.empty(){
+    final spriteSheet = SpriteSheet(
+        imageName: 'Enemy_Sprite_Sheet.png',
+        textureWidth: 50,
+        textureHeight: 50,
+        columns: 4,
+        rows: 1);
+
+    _animation = spriteSheet.createAnimation(0, from: 0, to: 4, stepTime: 0.1);
+    this.animation = _animation;
     this.anchor = Anchor.center; // moves the origin from top left corner to center of the sprite
   }
+  */
   double maxY;
   bool remove = false;
   bool isHit = false;
@@ -37,7 +55,7 @@ class Enemy extends SpriteComponent{
 
       }else{
       wait = false;
-      _speed = 100;
+      _speed = NormalSpeed;
       }
     }else{
       y += t * _speed;
@@ -59,7 +77,7 @@ class Enemy extends SpriteComponent{
   @override
   void resize(Size size) {
     super.resize(size);
-    this.x = size.width/2;
+    this.x = x;
     this.y = y;
     this.maxY = size.height;
   }

@@ -45,7 +45,7 @@ class _homepageState extends State<homepage>{
                           ),
                         ),
                         Container(
-                          child: new Image.asset('assets/images/bloopPlayer.png', width: 125, height: 125),
+                          child: new Image.asset('assets/images/Happy_Bloop.png', width: 125, height: 125),
                         )
                       ],
                     ),
@@ -257,7 +257,7 @@ class _homepageState extends State<homepage>{
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Container(
-                        child: new Image.asset('assets/images/bloopPlayer.png',
+                        child: new Image.asset('assets/images/Happy_Bloop.png',
                           width: MediaQuery.of(context).size.width/1.75,
                           height: MediaQuery.of(context).size.width/1.75,
                         ),
