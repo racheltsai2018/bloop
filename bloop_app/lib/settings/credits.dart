@@ -11,11 +11,11 @@ class credits extends StatelessWidget {
           onPressed: (){
             Navigator.of(context).pop();
           },
-          icon: Icon(Icons.arrow_back_ios_sharp, color: Colors.black,),
+          icon: Icon(Icons.arrow_back_ios_sharp, color: Colors.white,),
         ), //bar on top
         title: Text('Credits',
             style: GoogleFonts.raleway(
-              color: Colors.black,
+              color: Colors.white,
               fontSize: 25.0,
               fontWeight: FontWeight.w600,
             )
@@ -42,7 +42,7 @@ class credits extends StatelessWidget {
                 alignment: Alignment.center,
                 child:Container(
                   decoration: BoxDecoration(
-                    color: Colors.grey[600],
+                    color: Colors.yellow[700],
                     //border: Border.all(color: Colors.black),
                   ),
                   child: ListTile(
@@ -54,7 +54,7 @@ class credits extends StatelessWidget {
             Align(                                                //plus button to add diary page
                 child:Container(
                   decoration: BoxDecoration(
-                    color: Colors.grey[600],
+                    color: Colors.yellow[700],
                     //border: Border.all(color: Colors.black),
                   ),
                   child: ListTile(
@@ -66,7 +66,7 @@ class credits extends StatelessWidget {
             Align(                                                //plus button to add diary page
                 child:Container(
                   decoration: BoxDecoration(
-                    color: Colors.grey[600],
+                    color: Colors.yellow[700],
                     //border: Border.all(color: Colors.black),
                   ),
                   child: ListTile(
@@ -78,7 +78,7 @@ class credits extends StatelessWidget {
             Align(                                                //plus button to add diary page
                 child:Container(
                   decoration: BoxDecoration(
-                    color: Colors.grey[600],
+                    color: Colors.yellow[700],
                     //border: Border.all(color: Colors.black),
                   ),
                   child: ListTile(
@@ -90,7 +90,7 @@ class credits extends StatelessWidget {
             Align(                                                //plus button to add diary page
                 child:Container(
                   decoration: BoxDecoration(
-                    color: Colors.grey[600],
+                    color: Colors.yellow[700],
                     //border: Border.all(color: Colors.black),
                   ),
                   child: ListTile(
@@ -102,7 +102,7 @@ class credits extends StatelessWidget {
             Align(                                                //plus button to add diary page
                 child:Container(
                   decoration: BoxDecoration(
-                    color: Colors.grey[600],
+                    color: Colors.yellow[700],
                     //border: Border.all(color: Colors.black),
                   ),
                   child: ListTile(
@@ -114,7 +114,7 @@ class credits extends StatelessWidget {
             Align(                                                //plus button to add diary page
                 child:Container(
                   decoration: BoxDecoration(
-                    color: Colors.grey[600],
+                    color: Colors.yellow[700],
                     //border: Border.all(color: Colors.black),
                   ),
                   child: ListTile(
@@ -126,7 +126,7 @@ class credits extends StatelessWidget {
             Align(                                                //plus button to add diary page
                 child:Container(
                   decoration: BoxDecoration(
-                    color: Colors.grey[600],
+                    color: Colors.yellow[700],
                     //border: Border.all(color: Colors.black),
                   ),
                   child: ListTile(

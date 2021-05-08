@@ -24,17 +24,17 @@ class _editDiaryState extends State<editDiary>{
           onPressed: (){
             Navigator.of(context).pop();
           },
-          icon: Icon(Icons.arrow_back_ios_sharp, color: Colors.black,),
+          icon: Icon(Icons.arrow_back_ios_sharp, color: Colors.white,),
         ),
         title: Text('Journal',
             style: GoogleFonts.raleway(
-              color: Colors.black,
+              color: Colors.white,
             fontSize: 25.0,
             fontWeight: FontWeight.w600,
             )
         ),
         centerTitle: true,
-        backgroundColor: Colors.blueGrey[100],
+        backgroundColor: Colors.indigo[400],
         elevation: 30.0,
       ),
       body: Container(
@@ -60,15 +60,15 @@ class _editDiaryState extends State<editDiary>{
                       Expanded(
                         child: Container(
                             decoration: BoxDecoration(
-                              color: Colors.white,
-                              border: Border.all(color: Colors.black),
+                              color: Colors.yellow[700],
+                              border: Border.all(color: Colors.amber[600]),
                               borderRadius: BorderRadius.all(Radius.circular(15.0)),
                             ),
                             padding: EdgeInsets.fromLTRB(15.0, 15.0, 15.0, 15),
                             child: AutoSizeText(
                                 'Diary Date: '+ currentEntry.date,
                                 style: GoogleFonts.raleway(
-                                  color: Colors.black,
+                                  color: Colors.white,
                                   fontSize: 20.0,
                                 )
                             ),          //print diary date
@@ -82,15 +82,15 @@ class _editDiaryState extends State<editDiary>{
                       Expanded(
                         child: Container( //picking emoji
                             decoration: BoxDecoration(
-                              color: Colors.white,
-                              border: Border.all(color: Colors.black),
+                              color: Colors.yellow[700],
+                              border: Border.all(color: Colors.amber[600]),
                               borderRadius: BorderRadius.all(Radius.circular(15.0)),
                             ),
                             padding: const EdgeInsets.all(15.0),
                             child: AutoSizeText(
                                 'You were feeling: ',
                                 style: GoogleFonts.raleway(
-                                  color: Colors.black,
+                                  color: Colors.white,
                                   fontSize: 20.0,
                                 ),
                             ),  // print diary emoji picked
@@ -99,15 +99,15 @@ class _editDiaryState extends State<editDiary>{
                       Expanded(
                           child: Container(
                               decoration: BoxDecoration(
-                                color: Colors.white,
-                                border: Border.all(color: Colors.black),
+                                color: Colors.yellow[700],
+                                border: Border.all(color: Colors.amber[600]),
                                 borderRadius: BorderRadius.all(Radius.circular(15.0)),
                           ),
                             padding: const EdgeInsets.all(15.0),
                           child: Image(
                             image : AssetImage(currentEntry.emoji),
-                            height: 50.0,
-                            width: 50.0,)
+                            height: 46.0,
+                            width: 46.0,)
                             ,)
                       ),
                     ],
@@ -117,15 +117,15 @@ class _editDiaryState extends State<editDiary>{
                         Expanded( //body part where it user enters what happens today
                             child: Container(
                               decoration: BoxDecoration(
-                                color: Colors.white,
-                                border: Border.all(color: Colors.black),
+                                color: Colors.yellow[700],
+                                border: Border.all(color: Colors.amber[600]),
                                 borderRadius: BorderRadius.all(Radius.circular(15.0)),
                               ),
                               padding: EdgeInsets.fromLTRB(15.0, 15, 15.0, 15.0),
                               child: AutoSizeText(  "Diary Entry: "       +                                         //print diary info
                               currentEntry.info,
                                   style: GoogleFonts.raleway(
-                                    color: Colors.black,
+                                    color: Colors.white,
                                     fontSize: 20.0,
                                   )
                               ),
@@ -153,7 +153,7 @@ class _editDiaryState extends State<editDiary>{
                                 title: Text(
                                     "Are you sure you want to delete this diary entry?",
                                     style: GoogleFonts.raleway(
-                                      color: Colors.black,
+                                      color: Colors.white,
                                       fontSize: 20.0,
                                       fontWeight: FontWeight.w600,)),
                                 elevation: 35.0,

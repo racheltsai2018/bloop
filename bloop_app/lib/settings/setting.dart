@@ -19,7 +19,7 @@ class _settingState extends State<setting>{
       appBar: AppBar(
         title: Text('Settings',
             style: GoogleFonts.raleway(
-              color: Colors.black,
+              color: Colors.white,
               fontSize: 25.0,
               fontWeight: FontWeight.w600,
             )

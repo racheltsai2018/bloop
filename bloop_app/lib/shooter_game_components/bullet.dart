@@ -7,7 +7,7 @@ import 'package:flutter/cupertino.dart';
 
 import 'enemy.dart';
 
-const double bulletSpeed = 500;
+const double bulletSpeed = 400;
 ShooterGame game = ShooterGame();
 
 class Bullet extends SpriteComponent{

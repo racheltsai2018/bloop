@@ -15,11 +15,11 @@ class team extends StatelessWidget {
           onPressed: (){
             Navigator.of(context).pop();
           },
-          icon: Icon(Icons.arrow_back_ios_sharp, color: Colors.black,),
+          icon: Icon(Icons.arrow_back_ios_sharp, color: Colors.white,),
         ),//bar on top
         title: Text('Team',
             style: GoogleFonts.raleway(
-              color: Colors.black,
+              color: Colors.white,
               fontSize: 25.0,
               fontWeight: FontWeight.w600,
             )
@@ -47,8 +47,8 @@ class team extends StatelessWidget {
                 child:Container(
                   padding: EdgeInsets.fromLTRB(1.0, 1.0, 1.0, .0),
                   decoration: BoxDecoration(
-                    color: Colors.grey[600],
-                    border: Border.all(color: Colors.black),
+                    color: Colors.yellow[700],
+                    border: Border.all(color: Colors.amber[600]),
                   ),
                   child: ListTile(
                     title: Text('Nada Attar', textAlign: TextAlign.center,style: TextStyle(fontSize: 20.0)),
@@ -62,8 +62,8 @@ class team extends StatelessWidget {
                 child:Container(
                   padding: EdgeInsets.fromLTRB(1.0, 1.0, 1.0, 1.0),
                   decoration: BoxDecoration(
-                    color: Colors.grey[600],
-                    border: Border.all(color: Colors.black),
+                    color: Colors.yellow[700],
+                    border: Border.all(color: Colors.amber[600]),
                   ),
                   child: ListTile(
                     title: Text('Denise Gip', textAlign: TextAlign.center,style: TextStyle(fontSize: 20.0)),
@@ -77,8 +77,8 @@ class team extends StatelessWidget {
                 child:Container(
                   padding: EdgeInsets.fromLTRB(1.0, 1.0, 1.0, 1.0),
                   decoration: BoxDecoration(
-                    color: Colors.grey[600],
-                    border: Border.all(color: Colors.black),
+                    color: Colors.yellow[700],
+                    border: Border.all(color: Colors.amber[600]),
                   ),
                   child: ListTile(
                     title: Text('Rachel Tsai', textAlign: TextAlign.center,style: TextStyle(fontSize: 20.0)),
@@ -92,8 +92,8 @@ class team extends StatelessWidget {
                 child:Container(
                   padding: EdgeInsets.fromLTRB(1.0, 1.0, 1.0, 1.0),
                   decoration: BoxDecoration(
-                    color: Colors.grey[600],
-                    border: Border.all(color: Colors.black),
+                    color: Colors.yellow[700],
+                    border: Border.all(color: Colors.amber[600]),
                   ),
                   child: ListTile(
                     title: Text('Irina Voronova', textAlign: TextAlign.center,style: TextStyle(fontSize: 20.0)),
@@ -107,8 +107,8 @@ class team extends StatelessWidget {
                 child:Container(
                   padding: EdgeInsets.fromLTRB(1.0, 1.0, 1.0, 1.0),
                   decoration: BoxDecoration(
-                    color: Colors.grey[600],
-                    border: Border.all(color: Colors.black),
+                    color: Colors.yellow[700],
+                    border: Border.all(color: Colors.amber[600]),
                   ),
                   child: ListTile(
                     title: Text('Jennifer Yang', textAlign: TextAlign.center,style: TextStyle(fontSize: 20.0)),

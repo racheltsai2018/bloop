@@ -16,7 +16,7 @@ class EnemyManager extends Component with HasGameRef<ShooterGame>{
 
   EnemyManager(){
     _random = Random();
-    _grouptimer = Timer(10, repeat: true, callback: (){
+    _grouptimer = Timer(5, repeat: true, callback: (){
       spawnGroupEnemies();
     });
     _singletimer = Timer(1, repeat: true, callback: (){
@@ -57,10 +57,10 @@ class EnemyManager extends Component with HasGameRef<ShooterGame>{
   }
 
   void attackLines(){
-    double targetX = ComponentSize;
+    double targetX = ComponentSize/2;
     left = new List<Enemy>.generate(4, (i) => new Enemy());
     left.forEach((enemy) {
-      enemy.y = 25.0;
+      enemy.y = 30.0;
       enemy.x = (screenSize.width/2) - ComponentSize/2;
       enemy.targetX = targetX;
       targetX += ComponentSize;
@@ -69,13 +69,13 @@ class EnemyManager extends Component with HasGameRef<ShooterGame>{
       gameRef.addLater(enemy);
     });
 
-    targetX = screenSize.width - ComponentSize;
-    right = new List.generate(4, (i) => new Enemy());
+    targetX = screenSize.width - ComponentSize/2;
+    right = new List.generate(3, (i) => new Enemy());
 
     right.forEach((enemy) {
       enemy = new Enemy();
       enemy.y = 30.0;
-      enemy.x = (screenSize.width/2) - ComponentSize/2;
+      enemy.x = (screenSize.width/2) + ComponentSize;
       enemy.targetX = targetX;
       targetX -= ComponentSize;
       enemy.direction = 'right';

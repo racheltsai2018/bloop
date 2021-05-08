@@ -47,18 +47,18 @@ class _addDiaryState extends State<addDiary>{
           onPressed: (){
             Navigator.of(context).pop();
           },
-          icon: Icon(Icons.arrow_back_ios_sharp, color: Colors.black,),
+          icon: Icon(Icons.arrow_back_ios_sharp, color: Colors.white,),
         ),
         //bar on top
         title: Text('Journal',
             style: GoogleFonts.raleway(
-              color: Colors.black,
+              color: Colors.white,
               fontSize: 25.0,
               fontWeight: FontWeight.w600,
             )
         ),
         centerTitle: true,
-        backgroundColor: Colors.blueGrey[100],
+        backgroundColor: Colors.indigo[400],
         elevation: 30.0,
       ),
       body: Container(
@@ -82,7 +82,7 @@ class _addDiaryState extends State<addDiary>{
                     child: FlatButton.icon(
                         icon: Icon(Icons.date_range),
                         label: Text('Journal Entry Date'),           //date picker
-                        color: Colors.white,
+                        color: Colors.yellow[700],
                         onPressed: () => showDatePicker(
                             context: context,
                             initialDate: tdate,
@@ -117,7 +117,7 @@ class _addDiaryState extends State<addDiary>{
                       Expanded(
                         child:ToggleButtons(                                  //emoji button
                           selectedColor: Colors.white,
-                          fillColor: Colors.blue,
+                          fillColor: Colors.indigo,
                           children: const <Widget>[
                            Image(
                              image : AssetImage('assets/images/Happy_Bloop.png'),
@@ -171,7 +171,7 @@ class _addDiaryState extends State<addDiary>{
                       maxLines: null,
                       expands: true,
                       decoration: InputDecoration(
-                        fillColor: Colors.white,
+                        fillColor: Colors.white12,
                         filled: true,
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(5.0)),

@@ -15,11 +15,11 @@ class about extends StatelessWidget {
           onPressed: (){
             Navigator.of(context).pop();
           },
-          icon: Icon(Icons.arrow_back_ios_sharp, color: Colors.black,),
+          icon: Icon(Icons.arrow_back_ios_sharp, color: Colors.white,),
         ),//bar on top
         title: Text('About',
             style: GoogleFonts.raleway(
-              color: Colors.black,
+              color: Colors.white,
               fontSize: 25.0,
               fontWeight: FontWeight.w600,
             )
@@ -47,7 +47,7 @@ class about extends StatelessWidget {
                 child:Container(
                   padding: EdgeInsets.fromLTRB(1.0, 1.0, 1.0, .0),
                   decoration: BoxDecoration(
-                    color: Colors.grey[600],
+                    color: Colors.yellow[700],
                    // border: Border.all(color: Colors.black),
                     borderRadius: BorderRadius.all(Radius.circular(15.0)),
                   ),
@@ -74,7 +74,7 @@ class about extends StatelessWidget {
                 child:Container(
                   padding: EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
                   decoration: BoxDecoration(
-                    color: Colors.grey[600],
+                    color: Colors.yellow[700],
                    // border: Border.all(color: Colors.black),
                     borderRadius: BorderRadius.all(Radius.circular(15.0)),
                   ),
