@@ -24,7 +24,7 @@ double playerY;
 class ShooterGame extends BaseGame with PanDetector, HasWidgetsOverlay{
   ParallaxComponent _parallaxComponent;
   BloopPlayer _bloop;
-  double _elapsedBulletTime = 10;
+  double _elapsedBulletTime = 5;
   bool dragBloop = false;
   Size dimensions;
   EnemyManager _enemyManager;
@@ -69,7 +69,7 @@ class ShooterGame extends BaseGame with PanDetector, HasWidgetsOverlay{
     playerY = _bloop.y;
 
     // bullet spawner
-    if (_elapsedBulletTime >= 0.1){
+    if (_elapsedBulletTime >= 0.15){
       _bullet = new Bullet();
       addLater(_bullet);
       _elapsedBulletTime = 0;
@@ -83,12 +83,12 @@ class ShooterGame extends BaseGame with PanDetector, HasWidgetsOverlay{
       if(enemy.y >= enemy.maxY - ComponentSize/2){
         _bloop.hit();
       }
-      if(_bloop.distance(enemy) < 50){
+      if(_bloop.distance(enemy) < 75){
         _bloop.hit();
       }
       //destroy bullet and enemy if they collide and increment the score
       components.whereType<Bullet>().forEach((bullet){
-        if(bullet.distance(enemy) < 20){
+        if(bullet.distance(enemy) < 45){
             bullet.hit();
             enemy.hit();
             score += 1;
@@ -343,11 +343,15 @@ class ShooterGame extends BaseGame with PanDetector, HasWidgetsOverlay{
     this.score = 0;
     _bloop.life.value = 3;
     _bloop.fly();
-    _enemyManager.reset();
+    //_enemyManager.reset();
 
     //remove all enemy components in game
     components.whereType<Enemy>().forEach((enemy) {
       this.markToRemove(enemy);
+    });
+    //remove all bullets in game
+    components.whereType<Bullet>().forEach((bullet) {
+      this.markToRemove(bullet);
     });
   }
 

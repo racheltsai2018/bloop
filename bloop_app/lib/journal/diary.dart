@@ -35,13 +35,13 @@ class _diaryState extends State<diary>{
       appBar: AppBar(                              //bar on top
         title: Text('Journal',
             style: GoogleFonts.raleway(
-              color: Colors.black,
+              color: Colors.white,
               fontSize: 25.0,
               fontWeight: FontWeight.w600,
             )
         ),
         centerTitle: true,
-        backgroundColor: Colors.blueGrey[100],
+        backgroundColor: Colors.indigo[400],
         elevation: 30.0,
       ),
       body: Container(
@@ -50,9 +50,9 @@ class _diaryState extends State<diary>{
             end: Alignment.bottomCenter,
             colors: [
               Colors.indigo[900],
-              Colors.blue[900],
-              Colors.blue,
-              Colors.white
+              Colors.indigo[600],
+              Colors.indigo[400],
+              Colors.blue[200]
             ]
         )),
         child: Column(                                      
@@ -63,7 +63,7 @@ class _diaryState extends State<diary>{
                 padding: EdgeInsets.fromLTRB(8.0, 8.0, 0, 8.0),
                 child: RawMaterialButton(
                   elevation: 5.0,
-                  fillColor: Colors.blueGrey[100],
+                  fillColor: Colors.indigo[300],
                   child: Icon(
                     Icons.add,
                     size: 30.0,
@@ -85,13 +85,16 @@ class _diaryState extends State<diary>{
                       if(index == allDiary.length) return null;
                       return Container(
                         decoration: BoxDecoration(
-                          color: Colors.white,
-                          border: Border.all(color: Colors.black),
+                          color: Colors.yellow[700],
+                          border: Border.all(color: Colors.amber[600]),
                           borderRadius: BorderRadius.all(Radius.circular(15.0)),
                         ),
                         child: ListTile(
                           title: Text('Date:' +allDiary[index].date),
-                          subtitle: Text('Feeling: '+ allDiary[index].emoji),
+                          leading: Image(
+                            image : AssetImage(allDiary[index].emoji),
+                            height: 40.0,
+                            width: 40.0,),
                           trailing: Icon(Icons.info),
                           onTap: (){
                             Navigator.push(context, MaterialPageRoute<void>(builder: (context) => editDiary(allDiary[index])));

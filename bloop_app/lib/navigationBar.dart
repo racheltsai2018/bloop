@@ -51,8 +51,8 @@ class _navigationBarState extends State<navigationBar>{
       body: _widgetOp[_theIndex],
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        unselectedItemColor: Colors.black,
-        backgroundColor: Colors.blueGrey[100],
+        unselectedItemColor: Colors.white,
+        backgroundColor: Colors.indigo[400],
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(                  // first icon: homepage with icon
             icon: Icon(Icons.home),
@@ -76,7 +76,7 @@ class _navigationBarState extends State<navigationBar>{
           ),
         ],
         currentIndex: _theIndex,                //update index
-        selectedItemColor: Colors.blue,         //when selected color turn blue
+        selectedItemColor: Colors.indigo[900],         //when selected color turn blue
         onTap: _onItemTap,
       )
     );

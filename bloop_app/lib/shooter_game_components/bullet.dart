@@ -7,17 +7,14 @@ import 'package:flutter/cupertino.dart';
 
 import 'enemy.dart';
 
-const double bulletSpeed = 500;
+const double bulletSpeed = 400;
 ShooterGame game = ShooterGame();
 
 class Bullet extends SpriteComponent{
   bool exploded = false;
   double maxHeight;
 
-  // List<Enemy> enemyList = <Enemy>[];
-  // List<Bullet> bulletList = <Bullet>[];
-
-  Bullet(): super.square(15, 'pew.png'){
+  Bullet(): super.square(50, 'shootingStar.png'){
     this.anchor = Anchor.center; // moves the origin from top left corner to center of the sprite
   }
 

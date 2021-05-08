@@ -8,7 +8,7 @@ Widget customListTile({String title, String cover, String artist, onTap, context
       child: Container(
           padding: EdgeInsets.all(8),
           child: Card(
-            color: Colors.white,
+            color: Colors.yellow[700],
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(15),
             ),
@@ -35,7 +35,7 @@ Widget customListTile({String title, String cover, String artist, onTap, context
                     AutoSizeText(
                         title,
                         style: GoogleFonts.raleway(
-                           color: Colors.black,
+                           color: Colors.white,
                            fontSize: 15.0,
                            fontWeight: FontWeight.w600,
                          ),

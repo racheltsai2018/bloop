@@ -1,15 +1,16 @@
 import 'dart:ui';
-import 'package:bloop_app/shooter-game.dart';
 import 'package:flame/anchor.dart';
+import 'package:flame/animation.dart' as flame;
+import 'package:flame/components/animation_component.dart';
+import 'package:flame/spritesheet.dart';
 import 'package:flame/time.dart';
-import 'package:flame/components/component.dart';
 import 'package:flutter/cupertino.dart';
 
 
 const double numberOfBloopsAlongWidth = 4;
 const double bloopBottomSpacing = 10;
 
-class BloopPlayer extends SpriteComponent{
+class BloopPlayer extends AnimationComponent{
 
   //Indicates if the bloop player is hit or not
   bool _isHit;
@@ -21,9 +22,24 @@ class BloopPlayer extends SpriteComponent{
   Timer _timer;
 
   Size screenSize;
-  BloopPlayer() : super.square(100, 'bloopPlayer.png'){
-    // todo: finish player constructor with animations
-    //empty until we make it animation
+
+  // Reference to fly and hit animations
+  flame.Animation _flyAnimation;
+  flame.Animation _hitAnimation;
+
+  BloopPlayer() : super.empty(){
+
+    final spriteSheet = SpriteSheet(
+        imageName: 'Hit.png',
+        textureWidth: 1750,
+        textureHeight: 1750,
+        columns: 2,
+        rows: 1);
+
+    _flyAnimation = spriteSheet.createAnimation(0, from: 0, to: 1, stepTime: 0.1);
+    _hitAnimation = spriteSheet.createAnimation(0, from: 0, to: 2, stepTime: 0.1);
+    this.animation = _flyAnimation;
+
     _isHit = false;
     this.anchor = Anchor.center; // moves the origin from top left corner to center of the sprite
 
@@ -39,7 +55,6 @@ class BloopPlayer extends SpriteComponent{
 
   @override
   void update(double dt) {
-    // TODO: implement update
     super.update(dt);
 
     // NOTE: Never forget to update the timer, because Flame's timer
@@ -47,23 +62,19 @@ class BloopPlayer extends SpriteComponent{
     _timer.update(dt);
   }
 
-  // todo: add hit animation
   void hit(){
     if(!_isHit) {
       _isHit = true;
-
-      //For some reason, the enemy has to hit the dead center of the bloop for collision to be detected, not the edges
-      //Not sure if this was intentional or if we need to change it so that if the enemy touches
-      // any part of the bloop, a life is deducted
+      this.animation = _hitAnimation;
       life.value -= 1;
       _timer.start();
     }
   }
 
-  // todo: add fly animation
   // return bloop to regular state of flying
   void fly(){
     _isHit = false;
+    this.animation = _flyAnimation;
   }
   //checks if the point is inside the sprite
   bool isInside(double x, double y){

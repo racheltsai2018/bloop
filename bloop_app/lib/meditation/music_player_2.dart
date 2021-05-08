@@ -84,16 +84,16 @@ class MusicPlayerState2 extends State<MusicPlayer2>{
   Widget build(context){
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.indigo[400],
         leading: IconButton(
           onPressed: (){
             Navigator.of(context).pop();
           },
-          icon: Icon(Icons.arrow_back_ios_sharp, color: Colors.black,),
+          icon: Icon(Icons.arrow_back_ios_sharp, color: Colors.white,),
         ),
         title: Text(
             'Now Playing',
-            style: TextStyle(color: Colors.black)
+            style: TextStyle(color: Colors.white)
         ),
       ),
       body: Container(
@@ -116,7 +116,7 @@ class MusicPlayerState2 extends State<MusicPlayer2>{
               child: Text(
                 widget.title,
                 style: GoogleFonts.raleway(
-                  color: Colors.black,
+                  color: Colors.white,
                   fontSize: 25.0,
                   fontWeight: FontWeight.w600,
                 ),
@@ -135,7 +135,7 @@ class MusicPlayerState2 extends State<MusicPlayer2>{
             ),
             Slider(
               inactiveColor: Colors.black12,
-              activeColor: Colors.black,
+              activeColor: Colors.white,
               min: minValue,
               max: maxValue,
               value: currentValue,
@@ -177,7 +177,7 @@ class MusicPlayerState2 extends State<MusicPlayer2>{
                   GestureDetector(
                     child: Icon(
                         Icons.skip_previous,
-                        color: Colors.black,
+                        color: Colors.white,
                         size: 55
                     ),
                     behavior: HitTestBehavior.translucent,
@@ -188,7 +188,7 @@ class MusicPlayerState2 extends State<MusicPlayer2>{
                   GestureDetector(
                     child: Icon(
                         isPlaying ? Icons.pause_circle_filled_rounded : Icons.play_circle_fill_rounded,
-                        color: Colors.black,
+                        color: Colors.white,
                         size: 75
                     ),
                     behavior: HitTestBehavior.translucent,
@@ -199,7 +199,7 @@ class MusicPlayerState2 extends State<MusicPlayer2>{
                   GestureDetector(
                     child: Icon(
                         Icons.skip_next,
-                        color: Colors.black,
+                        color: Colors.white,
                         size: 55
                     ),
                     behavior: HitTestBehavior.translucent,
