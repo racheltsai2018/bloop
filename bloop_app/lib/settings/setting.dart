@@ -25,7 +25,7 @@ class _settingState extends State<setting>{
             )
         ),
         centerTitle: true,
-        backgroundColor: Colors.blueGrey[100],
+        backgroundColor: Colors.indigo[400],
         elevation: 30.0,
       ),
       body: Container(

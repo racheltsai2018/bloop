@@ -44,9 +44,9 @@ class _editDiaryState extends State<editDiary>{
               end: Alignment.bottomCenter,
               colors: [
                 Colors.indigo[900],
-                Colors.blue[900],
-                Colors.blue,
-                Colors.white
+                Colors.indigo[600],
+                Colors.indigo[400],
+                Colors.blue[200]
               ]
           )),
           child: Padding(

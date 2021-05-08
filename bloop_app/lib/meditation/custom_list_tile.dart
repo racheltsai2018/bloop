@@ -8,7 +8,7 @@ Widget customListTile({String title, String cover, String artist, onTap, context
       child: Container(
           padding: EdgeInsets.all(8),
           child: Card(
-            color: Colors.white,
+            color: Colors.grey[600],
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(15),
             ),

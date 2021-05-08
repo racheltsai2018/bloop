@@ -16,14 +16,14 @@ class _homepageState extends State<homepage>{
         appBar:AppBar(                                          // the appbar on the top of the screen
           title:Text('bloop',                                   //title centered on the page
             style: GoogleFonts.raleway(
-                color: Colors.black,
+                color: Colors.white,
                 fontSize: 25.0,
               fontWeight: FontWeight.w600,
             ),
           ),
           iconTheme: IconThemeData(color: Colors.black),
           centerTitle: true,
-          backgroundColor: Colors.blueGrey[100],
+          backgroundColor: Colors.indigo[400],
           elevation: 30.0,
         ),
         drawer: Drawer(//drawer on the left side
@@ -135,7 +135,10 @@ class _homepageState extends State<homepage>{
             decoration: BoxDecoration(gradient: LinearGradient(
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
-                colors: [Colors.indigo[900], Colors.indigo[600], Colors.indigo[400], Colors.blue[200]]
+                colors: [Colors.indigo[900],
+                  Colors.indigo[600],
+                  Colors.indigo[400],
+                  Colors.blue[200]]
             )),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,

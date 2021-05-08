@@ -10,6 +10,10 @@ import 'package:flutter/material.dart';
 
 void main() {
   runApp(MaterialApp(
+    theme: ThemeData(
+      brightness: Brightness.dark,
+    ),
+    themeMode: ThemeMode.dark,
     debugShowCheckedModeBanner: false,
     title: 'bloop',
     home: homepage(),

@@ -25,7 +25,7 @@ class about extends StatelessWidget {
             )
         ),
         centerTitle: true,
-        backgroundColor: Colors.blueGrey[100],
+        backgroundColor: Colors.indigo[400],
         elevation: 30.0,
       ),
       body: Container(
@@ -34,9 +34,9 @@ class about extends StatelessWidget {
             end: Alignment.bottomCenter,
             colors: [
               Colors.indigo[900],
-              Colors.blue[900],
-              Colors.blue,
-              Colors.white
+              Colors.indigo[600],
+              Colors.indigo[400],
+              Colors.blue[200]
             ]
         )),
         child: Column(
@@ -47,14 +47,14 @@ class about extends StatelessWidget {
                 child:Container(
                   padding: EdgeInsets.fromLTRB(1.0, 1.0, 1.0, .0),
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: Colors.grey[600],
                    // border: Border.all(color: Colors.black),
                     borderRadius: BorderRadius.all(Radius.circular(15.0)),
                   ),
                   child: ListTile(
                     title: Text('Why bloop?', textAlign: TextAlign.center,
                         style: GoogleFonts.raleway(
-                          color: Colors.black,
+                          color: Colors.white,
                           fontSize: 25.0,
                         )
                     ),
@@ -74,7 +74,7 @@ class about extends StatelessWidget {
                 child:Container(
                   padding: EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: Colors.grey[600],
                    // border: Border.all(color: Colors.black),
                     borderRadius: BorderRadius.all(Radius.circular(15.0)),
                   ),
@@ -82,7 +82,7 @@ class about extends StatelessWidget {
                     subtitle: Text('bloop focus on helping users to cope with stress. This minimalist app offers a simple mini-game, a journal, and several audios for mediation.',
                         textAlign: TextAlign.center,
                         style: GoogleFonts.raleway(
-                          color: Colors.black,
+                          color: Colors.white,
                           fontSize: 20.0,
                         )
                   ),

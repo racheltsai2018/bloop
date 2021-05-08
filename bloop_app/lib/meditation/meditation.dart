@@ -93,13 +93,13 @@ class meditation extends StatelessWidget {
       appBar: AppBar(                    // appbar
         title: Text('Meditation',
             style: GoogleFonts.raleway(
-              color: Colors.black,
+              color: Colors.white,
               fontSize: 25.0,
               fontWeight: FontWeight.w600,
             )
         ),
         centerTitle: true,
-        backgroundColor: Colors.blueGrey[100],
+        backgroundColor: Colors.indigo[400],
         elevation: 30.0,
       ),
       body: Container(                            // body
@@ -123,7 +123,7 @@ class meditation extends StatelessWidget {
                 textAlign: TextAlign.left,
                 style: GoogleFonts.raleway(
                   color: Colors.white,
-                  fontSize: 50.0,
+                  fontSize: 25.0,
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -163,7 +163,7 @@ class meditation extends StatelessWidget {
                 textAlign: TextAlign.left,
                 style: GoogleFonts.raleway(
                   color: Colors.white,
-                  fontSize: 50.0,
+                  fontSize: 25.0,
                   fontWeight: FontWeight.w600,
                 ),
               ),
