@@ -210,6 +210,9 @@ class MusicPlayerState2 extends State<MusicPlayer2>{
                 ],
               ),
             ),
+            SizedBox(
+                height: 50
+            ),
           ])
       ),
     );

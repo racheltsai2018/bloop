@@ -200,7 +200,7 @@ class _addDiaryState extends State<addDiary>{
                                 return AlertDialog(
                                   title: Text("Error: No date selected. Please select a date.",
                                       style: GoogleFonts.raleway(
-                                        color: Colors.black,
+                                        color: Colors.white,
                                         fontSize: 20.0,
                                         fontWeight: FontWeight.w600
                                       )),
