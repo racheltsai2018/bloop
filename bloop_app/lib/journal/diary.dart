@@ -50,9 +50,9 @@ class _diaryState extends State<diary>{
             end: Alignment.bottomCenter,
             colors: [
               Colors.indigo[900],
-              Colors.blue[900],
-              Colors.blue,
-              Colors.white
+              Colors.indigo[600],
+              Colors.indigo[400],
+              Colors.blue[200]
             ]
         )),
         child: Column(                                      
@@ -91,7 +91,10 @@ class _diaryState extends State<diary>{
                         ),
                         child: ListTile(
                           title: Text('Date:' +allDiary[index].date),
-                          subtitle: Text('Feeling: '+ allDiary[index].emoji),
+                          leading: Image(
+                            image : AssetImage(allDiary[index].emoji),
+                            height: 40.0,
+                            width: 40.0,),
                           trailing: Icon(Icons.info),
                           onTap: (){
                             Navigator.push(context, MaterialPageRoute<void>(builder: (context) => editDiary(allDiary[index])));

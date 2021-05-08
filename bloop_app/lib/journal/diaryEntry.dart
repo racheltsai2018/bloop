@@ -1,4 +1,6 @@
 import 'dart:core';
+
+import 'package:flutter/cupertino.dart';
 // each diary entry have id, date, emoji, and info
 class diaryEntry{
   int id;

@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:bloop_app/navigationBar.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -15,10 +17,19 @@ class _addDiaryState extends State<addDiary>{
   String pickDate;
   String currentIcon;
   List<bool> isSelected = [false,false,false, false];
-  List<String> eList = ["😁","😊","😭","😡"];
+
   TextEditingController diaryField = new TextEditingController();
   List<diaryEntry> allDiary = new List();
 
+  // Custom Emoji Images
+
+
+  List<String> bList = ['assets/images/Simple_Bloop.png',
+  'assets/images/Happy_Bloop.png',
+  'assets/images/Sad_Bloop.png',
+  'assets/images/Angry_Bloop.png'];
+
+  //List<String> eList = ["😁","😊","😭","😡"];
   //add entry to database
   void _addToDatabase() async{
     String textInfo = diaryField.text;
@@ -107,18 +118,35 @@ class _addDiaryState extends State<addDiary>{
                         child:ToggleButtons(                                  //emoji button
                           selectedColor: Colors.white,
                           fillColor: Colors.blue,
-                          children: <Widget>[
-                            Text("😁", style: TextStyle(fontSize: 25.0),),
+                          children: const <Widget>[
+                           Image(
+                             image : AssetImage('assets/images/Happy_Bloop.png'),
+                             height: 40.0,
+                             width: 40.0,),
+                            Image(
+                              image : AssetImage('assets/images/Simple_Bloop.png'),
+                              height: 40.0,
+                              width: 40.0,),
+                            Image(
+                              image : AssetImage('assets/images/Sad_Bloop.png'),
+                              height: 40.0,
+                              width: 40.0,),
+                            Image(
+                              image : AssetImage('assets/images/Angry_Bloop.png'),
+                              height: 40.0,
+                              width: 40.0,),
+                            /*Text("😁", style: TextStyle(fontSize: 25.0),),
                             Text("😊", style: TextStyle(fontSize: 25.0),),
                             Text("😭", style: TextStyle(fontSize: 25.0),),
                             Text("😡", style: TextStyle(fontSize: 25.0),),
+                             */
                           ],
                           onPressed: (int index){
                             setState((){
                               for (int buttonIndex =0; buttonIndex < isSelected.length; buttonIndex++){
                                 if(buttonIndex == index){
                                   isSelected[buttonIndex] = !isSelected[buttonIndex];
-                                  currentIcon = eList[index];
+                                  currentIcon = bList[index];
                                 } else{
                                   isSelected[buttonIndex] = false;
                                 }

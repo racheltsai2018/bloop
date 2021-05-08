@@ -135,7 +135,7 @@ class _homepageState extends State<homepage>{
             decoration: BoxDecoration(gradient: LinearGradient(
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
-                colors: [Colors.indigo[900], Colors.blue[900], Colors.blue, Colors.white]
+                colors: [Colors.indigo[900], Colors.indigo[600], Colors.indigo[400], Colors.blue[200]]
             )),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,

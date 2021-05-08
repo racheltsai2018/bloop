@@ -88,13 +88,27 @@ class _editDiaryState extends State<editDiary>{
                             ),
                             padding: const EdgeInsets.all(15.0),
                             child: AutoSizeText(
-                                'You were feeling: '+currentEntry.emoji,
+                                'You were feeling: ',
                                 style: GoogleFonts.raleway(
                                   color: Colors.black,
                                   fontSize: 20.0,
-                                )
+                                ),
                             ),  // print diary emoji picked
                           ),
+                      ),
+                      Expanded(
+                          child: Container(
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                border: Border.all(color: Colors.black),
+                                borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                          ),
+                            padding: const EdgeInsets.all(15.0),
+                          child: Image(
+                            image : AssetImage(currentEntry.emoji),
+                            height: 50.0,
+                            width: 50.0,)
+                            ,)
                       ),
                     ],
                   ),
