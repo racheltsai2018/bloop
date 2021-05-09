@@ -37,23 +37,6 @@ class Bullet extends SpriteComponent{
   void update(double dt) {
     super.update(dt);
     y -= dt * bulletSpeed;
-
-    // if(enemyList.isNotEmpty)
-    //   enemyList.forEach((enemy){
-    //     bool remove = this.toRect().contains(enemy.toRect().bottomCenter) ||
-    //         this.toRect().contains(enemy.toRect().bottomLeft) ||
-    //         this.toRect().contains(enemy.toRect().bottomRight);
-    //     if(remove){
-    //       ShooterGame.points += 1;
-    //       enemy.remove = true;
-    //       exploded = true;
-    //       enemyList.remove(enemy);
-    //       print('Points: $ShooterGame.points');
-    //     }
-    //   }
-    //   );
-    //print(enemyList.length);
-    //print(enemyList);
   }
 
   @override

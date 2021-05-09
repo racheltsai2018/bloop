@@ -128,21 +128,5 @@ class BloopPlayer extends AnimationComponent{
     this.y = size.height - (this.height/2) - bloopBottomSpacing;
   }
 
-  /*
-  final ShooterGame game;
-  Rect characterRect;
-  Paint characterPaint;
-
-  Character(this.game, double x, double y) {
-    characterRect = Rect.fromLTWH(x, y, game.tileSize, game.tileSize);
-    characterPaint = Paint();
-    characterPaint.color = Color(0xfffab29b);
-  }
-
-  void render(Canvas c) {
-    super.render(c);
-    c.drawRect(characterRect, characterPaint);
-  } */
-
 
 }
