@@ -14,18 +14,18 @@ bloop is a stress management mobile application developed in Android Studio usin
 5. Run the project
 
 ## Features
-- Meditation
+### Meditation
 > Provides users with two types of audio clips to select from. Guided meditation audio guides the users through proper breathing and relaxation techniques while non-guided meditation audio provides relaxing nature sounds for the user to freely meditate with on their own.
 
 <img src="https://i.imgur.com/IGnBFCq.png" width="200" height="400" />
 
-- Journal
+### Journal
 > Allows users to document their thoughts, feelings, and emotions on any selected day and stores it locally on the device. Users can refer to any past journal entries they have made and delete any entries as well.\
 > *Note: Users are not able to edit any previous entries once they have been submitted. Developers have taken note of this and will be implemented in future iterations.*
 
 <img src="https://i.imgur.com/SE9WgE9.png" width="200" height="400" />
 
-- Mini Game
+### Mini Game
 > Users can play a top-down shooter game featuring our little mascot bloop! Drag the bloop character to shoot and destroy any incoming enemies. The player will begin with 3 lives and lose a life when the bloop either gets hit by an enemy or an enemy passes the bloop player. 
 
 <img src="https://i.imgur.com/qnkTjko.png" width="200" height="400" />
