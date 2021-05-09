@@ -18,25 +18,6 @@ class Enemy extends SpriteComponent{
 
   Enemy() : super.square(ComponentSize, 'Enemy.png');
 
-  // This is the animation for the Enemy however it doesn't work. Enemy just doesn't show up
-  // No idea why because this code is virtually the same as the player class
-
-  /*
-  flame.Animation _animation;
-
-  Enemy() : super.empty(){
-    final spriteSheet = SpriteSheet(
-        imageName: 'Enemy_Sprite_Sheet.png',
-        textureWidth: 50,
-        textureHeight: 50,
-        columns: 4,
-        rows: 1);
-
-    _animation = spriteSheet.createAnimation(0, from: 0, to: 4, stepTime: 0.1);
-    this.animation = _animation;
-    this.anchor = Anchor.center; // moves the origin from top left corner to center of the sprite
-  }
-  */
   double maxY;
   bool remove = false;
   bool isHit = false;

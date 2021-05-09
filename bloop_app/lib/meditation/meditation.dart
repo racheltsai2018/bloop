@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:bloop_app/meditation/custom_list_tile.dart';
 import 'package:bloop_app/meditation/music_player.dart';
 import 'package:bloop_app/meditation/music_player_2.dart';
-// //meditation page
+// meditation page
 // so implementation is kinda jank so idk what issues we might come across later
 // but it works for now so let's roll with it
 // -Denise

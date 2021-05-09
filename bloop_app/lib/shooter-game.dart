@@ -113,32 +113,8 @@ class ShooterGame extends BaseGame with PanDetector, HasWidgetsOverlay{
     _scoreText.setByPosition(Position(15 , 50));
   }
 
-  //Displays score text on a canvas
-  // @override
-  // void render(Canvas canvas){
-  //   super.render(canvas);
-  //   final textStyle = TextStyle(
-  //       color: Colors.white,
-  //       fontSize: 48
-  //   );
-  //
-  //   final textSpan = TextSpan(
-  //       text: "Score: 0",
-  //       style: textStyle
-  //   );
-  //   final textPainter = TextPainter(
-  //       text: textSpan,
-  //       textDirection: TextDirection.ltr
-  //   );
-  //   textPainter.layout(
-  //       minWidth: 0,
-  //       maxWidth: size.width
-  //   );
-  //   textPainter.paint(canvas, Offset(size.width/ 4.5, size.height - 50));
-  // }
 
   //Pan is use for dragging the player
-
   //Pan start called when there will be a potential drag, makes sure the character was grabbed
   @override
   void onPanStart(DragStartDetails details) {
@@ -220,7 +196,6 @@ class ShooterGame extends BaseGame with PanDetector, HasWidgetsOverlay{
                   list.add(
                       Icon(
                         //handles displaying empty hearts
-                        //low key dunno how it works but it does - denise
                         i < value ? Icons.favorite : Icons.favorite_border,
                         color: Colors.pink[100],
                         size: 40.0,
@@ -232,13 +207,6 @@ class ShooterGame extends BaseGame with PanDetector, HasWidgetsOverlay{
                 );
               },
             )
-            // Column(
-            //   children: <Widget>[
-            //     Icon(Icons.favorite, size: 30.0, color: Colors.white),
-            //     Icon(Icons.favorite, size: 30.0, color: Colors.white),
-            //     Icon(Icons.favorite, size: 30.0, color: Colors.white),
-            //   ],
-            // ),
         ),
     ]);
   }
@@ -343,7 +311,6 @@ class ShooterGame extends BaseGame with PanDetector, HasWidgetsOverlay{
     this.score = 0;
     _bloop.life.value = 3;
     _bloop.fly();
-    //_enemyManager.reset();
 
     //remove all enemy components in game
     components.whereType<Enemy>().forEach((enemy) {
