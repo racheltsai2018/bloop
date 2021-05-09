@@ -10,7 +10,7 @@ bloop is a stress management mobile application developed in Android Studio usin
 1. Download [Android Studio](https://developer.android.com/studio/?gclid=CjwKCAjw7diEBhB-EiwAskVi17pWKL2Awv-aYdgkIO-4lhAInImm0MeRKdiFh5t0zIBmOdUqWQz0YBoCByQQAvD_BwE&gclsrc=aw.ds)
 2. Download and configure the [Flutter SDK](https://flutter.dev/docs/get-started/install) with Android Studio
 3. Clone this repo and open the project in Android Studio
-4. In the terminal in Android Studio (or within the project folder firectory), run `flutter pub get`
+4. In the terminal in Android Studio (or within the project folder directory), run `flutter pub get`
 5. Run the project
 
 ## Features
