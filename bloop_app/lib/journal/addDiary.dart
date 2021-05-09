@@ -24,12 +24,11 @@ class _addDiaryState extends State<addDiary>{
   // Custom Emoji Images
 
 
-  List<String> bList = ['assets/images/Simple_Bloop.png',
-  'assets/images/Happy_Bloop.png',
+  List<String> bList = ['assets/images/Happy_Bloop.png',
+  'assets/images/Simple_Bloop.png',
   'assets/images/Sad_Bloop.png',
   'assets/images/Angry_Bloop.png'];
 
-  //List<String> eList = ["😁","😊","😭","😡"];
   //add entry to database
   void _addToDatabase() async{
     String textInfo = diaryField.text;

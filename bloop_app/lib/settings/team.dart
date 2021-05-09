@@ -39,20 +39,30 @@ class team extends StatelessWidget {
               Colors.blue[200]
             ]
         )),
-        child: Column(
+        child: ListView(
           children: <Widget>[
             Padding(padding: EdgeInsets.fromLTRB(15.0, 15.0, 0, 15.0)),
             Align(                                                //plus button to add diary page
                 alignment: Alignment.center,
                 child:Container(
-                  padding: EdgeInsets.fromLTRB(1.0, 1.0, 1.0, .0),
+                  padding: EdgeInsets.fromLTRB(1.0, 10.0, 1.0, .0),
                   decoration: BoxDecoration(
                     color: Colors.yellow[700],
                     border: Border.all(color: Colors.amber[600]),
                   ),
-                  child: ListTile(
-                    title: Text('Nada Attar', textAlign: TextAlign.center,style: TextStyle(fontSize: 20.0)),
-                    subtitle: Text('Project Advisor', textAlign: TextAlign.center,style: TextStyle(fontSize: 15.0)),
+                  child: Column(
+                    children: [
+                      Container(
+                          child: CircleAvatar(
+                            backgroundImage: AssetImage('assets/images/bloopPlayer.png'),
+                            radius: 50,
+                          )
+                      ),
+                      ListTile(
+                        title: Text('Nada Attar', textAlign: TextAlign.center,style: TextStyle(fontSize: 20.0)),
+                        subtitle: Text('Project Advisor', textAlign: TextAlign.center,style: TextStyle(fontSize: 15.0)),
+                      ),
+                    ],
                   ),
                 )
             ),
@@ -60,14 +70,24 @@ class team extends StatelessWidget {
             Align(                                                //plus button to add diary page
                 alignment: Alignment.center,
                 child:Container(
-                  padding: EdgeInsets.fromLTRB(1.0, 1.0, 1.0, 1.0),
+                  padding: EdgeInsets.fromLTRB(1.0, 10.0, 1.0, 1.0),
                   decoration: BoxDecoration(
                     color: Colors.yellow[700],
                     border: Border.all(color: Colors.amber[600]),
                   ),
-                  child: ListTile(
-                    title: Text('Denise Gip', textAlign: TextAlign.center,style: TextStyle(fontSize: 20.0)),
-                    subtitle: Text('Full Stack Developer | Game Design Developer', textAlign: TextAlign.center,style: TextStyle(fontSize: 15.0)),
+                  child: Column(
+                    children: [
+                      Container(
+                          child: CircleAvatar(
+                            backgroundImage: AssetImage('assets/team_photos/screaming_cat.jpeg'),
+                            radius: 50,
+                          )
+                      ),
+                      ListTile(
+                        title: Text('Denise Gip', textAlign: TextAlign.center,style: TextStyle(fontSize: 20.0)),
+                        subtitle: Text('Mobile App Developer | Game Design Developer', textAlign: TextAlign.center,style: TextStyle(fontSize: 15.0)),
+                      ),
+                    ],
                   ),
                 )
             ),
@@ -75,14 +95,24 @@ class team extends StatelessWidget {
             Align(                                                //plus button to add diary page
                 alignment: Alignment.center,
                 child:Container(
-                  padding: EdgeInsets.fromLTRB(1.0, 1.0, 1.0, 1.0),
+                  padding: EdgeInsets.fromLTRB(1.0, 10.0, 1.0, 1.0),
                   decoration: BoxDecoration(
                     color: Colors.yellow[700],
                     border: Border.all(color: Colors.amber[600]),
                   ),
-                  child: ListTile(
-                    title: Text('Rachel Tsai', textAlign: TextAlign.center,style: TextStyle(fontSize: 20.0)),
-                    subtitle: Text('Full Stack Developer | Database Developer', textAlign: TextAlign.center,style: TextStyle(fontSize: 15.0)),
+                  child: Column(
+                    children: [
+                      Container(
+                          child: CircleAvatar(
+                            backgroundImage: AssetImage('assets/team_photos/crying_cat4.jpeg'),
+                            radius: 50,
+                          )
+                      ),
+                      ListTile(
+                        title: Text('Rachel Tsai', textAlign: TextAlign.center,style: TextStyle(fontSize: 20.0)),
+                        subtitle: Text('Mobile App Developer | Database Developer', textAlign: TextAlign.center,style: TextStyle(fontSize: 15.0)),
+                      ),
+                    ],
                   ),
                 )
             ),
@@ -90,14 +120,24 @@ class team extends StatelessWidget {
             Align(                                                //plus button to add diary page
                 alignment: Alignment.center,
                 child:Container(
-                  padding: EdgeInsets.fromLTRB(1.0, 1.0, 1.0, 1.0),
+                  padding: EdgeInsets.fromLTRB(1.0, 10.0, 1.0, 1.0),
                   decoration: BoxDecoration(
                     color: Colors.yellow[700],
                     border: Border.all(color: Colors.amber[600]),
                   ),
-                  child: ListTile(
-                    title: Text('Irina Voronova', textAlign: TextAlign.center,style: TextStyle(fontSize: 20.0)),
-                    subtitle: Text('Full Stack Developer | Lead Game Developer', textAlign: TextAlign.center,style: TextStyle(fontSize: 15.0)),
+                  child: Column(
+                    children: [
+                      Container(
+                          child: CircleAvatar(
+                            backgroundImage: AssetImage('assets/team_photos/crying_cat2.jpeg'),
+                            radius: 50,
+                          )
+                      ),
+                      ListTile(
+                        title: Text('Irina Voronova', textAlign: TextAlign.center,style: TextStyle(fontSize: 20.0)),
+                        subtitle: Text('Mobile App Developer | Lead Game Developer | Artist', textAlign: TextAlign.center,style: TextStyle(fontSize: 15.0)),
+                      ),
+                    ],
                   ),
                 )
             ),
@@ -105,14 +145,24 @@ class team extends StatelessWidget {
             Align(                                                //plus button to add diary page
                 alignment: Alignment.center,
                 child:Container(
-                  padding: EdgeInsets.fromLTRB(1.0, 1.0, 1.0, 1.0),
+                  padding: EdgeInsets.fromLTRB(1.0, 10.0, 1.0, 1.0),
                   decoration: BoxDecoration(
                     color: Colors.yellow[700],
                     border: Border.all(color: Colors.amber[600]),
                   ),
-                  child: ListTile(
-                    title: Text('Jennifer Yang', textAlign: TextAlign.center,style: TextStyle(fontSize: 20.0)),
-                    subtitle: Text('Full Stack Developer | Project Manager', textAlign: TextAlign.center,style: TextStyle(fontSize: 15.0)),
+                  child: Column(
+                    children: [
+                      Container(
+                          child: CircleAvatar(
+                            backgroundImage: AssetImage('assets/team_photos/crying_cat.jpeg'),
+                            radius: 50,
+                          )
+                      ),
+                      ListTile(
+                        title: Text('Jennifer Yang', textAlign: TextAlign.center,style: TextStyle(fontSize: 20.0)),
+                        subtitle: Text('Mobile App Developer | Project Manager', textAlign: TextAlign.center,style: TextStyle(fontSize: 15.0)),
+                      ),
+                    ],
                   ),
                 )
             ),
