@@ -134,11 +134,6 @@ class _addDiaryState extends State<addDiary>{
                               image : AssetImage('assets/images/Angry_Bloop.png'),
                               height: 40.0,
                               width: 40.0,),
-                            /*Text("😁", style: TextStyle(fontSize: 25.0),),
-                            Text("😊", style: TextStyle(fontSize: 25.0),),
-                            Text("😭", style: TextStyle(fontSize: 25.0),),
-                            Text("😡", style: TextStyle(fontSize: 25.0),),
-                             */
                           ],
                           onPressed: (int index){
                             setState((){
