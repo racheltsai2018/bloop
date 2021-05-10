@@ -42,13 +42,12 @@ class about extends StatelessWidget {
         child: Column(
           children: <Widget>[
             Padding(padding: EdgeInsets.fromLTRB(15.0, 15.0, 0, 15.0)),
-            Align(                                                //plus button to add diary page
+            Align(                                              
                 alignment: Alignment.center,
                 child:Container(
                   padding: EdgeInsets.fromLTRB(1.0, 1.0, 1.0, .0),
                   decoration: BoxDecoration(
                     color: Colors.yellow[700],
-                   // border: Border.all(color: Colors.black),
                     borderRadius: BorderRadius.all(Radius.circular(15.0)),
                   ),
                   child: ListTile(
@@ -62,24 +61,23 @@ class about extends StatelessWidget {
                 )
             ),
             Padding(padding: EdgeInsets.fromLTRB(8.0, 8.0, 0, 8.0)),
-            Align(                                                //bloop image
+            Align(                                             
                 alignment: Alignment.center,
                 child:Container(
                   child: new Image.asset('assets/images/bloopPlayer.png', width: 180, height: 180),
                 )
             ),
             Padding(padding: EdgeInsets.fromLTRB(8.0, 8.0, 0, 8.0)),
-            Align(                                                //plus button to add diary page
+            Align(                                              
                 alignment: Alignment.center,
                 child:Container(
                   padding: EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
                   decoration: BoxDecoration(
                     color: Colors.yellow[700],
-                   // border: Border.all(color: Colors.black),
                     borderRadius: BorderRadius.all(Radius.circular(15.0)),
                   ),
                   child: ListTile(
-                    subtitle: Text('bloop focus on helping users to cope with stress. This minimalist app offers a simple mini-game, a journal, and several audios for mediation.',
+                    subtitle: Text('Bloop focuses on helping users to cope with stress. This minimalistic application offers a simple mini-game, a journal, and several audios for meditation.',
                         textAlign: TextAlign.center,
                         style: GoogleFonts.raleway(
                           color: Colors.white,
