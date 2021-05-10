@@ -42,7 +42,7 @@ class team extends StatelessWidget {
         child: ListView(
           children: <Widget>[
             Padding(padding: EdgeInsets.fromLTRB(15.0, 15.0, 0, 15.0)),
-            Align(                                                //plus button to add diary page
+            Align(                                                
                 alignment: Alignment.center,
                 child:Container(
                   padding: EdgeInsets.fromLTRB(1.0, 10.0, 1.0, .0),
@@ -67,7 +67,7 @@ class team extends StatelessWidget {
                 )
             ),
             Padding(padding: EdgeInsets.fromLTRB(10.0, 10.0, 0, 10.0)),
-            Align(                                                //plus button to add diary page
+            Align(                                                
                 alignment: Alignment.center,
                 child:Container(
                   padding: EdgeInsets.fromLTRB(1.0, 10.0, 1.0, 1.0),
@@ -92,7 +92,7 @@ class team extends StatelessWidget {
                 )
             ),
             Padding(padding: EdgeInsets.fromLTRB(2.0, 2.0, 0, 2.0)),
-            Align(                                                //plus button to add diary page
+            Align(                                                
                 alignment: Alignment.center,
                 child:Container(
                   padding: EdgeInsets.fromLTRB(1.0, 10.0, 1.0, 1.0),
@@ -117,7 +117,7 @@ class team extends StatelessWidget {
                 )
             ),
             Padding(padding: EdgeInsets.fromLTRB(2.0, 2.0, 0, 2.0)),
-            Align(                                                //plus button to add diary page
+            Align(                                               
                 alignment: Alignment.center,
                 child:Container(
                   padding: EdgeInsets.fromLTRB(1.0, 10.0, 1.0, 1.0),
@@ -142,7 +142,7 @@ class team extends StatelessWidget {
                 )
             ),
             Padding(padding: EdgeInsets.fromLTRB(2.0, 2.0, 0, 2.0)),
-            Align(                                                //plus button to add diary page
+            Align(                                                
                 alignment: Alignment.center,
                 child:Container(
                   padding: EdgeInsets.fromLTRB(1.0, 10.0, 1.0, 1.0),
