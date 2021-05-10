@@ -38,24 +38,22 @@ class credits extends StatelessWidget {
         child: Column(
           children: <Widget>[
             Padding(padding: EdgeInsets.fromLTRB(15.0, 15.0, 0, 15.0)),
-            Align(                                                //plus button to add diary page
+            Align(                                          
                 alignment: Alignment.center,
                 child:Container(
                   decoration: BoxDecoration(
                     color: Colors.yellow[700],
-                    //border: Border.all(color: Colors.black),
-                  ),
+                ),
                   child: ListTile(
                     title: Text('Flutter Packages Used', style: TextStyle(fontSize: 20.0)),
                   ),
                 )
             ),
             Padding(padding: EdgeInsets.fromLTRB(1.5, 1.5, 0, 1.5)),
-            Align(                                                //plus button to add diary page
+            Align(                                                
                 child:Container(
                   decoration: BoxDecoration(
                     color: Colors.yellow[700],
-                    //border: Border.all(color: Colors.black),
                   ),
                   child: ListTile(
                     title: Text('Auto Size Text', style: TextStyle(fontSize: 15.0)),
@@ -63,11 +61,10 @@ class credits extends StatelessWidget {
                   ),
                 )
             ),
-            Align(                                                //plus button to add diary page
+            Align(                                               
                 child:Container(
                   decoration: BoxDecoration(
                     color: Colors.yellow[700],
-                    //border: Border.all(color: Colors.black),
                   ),
                   child: ListTile(
                     title: Text('Google Fonts', style: TextStyle(fontSize: 15.0)),
@@ -75,11 +72,10 @@ class credits extends StatelessWidget {
                   ),
                 )
             ),
-            Align(                                                //plus button to add diary page
+            Align(                                                
                 child:Container(
                   decoration: BoxDecoration(
                     color: Colors.yellow[700],
-                    //border: Border.all(color: Colors.black),
                   ),
                   child: ListTile(
                     title: Text('Flame Game Engine', style: TextStyle(fontSize: 15.0)),
@@ -87,11 +83,10 @@ class credits extends StatelessWidget {
                   ),
                 )
             ),
-            Align(                                                //plus button to add diary page
+            Align(                                                
                 child:Container(
                   decoration: BoxDecoration(
                     color: Colors.yellow[700],
-                    //border: Border.all(color: Colors.black),
                   ),
                   child: ListTile(
                     title: Text('Just Audio', style: TextStyle(fontSize: 15.0)),
@@ -99,11 +94,10 @@ class credits extends StatelessWidget {
                   ),
                 )
             ),
-            Align(                                                //plus button to add diary page
+            Align(                                             
                 child:Container(
                   decoration: BoxDecoration(
                     color: Colors.yellow[700],
-                    //border: Border.all(color: Colors.black),
                   ),
                   child: ListTile(
                     title: Text('Path', style: TextStyle(fontSize: 15.0)),
@@ -111,11 +105,10 @@ class credits extends StatelessWidget {
                   ),
                 )
             ),
-            Align(                                                //plus button to add diary page
+            Align(                                                
                 child:Container(
                   decoration: BoxDecoration(
                     color: Colors.yellow[700],
-                    //border: Border.all(color: Colors.black),
                   ),
                   child: ListTile(
                     title: Text('Setting UI', style: TextStyle(fontSize: 15.0)),
@@ -123,11 +116,10 @@ class credits extends StatelessWidget {
                   ),
                 )
             ),
-            Align(                                                //plus button to add diary page
+            Align(                                               
                 child:Container(
                   decoration: BoxDecoration(
                     color: Colors.yellow[700],
-                    //border: Border.all(color: Colors.black),
                   ),
                   child: ListTile(
                     title: Text('SQFlite', style: TextStyle(fontSize: 15.0)),
