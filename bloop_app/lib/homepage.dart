@@ -21,7 +21,7 @@ class _homepageState extends State<homepage>{
               fontWeight: FontWeight.w600,
             ),
           ),
-          iconTheme: IconThemeData(color: Colors.black),
+          iconTheme: IconThemeData(color: Colors.white),
           centerTitle: true,
           backgroundColor: Colors.indigo[400],
           elevation: 30.0,
@@ -58,7 +58,7 @@ class _homepageState extends State<homepage>{
                     title: Text(
                         'Meditation',
                       style: GoogleFonts.raleway(
-                        color: Colors.black,
+                        color: Colors.white,
                         fontSize: 24,
                         fontWeight: FontWeight.w400,
                       ),
@@ -79,7 +79,7 @@ class _homepageState extends State<homepage>{
                     title: Text(
                         "Journal",
                       style: GoogleFonts.raleway(
-                        color: Colors.black,
+                        color: Colors.white,
                         fontSize: 24,
                         fontWeight: FontWeight.w400,
                       ),
@@ -97,7 +97,7 @@ class _homepageState extends State<homepage>{
                     title: Text(
                         "Mini Game",
                       style: GoogleFonts.raleway(
-                        color: Colors.black,
+                        color: Colors.white,
                         fontSize: 24,
                         fontWeight: FontWeight.w400,
                       ),
@@ -115,7 +115,7 @@ class _homepageState extends State<homepage>{
                     title: Text(
                       "Settings",
                       style: GoogleFonts.raleway(
-                        color: Colors.black,
+                        color: Colors.white,
                         fontSize: 24,
                         fontWeight: FontWeight.w400,
                       ),
